@@ -1,0 +1,2 @@
+D:\.net-wpf-c#\C-Sharp-interview-Q\TicketManagement\ticketmanagement.client\obj\Debug\ticketmanagement.client.esproj.CoreCompileInputs.cache
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\ticketmanagement.client\obj\Debug\ticketmanagement.client.esproj.CoreCompileInputs.cache
