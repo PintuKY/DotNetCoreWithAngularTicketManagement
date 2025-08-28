@@ -4,13 +4,27 @@ using TicketManagement.Server.DBContexts;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// ✅ Add DbContext with SQL Server
+// Add DbContext with SQL Server
 builder.Services.AddDbContext<AppDatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
+//for global Enable API access on localhost with CORS (for Angular)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+//.AddJsonOptions ASP.NET Core to serialize enums as strings
+//builder.Services.AddControllers().AddJsonOptions(options =>
+//{
+//    options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+//});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -25,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// Enable CORS
+app.UseCors("AllowAngular");
 
 app.UseAuthorization();
 

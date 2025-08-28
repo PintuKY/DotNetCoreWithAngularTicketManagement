@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+          <a class="nav-link active" aria-current="page" href="/addticket">Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/tickets">Tickets</a>
@@ -28,36 +28,3 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-<!--<div class="container mt-3">
-  <h2>Ticket List</h2>
-
-  <div>Loading tickets...</div>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>title</th>
-        <th>status</th>
-        <th>priority</th>
-        <th>category</th>
-        <th>createdBy</th>
-        <th>assignedTo</th>
-        <th>createdDate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ticket of resulttickets">
-        <td>{{ ticket.ticketId }}</td>
-        <td>{{ ticket.title }}</td>
-        <td>{{ ticket.status }}</td>
-        <td>{{ ticket.prioritys }}</td>
-        <td>{{ ticket.categorys }}</td>
-        <td>{{ ticket.createdBy }}</td>
-        <td>{{ ticket.assignedTo }}</td>
-        <td>{{ ticket.createdDate | date:'short' }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>-->
-

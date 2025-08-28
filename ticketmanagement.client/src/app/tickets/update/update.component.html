@@ -1,0 +1,107 @@
+<div class="container mt-4">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row g-3">
+
+      <!-- Title -->
+      <div class="col-12 col-md-6">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" formControlName="title" placeholder="Enter title" />
+        <div *ngIf="f['title'].touched && f['title'].invalid" class="text-danger">
+          <small *ngIf="f['title'].errors">Title is required</small>
+          <small *ngIf="f['title'].errors">Min 3 characters</small>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="col-12">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" formControlName="description" rows="3"></textarea>
+        <div *ngIf="f['description'].touched && f['description'].invalid" class="text-danger">
+          <small *ngIf="f['description'].errors">Description is required</small>
+          <small *ngIf="f['description'].errors">Max 250 characters</small>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="col-12 col-md-4">
+        <label class="form-label">Status</label>
+        <select class="form-select" formControlName="status">
+          <option value="0">Open</option>
+          <option value="1">InProgress</option>
+          <option value="2">Hold</option>
+          <option value="3">Closed</option>
+          <option value="4">Rejected</option>
+        </select>
+        <div *ngIf="f['status'].touched && f['status'].invalid" class="text-danger">
+          <small>Status is required</small>
+        </div>
+      </div>
+
+      <!-- Priority -->
+      <div class="col-12 col-md-4">
+        <label class="form-label">Priority</label>
+        <select class="form-select" formControlName="priority">
+          <option value="0">Low</option>
+          <option value="1">High</option>
+          <option value="2">Medium</option>
+          <option value="3">Critical</option>
+        </select>
+        <div *ngIf="f['priority'].touched && f['priority'].invalid" class="text-danger">
+          <small>Priority is required</small>
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div class="col-12 col-md-4">
+        <label class="form-label">Category</label>
+        <select class="form-select" formControlName="category">
+          <option value="0">Bug</option>
+          <option value="1">Feature</option>
+          <option value="2">Support</option>
+        </select>
+        <div *ngIf="f['category'].touched && f['category'].invalid" class="text-danger">
+          <small>Category is required</small>
+        </div>
+      </div>
+
+      <!-- CreatedBy -->
+      <div class="col-12 col-md-6">
+        <label class="form-label">Created By</label>
+        <input type="text" class="form-control" formControlName="createdBy" />
+        <div *ngIf="f['createdBy'].touched && f['createdBy'].invalid" class="text-danger">
+          <small>CreatedBy is required</small>
+        </div>
+      </div>
+
+      <!-- AssignedTo -->
+      <div class="col-12 col-md-6">
+        <label class="form-label">Assigned To</label>
+        <input type="text" class="form-control" formControlName="assignedTo" />
+      </div>
+
+      <!-- Dates -->
+      <div class="col-12 col-md-6">
+        <label class="form-label">Created Date</label>
+        <input type="date" class="form-control" formControlName="createdDate" />
+        <div *ngIf="f['createdDate'].touched && f['createdDate'].invalid" class="text-danger">
+          <small>CreatedBy is required</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label">Due Date</label>
+        <input type="date" class="form-control" formControlName="dueDate" />
+      </div>
+
+      <!-- File -->
+      <div class="col-12">
+        <label class="form-label">Attachment</label>
+        <input type="file" class="form-control" (change)="onFileChange($event)" />
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary w-100">Update Ticket</button>
+      </div>
+    </div>
+  </form>
+</div>

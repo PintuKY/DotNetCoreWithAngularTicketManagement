@@ -204,3 +204,4 @@ D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.pdb
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.genruntimeconfig.cache
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\ref\TicketManagement.Server.dll
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.sourcelink.json
