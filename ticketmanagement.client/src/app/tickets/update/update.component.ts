@@ -82,20 +82,43 @@ export class UpdateComponent implements OnInit {
   onSubmit() {
     if (this.editForm.valid)
     {
+      console.log("Form update data editForm", this.editForm.value);
       const updatedTicket: Ticketlist = {
         ticketId: this.ticketId, 
-        ...this.editForm.value //...this.editForm.value = a shortcut to copy all form field values into the object.
+        title: this.editForm.value.title,
+        description: this.editForm.value.description,
+        status: Number(this.editForm.value.status),
+        prioritys: Number(this.editForm.value.priority),
+        categorys: Number(this.editForm.value.category),
+        createdBy: this.editForm.value.createdBy,
+        assignedTo: this.editForm.value.assignedTo,
+        createdDate: this.editForm.value.createdDate,
+        dueDate: this.editForm.value.dueDate,
+        attachmentPath: ""
       };
-      this.ticketService.updateTicket(this.ticketId, updatedTicket).subscribe(() => {
-        alert('Ticket updated successfully');
-        this.router.navigate(['/tickets']);
-      });
-    } else {
+      console.log("Form update data", updatedTicket);
+      this.ticketService.updateTicket(this.ticketId, updatedTicket).subscribe(
+        (data) => {
+          console.log("updated Data success", data);
+          alert('Ticket updated successfully');
+          this.router.navigate(['/tickets']);          
+        },
+        (error) => {
+          console.error("Update data error", error);
+        }
+       
+      );
+    }
+    else {
       this.editForm.markAllAsTouched();
     }
   }
+  //get is a TypeScript getter
+  //use it like a property
+  //get f() = shortcut for this.editForm.controls
   get f() {
     return this.editForm.controls;
   }
-  
+  //writing this.editForm.controls everywhere in HTML, you just write f.
+  //So now in HTML, f['category'] = this.editForm.controls['category']
 }

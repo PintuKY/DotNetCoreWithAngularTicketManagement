@@ -35,14 +35,6 @@ D:\.net-wpf-c#\C-Sharp-interview-Q\TicketManagement\TicketManagement.Server\obj\
 D:\.net-wpf-c#\C-Sharp-interview-Q\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.pdb
 D:\.net-wpf-c#\C-Sharp-interview-Q\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.genruntimeconfig.cache
 D:\.net-wpf-c#\C-Sharp-interview-Q\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\ref\TicketManagement.Server.dll
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.csproj.AssemblyReference.cache
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\spa.proxy.json
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.GeneratedMSBuildEditorConfig.editorconfig
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.AssemblyInfoInputs.cache
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.AssemblyInfo.cs
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.csproj.CoreCompileInputs.cache
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.MvcApplicationPartsAssemblyInfo.cs
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.MvcApplicationPartsAssemblyInfo.cache
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\spa.proxy.json
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\appsettings.Development.json
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\appsettings.json
@@ -187,6 +179,15 @@ D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.csproj.AssemblyReference.cache
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\spa.proxy.json
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.AssemblyInfoInputs.cache
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.AssemblyInfo.cs
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.csproj.CoreCompileInputs.cache
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.MvcApplicationPartsAssemblyInfo.cs
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.MvcApplicationPartsAssemblyInfo.cache
+D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.sourcelink.json
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\scopedcss\bundle\TicketManagement.Server.styles.css
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\staticwebassets.build.json
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\staticwebassets.development.json
@@ -204,4 +205,3 @@ D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.pdb
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.genruntimeconfig.cache
 D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\ref\TicketManagement.Server.dll
-D:\DotNetWPFCSharp\CSharpInterviewQ\TicketManagement\TicketManagement.Server\obj\Debug\net9.0\TicketManagement.Server.sourcelink.json

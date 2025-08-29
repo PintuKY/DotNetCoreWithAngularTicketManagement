@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TicketManagement.Server.Models
 {
@@ -6,7 +7,8 @@ namespace TicketManagement.Server.Models
     {
         [Key]
         public int TicketId { get; set; }
-
+        [ForeignKey("Employee")]
+        public int EmpId { get; set; }
         [Required]
         [MaxLength(200)]
         public string? Title { get; set; }
@@ -38,5 +40,22 @@ namespace TicketManagement.Server.Models
 
         [MaxLength(500)]
         public string? AttachmentPath { get; set; }
+       // public EmpUser? EmpUser { get; set; }
+    }
+    public enum TicketStatus
+    {
+        Open,
+        InProgress,
+        Hold,
+        Closed,
+        Rejected,
+    }
+    public enum Priority
+    {
+        Low, Medium, High, Critical
+    }
+    public enum Category
+    {
+        Bug, Feature, Support
     }
 }

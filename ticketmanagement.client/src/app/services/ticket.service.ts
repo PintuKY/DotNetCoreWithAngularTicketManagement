@@ -21,14 +21,10 @@ export interface Ticketlist {
   providedIn: 'root'
 })
 export class TicketService {
-  private baseUrl = '/weatherforecast'; // backend API URL
+
   private baseeurl = '/api/ticket';
   constructor(private http: HttpClient) { }
   
-  FetchTicketsForecast(): Observable<Ticketlist[]>
-  {
-    return this.http.get<Ticketlist[]>(this.baseUrl);
-  }
   // Get all tickets
   FetchTickets(): Observable<Ticketlist[]> {
     return this.http.get<Ticketlist[]>(this.baseeurl);

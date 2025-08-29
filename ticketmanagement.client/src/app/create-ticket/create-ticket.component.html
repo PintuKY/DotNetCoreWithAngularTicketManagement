@@ -1,80 +1,4 @@
-<!--<div class="container mt-4">
-  <form>
-    <div class="row g-3">-->
 
-<!-- g-3 adds spacing between rows -->
-<!--<div class="col-12 col-md-6">
-        <label for="Title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="Title" placeholder="Enter title">
-      </div>
-
-      <div class="col-12">
-        <label for="Description" class="form-label">Description</label>
-        <textarea class="form-control" id="Description" rows="4" placeholder="Leave a comment here"></textarea>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <label for="Status" class="form-label">Status</label>
-        <select class="form-select" id="Status">
-          <option selected value="0">Open</option>
-          <option value="1">InProgress</option>
-          <option value="2">Hold</option>
-          <option value="3">Closed</option>
-          <option value="4">Rejected</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <label for="Prioritys" class="form-label">Prioritys</label>
-        <select class="form-select" id="Prioritys">
-          <option selected value="0">Low</option>
-          <option value="1">High</option>
-          <option value="2">Medium</option>
-          <option value="3">Critical</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <label for="Category" class="form-label">Categorys</label>
-        <select class="form-select" id="Category">
-          <option selected value="0">Bug</option>
-          <option value="1">Feature</option>
-          <option value="2">Support</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="CreatedBy" class="form-label">CreatedBy</label>
-        <input type="text" class="form-control" id="CreatedBy" placeholder="Created by">
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="AssignedTo" class="form-label">AssignedTo</label>
-        <input type="text" class="form-control" id="AssignedTo" placeholder="Assigned to">
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="CreatedDate" class="form-label">CreatedDate</label>
-        <input type="date" class="form-control" id="CreatedDate">
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="DueDate" class="form-label">DueDate</label>
-        <input type="date" class="form-control" id="DueDate">
-      </div>
-
-      <div class="col-12">
-        <label for="AttachmentPath" class="form-label">File</label>
-        <input type="file" class="form-control" id="AttachmentPath">
-      </div>
-
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
-      </div>
-
-    </div>
-  </form>
-</div>-->
 <div *ngIf="successMessage" class="alert alert-success mt-2">
   {{ successMessage }}
 </div>
@@ -82,79 +6,95 @@
   {{ errorMessage }}
 </div>
 
-<div class="container mt-4">
-  <form #ticketForm="ngForm" (ngSubmit)="onSubmit(ticketForm)">
-    <div class="row g-3">
+    <div class="container mt-4  shadow-box" style="background:#FDFDFDFD; border-radius: 15px;">
+      <form #ticketForm="ngForm" (ngSubmit)="onSubmit(ticketForm)">
+        <div class="row g-3 justify-content-center mb-3">
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="Title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" ngModel required placeholder="Enter title">
+          </div>
+          <div class="col-12  col-md-6 col-lg-4 columnstyle">
+            <label for="Status" class="form-label">Status</label>
+            <select class="form-select" id="Status" place name="Status" ngModel>
+              <option value="" disabled selected hidden>Select Status</option>
+              <option value="0" selected>Open</option>
+              <option value="1">InProgress</option>
+              <option value="2">Hold</option>
+              <option value="3">Closed</option>
+              <option value="4">Rejected</option>
+            </select>
+          </div>
+        </div>
 
-      <div class="col-12 col-md-6">
-        <label for="Title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="Title" name="Title" ngModel required placeholder="Enter title">
-      </div>
+        <div class="row g-3 justify-content-center mb-3">
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="Prioritys" class="form-label">Prioritys</label>
+            <select class="form-select" id="Prioritys" name="Prioritys" ngModel>
+              <option value="" disabled selected hidden>Select Prioritys</option>
+              <option value="0" selected>Low</option>
+              <option value="1">High</option>
+              <option value="2">Medium</option>
+              <option value="3">Critical</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="Category" class="form-label">Categorys</label>
+            <select class="form-select" id="Categorys" name="Categorys" ngModel>
+              <option value="" disabled selected hidden>Select Categorys</option>
+              <option value="0" selected>Bug</option>
+              <option value="1">Feature</option>
+              <option value="2">Support</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-3 justify-content-center mb-3">
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="CreatedBy" class="form-label">Created By</label>
+            <select class="form-select" id="CreatedBy" name="CreatedBy" [(ngModel)]="taskTicket.createdBy">
+              <option value="" disabled selected hidden>Select Employee</option>
+              <option *ngFor="let emp of employeeuser" [value]="emp.fullName">
+                {{ emp.fullName }}
+              </option>
+            </select>
+          </div>
 
-      <div class="col-12">
-        <label for="Description" class="form-label">Description</label>
-        <textarea class="form-control" id="Description" name="Description" ngModel rows="4" placeholder="Description here" required></textarea>
-      </div>
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="AssignedTo" class="form-label">AssignedTo</label>
+            <select class="form-select" id="AssignedTo" name="AssignedTo" [(ngModel)]="taskTicket1.assignedTo">
+              <option value="" disabled selected hidden>Select Employee</option>
+              <option *ngFor="let emp of employeeuser" [value]="emp.fullName">
+                {{ emp.fullName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-3 justify-content-center mb-3">
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="CreatedDate" class="form-label">CreatedDate</label>
+            <input type="date" class="form-control" id="CreatedDate" name="CreatedDate" ngModel>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 columnstyle">
+            <label for="DueDate" class="form-label">DueDate</label>
+            <input type="date" class="form-control" id="DueDate" name="DueDate" ngModel>
+          </div>
+        </div>
 
-      <div class="col-12 col-md-4">
-        <label for="Status" class="form-label">Status</label>
-        <select class="form-select" id="Status" name="Status" ngModel>
-          <option value="0" selected>Open</option>
-          <option value="1">InProgress</option>
-          <option value="2">Hold</option>
-          <option value="3">Closed</option>
-          <option value="4">Rejected</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <label for="Prioritys" class="form-label">Prioritys</label>
-        <select class="form-select" id="Prioritys" name="Prioritys" ngModel>
-          <option value="0" selected>Low</option>
-          <option value="1">High</option>
-          <option value="2">Medium</option>
-          <option value="3">Critical</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <label for="Category" class="form-label">Categorys</label>
-        <select class="form-select" id="Categorys" name="Categorys" ngModel>
-          <option value="0" selected>Bug</option>
-          <option value="1">Feature</option>
-          <option value="2">Support</option>
-        </select>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="CreatedBy" class="form-label">CreatedBy</label>
-        <input type="text" class="form-control" id="CreatedBy" name="CreatedBy" ngModel placeholder="Created by">
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="AssignedTo" class="form-label">AssignedTo</label>
-        <input type="text" class="form-control" id="AssignedTo" name="AssignedTo" ngModel placeholder="Assigned to">
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="CreatedDate" class="form-label">CreatedDate</label>
-        <input type="date" class="form-control" id="CreatedDate" name="CreatedDate" ngModel>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label for="DueDate" class="form-label">DueDate</label>
-        <input type="date" class="form-control" id="DueDate" name="DueDate" ngModel>
-      </div>
-
-      <div class="col-12">
-        <label for="AttachmentPath" class="form-label">File</label>
-        <input type="file" class="form-control" id="AttachmentPath" name="AttachmentPath" ngModel>
-      </div>
-
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary w-100" [disabled]="ticketForm.invalid">Submit</button>
-      </div>
-
+        <div class="row g-3 justify-content-center mb-3">
+          <div class="col-12 col-md-4 col-lg-8">
+            <label for="Description" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" ngModel rows="4" placeholder="Description here" required></textarea>
+          </div>
+        </div>
+        <div class="row g-3 justify-content-center mb-3">
+        <div class="col-12 col-md-4 col-lg-8">
+          <label for="AttachmentPath" class="form-label">File</label>
+          <input type="file" class="form-control" id="AttachmentPath" name="AttachmentPath" ngModel>
+        </div>
+        </div>
+        <div class="row g-3 justify-content-center" style="padding:10px;">
+          <div class="col-12 col-lg-8 col-md-4">
+            <button type="submit" class="btn btn-primary w-100" [disabled]="ticketForm.invalid">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
-</div>

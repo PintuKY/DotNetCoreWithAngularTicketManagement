@@ -3,7 +3,7 @@ import { TicketService, Ticketlist } from '../../services/ticket.service';
 
 
 @Component({
-  selector: 'app-tickets',
+  selector: 'app-tickets', //This is the custom HTML tag name you use in templates
   templateUrl: './tickets.component.html',
   styleUrls: ['./tickets.component.css']
 })
@@ -14,14 +14,15 @@ export class TicketsComponent implements OnInit {
   statusMap: { [key: number]: string } = {
     0: 'Open',
     1: 'InProgress',
-    2: 'Resolved',
-    3: 'Closed'
+    2: 'Hold',
+    3: 'Closed',
+    4: 'Rejected'
   };
 
   priorityMap: { [key: number]: string } = {
     0: 'Low',
-    1: 'Medium',
-    2: 'High',
+    1: 'High',
+    2: 'Medium',
     3: 'Critical'
   };
 

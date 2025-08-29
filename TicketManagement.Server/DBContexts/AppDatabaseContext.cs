@@ -7,12 +7,14 @@ namespace TicketManagement.Server.DBContexts
     public class AppDatabaseContext : DbContext
     {
         public AppDatabaseContext(DbContextOptions<AppDatabaseContext> options) : base(options) { }
-        public DbSet<Ticket> Tickets { get; set; }
+        //public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TaskTicket> TaskTickets {  get; set; }
+        public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             // any additional configuration
+           // modelBuilder.Ignore<TaskTicket>();
         }
 
     }

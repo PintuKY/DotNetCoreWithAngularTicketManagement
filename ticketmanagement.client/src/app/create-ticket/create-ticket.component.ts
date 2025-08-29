@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketService } from '../services/ticket.service';
+import { TicketService, Ticketlist } from '../services/ticket.service';
+import { EmpuserService, employeelist } from '../services/empuser.service';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,13 +8,36 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.css']
 })
-export class CreateTicketComponent implements OnInit {
-  ticketForm!: FormGroup;
-  constructor(private ticketService: TicketService) { }
-
-  ngOnInit(): void {
+export class CreateTicketComponent implements OnInit
+{
+  public employeeuser: employeelist[] = [];
+  taskTicket: any = { createdBy: '' };
+  taskTicket1: any = { assignedTo: '' };
+  constructor(
+    private ticketService: TicketService,
+    private epuserService: EmpuserService
+  )
+  {
 
   }
+
+  ngOnInit(): void
+  {
+    this.getEmployee();
+  }
+
+  getEmployee() {
+    this.epuserService.FetchEmpUser().subscribe(
+      (result) => {
+        this.employeeuser = result;
+        console.log("employeeuser", result);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   successMessage: string = '';
   errorMessage: string = '';
   onSubmit(form: NgForm) {

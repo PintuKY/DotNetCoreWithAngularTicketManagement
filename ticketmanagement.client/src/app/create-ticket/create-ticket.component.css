@@ -1,0 +1,11 @@
+.customstyle {
+  display: inline-block; 
+}
+.shadow-box {
+  background: #fff; /* white background */
+  border-radius: 8px; /* smooth corners */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* shadow */
+  padding: 20px; /* spacing inside */
+  border-color:#FDFD8978;
+}
+

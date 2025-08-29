@@ -1,3 +1,10 @@
+<!--touched = means the user has clicked into the input field and then left (blur event).
+  untouched = means the user has never interacted with the field
+invalid = true if the control fails validation rules.
+ writing this.editForm.controls everywhere in HTML, you just write f. check ts file
+ So now in HTML, f['category'] = this.editForm.controls['category']
+-->
+
 <div class="container mt-4">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="row g-3">

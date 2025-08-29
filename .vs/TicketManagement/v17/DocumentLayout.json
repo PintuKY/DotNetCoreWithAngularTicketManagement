@@ -3,48 +3,100 @@
   "WorkspaceRootPath": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\services\\ticket.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\services\\ticket.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\services\\empuser.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\services\\empuser.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\services\\ticket.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\services\\ticket.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\controllers\\empusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\controllers\\empusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\models\\taskticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\models\\taskticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\repositorys\\empuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\repositorys\\empuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\services\\iemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\services\\iemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\dbcontexts\\appdatabasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\dbcontexts\\appdatabasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\repositorys\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\repositorys\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\services\\iticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\services\\iticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\services\\ticket.service.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -53,22 +105,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\truncate.pipe.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\truncate.pipe.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\models\\taskticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\models\\taskticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -87,14 +123,6 @@
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\services\\iticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\services\\iticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.server\\repositorys\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0128DFF0-EBBF-4E61-B428-0F4156E456C2}|TicketManagement.Server\\TicketManagement.Server.csproj|solutionrelative:ticketmanagement.server\\repositorys\\ticketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|d:\\dotnetwpfcsharp\\csharpinterviewq\\ticketmanagement\\ticketmanagement.client\\src\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{FCB7EB2A-A04E-0732-F6C2-F3A6D2F3E344}|ticketmanagement.client\\ticketmanagement.client.esproj|solutionrelative:ticketmanagement.client\\src\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
@@ -106,33 +134,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "TicketController.cs",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Controllers\\TicketController.cs",
               "RelativeDocumentMoniker": "TicketManagement.Server\\Controllers\\TicketController.cs",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Controllers\\TicketController.cs",
               "RelativeToolTip": "TicketManagement.Server\\Controllers\\TicketController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwC8AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-26T14:03:49.574Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "create-ticket.component.ts",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts",
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAQwFEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-08-27T04:52:28.957Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -142,7 +172,7 @@
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\services\\ticket.service.ts",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\services\\ticket.service.ts",
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\services\\ticket.service.ts",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwAwAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-08-26T15:40:25.097Z",
               "IsPinned": true,
@@ -150,13 +180,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 20,
               "Title": "app.module.ts",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.module.ts",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\app.module.ts",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.module.ts",
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\app.module.ts",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAQAAABgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-08-26T17:31:02.012Z",
               "IsPinned": true,
@@ -164,60 +194,217 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 21,
               "Title": "app.component.html",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.html",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\app.component.html",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.html",
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\app.component.html",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAswB0AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-08-26T17:21:37.813Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "create-ticket.component.html",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html",
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-08-27T04:52:45.846Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 11,
               "Title": "TaskTicket.cs",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Models\\TaskTicket.cs",
               "RelativeDocumentMoniker": "TicketManagement.Server\\Models\\TaskTicket.cs",
               "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Models\\TaskTicket.cs",
               "RelativeToolTip": "TicketManagement.Server\\Models\\TaskTicket.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-27T07:36:26.845Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "update.component.ts",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
-              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-08-27T12:12:33.111Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "EmpUserController.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Controllers\\EmpUserController.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Controllers\\EmpUserController.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Controllers\\EmpUserController.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Controllers\\EmpUserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T09:07:49.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "tickets.component.ts",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-26T14:47:39.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IEmployee.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\IEmployee.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Services\\IEmployee.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\IEmployee.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Services\\IEmployee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T08:55:34.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "empuser.service.ts",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\services\\empuser.service.ts",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\services\\empuser.service.ts",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\services\\empuser.service.ts",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\services\\empuser.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-29T09:37:27.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Program.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Program.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Program.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Program.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAADwvysAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T14:13:39.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "tickets.component.html",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-26T14:51:50.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "create-ticket.component.css",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-27T07:27:07.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "app.component.ts",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.ts",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\app.component.ts",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.ts",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\app.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-26T16:08:11.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Models\\Employee.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Models\\Employee.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Models\\Employee.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T08:12:46.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "proxy.conf.js",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\proxy.conf.js",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\proxy.conf.js",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\proxy.conf.js",
+              "RelativeToolTip": "ticketmanagement.client\\src\\proxy.conf.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-26T18:03:41.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "angular.json",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\angular.json",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\angular.json",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\angular.json",
+              "RelativeToolTip": "ticketmanagement.client\\angular.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-29T13:37:18.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppDatabaseContext.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\DBContexts\\AppDatabaseContext.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\DBContexts\\AppDatabaseContext.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\DBContexts\\AppDatabaseContext.cs",
+              "RelativeToolTip": "TicketManagement.Server\\DBContexts\\AppDatabaseContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwAsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T07:40:10.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EmpUserRepository.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\EmpUserRepository.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Repositorys\\EmpUserRepository.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\EmpUserRepository.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Repositorys\\EmpUserRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T08:57:07.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "update.component.html",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html",
@@ -225,61 +412,49 @@
               "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-08-27T16:00:42.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-27T16:00:42.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Program.cs",
-              "RelativeDocumentMoniker": "TicketManagement.Server\\Program.cs",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Program.cs",
-              "RelativeToolTip": "TicketManagement.Server\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
+              "DocumentIndex": 18,
+              "Title": "TicketRepository.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\TicketRepository.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Repositorys\\TicketRepository.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\TicketRepository.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Repositorys\\TicketRepository.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA3wBQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T14:13:39.418Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "tickets.component.ts",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
-              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.ts",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwDEAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-08-26T14:47:39.849Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "create-ticket.component.css",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
-              "RelativeToolTip": "ticketmanagement.client\\src\\app\\create-ticket\\create-ticket.component.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-08-27T07:27:07.17Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "tickets.component.html",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
-              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\tickets\\tickets.component.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-08-26T14:51:50.605Z",
+              "WhenOpened": "2025-08-26T13:26:53.982Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
+              "Title": "ITicket.cs",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\ITicket.cs",
+              "RelativeDocumentMoniker": "TicketManagement.Server\\Services\\ITicket.cs",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\ITicket.cs",
+              "RelativeToolTip": "TicketManagement.Server\\Services\\ITicket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T12:37:16.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "update.component.ts",
+              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
+              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
+              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
+              "RelativeToolTip": "ticketmanagement.client\\src\\app\\tickets\\update\\update.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-27T12:12:33.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "truncate.pipe.ts",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\truncate.pipe.ts",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\truncate.pipe.ts",
@@ -291,19 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "app.component.ts",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.ts",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\app.component.ts",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\app.component.ts",
-              "RelativeToolTip": "ticketmanagement.client\\src\\app\\app.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-08-26T16:08:11.784Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 24,
               "Title": "ticket.service.spec.ts",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\app\\services\\ticket.service.spec.ts",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\app\\services\\ticket.service.spec.ts",
@@ -315,19 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "proxy.conf.js",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\proxy.conf.js",
-              "RelativeDocumentMoniker": "ticketmanagement.client\\src\\proxy.conf.js",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\proxy.conf.js",
-              "RelativeToolTip": "ticketmanagement.client\\src\\proxy.conf.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-08-26T18:03:41.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 26,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\appsettings.json",
               "RelativeDocumentMoniker": "TicketManagement.Server\\appsettings.json",
@@ -339,7 +490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 27,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "TicketManagement.Server\\Controllers\\WeatherForecastController.cs",
@@ -351,7 +502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 28,
               "Title": "polyfills.ts",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\polyfills.ts",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\polyfills.ts",
@@ -363,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 29,
               "Title": "index.html",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\index.html",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\index.html",
@@ -375,31 +526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ITicket.cs",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\ITicket.cs",
-              "RelativeDocumentMoniker": "TicketManagement.Server\\Services\\ITicket.cs",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Services\\ITicket.cs",
-              "RelativeToolTip": "TicketManagement.Server\\Services\\ITicket.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T12:37:16.761Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "TicketRepository.cs",
-              "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\TicketRepository.cs",
-              "RelativeDocumentMoniker": "TicketManagement.Server\\Repositorys\\TicketRepository.cs",
-              "ToolTip": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\Repositorys\\TicketRepository.cs",
-              "RelativeToolTip": "TicketManagement.Server\\Repositorys\\TicketRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T13:26:53.982Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 30,
               "Title": "styles.css",
               "DocumentMoniker": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\ticketmanagement.client\\src\\styles.css",
               "RelativeDocumentMoniker": "ticketmanagement.client\\src\\styles.css",

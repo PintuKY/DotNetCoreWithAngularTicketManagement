@@ -14,7 +14,7 @@ import { UpdateComponent } from './tickets/update/update.component';
 
 const routes: Routes = [
   { path: 'tickets', component: TicketsComponent },
-  //{ path: '', redirectTo: '/tickets', pathMatch: 'full' },
+  { path: '', redirectTo: '/tickets', pathMatch: 'full' },
   { path: 'reports', component: ReportsComponent },
   { path: 'addticket', component: CreateTicketComponent },
   { path: 'edit/:id', component: UpdateComponent }
