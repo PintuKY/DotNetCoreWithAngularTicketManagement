@@ -28,7 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\productcontrollers\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Models\Products\" />
+    <Folder Include="Repositorys\ProductRepository\" />
+    <Folder Include="Services\ProductService\" />
   </ItemGroup>
 
 </Project>

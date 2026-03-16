@@ -1,6 +1,6 @@
 @TicketManagement.Server_HostAddress = http://localhost:5121
 
-GET {{TicketManagement.Server_HostAddress}}/weatherforecast/
+GET {{TicketManagement.Server_HostAddress}}/api/syllabus/syllabusname
 Accept: application/json
 
 ###

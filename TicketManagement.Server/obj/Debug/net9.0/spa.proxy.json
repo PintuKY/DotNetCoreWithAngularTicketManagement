@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:59396",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\TicketManagement\\TicketManagement.Server\\..\\ticketmanagement.client",
+"WorkingDirectory": "D:\\DotNetWPFCSharp\\CSharpInterviewQ\\Project\\TicketManagement\\TicketManagement.Server\\..\\ticketmanagement.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }
