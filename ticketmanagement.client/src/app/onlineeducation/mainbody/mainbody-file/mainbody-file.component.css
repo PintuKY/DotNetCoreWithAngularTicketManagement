@@ -1,0 +1,82 @@
+/* Main body services card style */
+#services .icon-box {
+  background: #ffffff;
+  border: 1px solid rgba(10, 32, 74, 0.12);
+  border-radius: 24px;
+  padding: 2rem 1.75rem;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+  cursor: pointer;
+}
+
+#services .icon-box:hover {
+  transform: translateY(-10px);
+  border-color: transparent;
+  background: linear-gradient(135deg, #081332 0%, #0b214b 100%);
+  box-shadow: 0 24px 60px rgba(8, 19, 50, 0.24);
+}
+
+#services .icon-box .icon {
+  margin-bottom: 1.4rem;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(8, 19, 50, 0.08);
+  color: #081332;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+#services .icon-box:hover .icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+#services .icon-box h4 {
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+}
+
+#services .icon-box h4 a {
+  color: #081332;
+  text-decoration: none;
+  transition: color 0.35s ease;
+}
+
+#services .icon-box:hover h4 a,
+#services .icon-box:hover p {
+  color: #ffffff;
+}
+
+#services .icon-box p {
+  margin-bottom: 0;
+  color: #515f7a;
+  line-height: 1.8;
+}
+
+#services .icon-box:hover p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cta .cta-btn {
+  display: inline-block;
+  background: #081332;
+  color: #ffffff;
+  padding: 0.95rem 2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.cta .cta-btn:hover {
+  background: #0b214b;
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 16px 32px rgba(8, 19, 50, 0.22);
+  transform: translateY(-2px);
+}

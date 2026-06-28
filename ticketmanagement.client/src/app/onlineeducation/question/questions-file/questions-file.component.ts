@@ -4,7 +4,7 @@ import { Question }   from '../../../model/onlineeducation/question';
 import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
 import { ExamserviceService } from 'src/app/services/onlineeducation/examservice/examservice.service';
 import { timer, Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-questions-file',
   templateUrl: './questions-file.component.html',
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestionsFileComponent implements OnInit {
 
+isLoading: boolean = false;
 questions: Question[] = [];
 questionStatus: string[] = [];
 currentIndex = 0;
@@ -21,62 +22,128 @@ marked = 0;
 notvisited = 0;
 not_answared = 0;
 chapterGuId: any;
+syllabusID: number | null = null;
 warningMessage: string = '';
 isWarning: boolean = false;
 chapterid:any;
+confirmSubmitOpen = false;
+reportModalOpen = false;
+reportMessage = '';
+readonly reportPlaceholder = 'Please describe the issue or comment you want to send to the exam team.';
 private readonly MAIN_TIME = 60;
 private countdownTime = this.MAIN_TIME;
 displayTime = '01:00';
 private timerSubscription: Subscription | null = null;
 
+// Timing tracking properties
+private startDateTime: Date | null = null;
+private endDateTime: Date | null = null;
+private questionTimings: { [questionId: number]: { startTime: Date; endTime: Date | null; timeSpentSeconds: number } } = {};
+private currentQuestionStartTime: Date | null = null;
+
 constructor(
   private route: ActivatedRoute,
+  private router: Router,
   private syllabusService: SyllabusDataService,
   private examservice:ExamserviceService
 ) {}
 
 ngOnInit(): void {
 
-  this.route.queryParams.subscribe(params => {
-    this.chapterGuId = params['chapterId'];
-    this.loadQuestions();
-  });
+    this.route.queryParams.subscribe(params => {
+      this.chapterGuId = params['id'] || params['chapterId'] || null;
+      const syParam = params['syllabusID'] || params['SyID'] || params['SyId'] || null;
+      this.syllabusID = syParam != null ? Number(syParam) : null;
+      console.log('Query params', params);
+      console.log('Resolved chapter GUID', this.chapterGuId);
+      console.log('Resolved syllabusID', this.syllabusID);
+      this.loadQuestions(this.chapterGuId);
+    });
 
-}
+  }
 
-loadQuestions() {
+  private normalizeQuestionResponse(response: any): any[] {
+    if (!response) {
+      return [];
+    }
 
-this.syllabusService.getSyllabusData().subscribe(res => {
+    if (Array.isArray(response)) {
+      return response;
+    }
 
-const chapter = res
-  .flatMap((s:any)=>s.chapters)
-  .find((c:any)=>c.chapterGuid == this.chapterGuId);
+    if (response.data) {
+      return Array.isArray(response.data) ? response.data : [response.data];
+    }
 
-if(chapter){
+    if (response.result) {
+      return Array.isArray(response.result) ? response.result : [response.result];
+    }
 
-  this.questions = chapter.questions;
-  this.chapterid = chapter.chapterId;
-  console.log("chapterID",this.chapterid);
-  this.notvisited = this.questions.length;
+    return [response];
+  }
 
-  this.questionStatus = new Array(this.questions.length).fill('notvisited');
+  loadQuestions(chapterGuid: string | null) {
+    if (!chapterGuid) {
+      console.warn('No chapter GUID provided in query params.');
+      this.questions = [];
+      this.isLoading = false;
+      return;
+    }
 
-  this.startTimer();
-}
+    this.isLoading = true;
+    this.startDateTime = new Date();
 
-});
+    this.syllabusService.getQuestionDataByChapterGuid(chapterGuid).subscribe(
+      res => {
+        this.isLoading = false;
 
-}
+        const questions = this.normalizeQuestionResponse(res);
 
-selectOption(questionId:number, optionId:number){
+        console.log('Question API URL:', this.syllabusService.getLastRequestUrl ? this.syllabusService.getLastRequestUrl() : 'unknown');
+        console.log('Question response payload', res);
+        console.log('Normalized questions array', questions);
 
-this.answers[questionId] = optionId;
+        if (Array.isArray(questions) && questions.length) {
+          this.questions = questions;
+          this.chapterid = questions[0].chapterID ?? null;
+          this.currentIndex = 0;
+          this.notvisited = this.questions.length;
+          this.marked = 0;
+          this.not_answared = this.questions.length;
+          this.questionStatus = new Array(this.questions.length).fill('notvisited');
 
-this.updateCounts();
+          this.questions.forEach(q => {
+            this.questionTimings[q.id] = {
+              startTime: new Date(),
+              endTime: null,
+              timeSpentSeconds: 0
+            };
+          });
 
-}
+          this.currentQuestionStartTime = new Date();
+          this.startTimer();
+        } else {
+          console.warn('No questions returned for chapter GUID', chapterGuid, res);
+          this.questions = [];
+          this.questionStatus = [];
+          this.notvisited = 0;
+          this.marked = 0;
+          this.not_answared = 0;
+        }
+      },
+      err => {
+        this.isLoading = false;
+        console.error('Failed to load chapter questions', err);
+      }
+    );
+  }
 
-updateCounts(){
+  selectOption(questionId:number, optionId:number){
+    this.answers[questionId] = optionId;
+    this.updateCounts();
+  }
+
+  updateCounts(){
 
 this.marked = Object.keys(this.answers)
   .filter(k => this.answers[k] != null).length;
@@ -88,7 +155,11 @@ this.not_answared = this.questions.length - this.marked;
 previous(){
 
 if(this.currentIndex > 0){
+  // Record time spent on current question
+  this.recordQuestionTime();
   this.currentIndex--;
+  // Start timing for new question
+  this.currentQuestionStartTime = new Date();
 }
 
 this.clearTimer();
@@ -107,7 +178,11 @@ if(selectedOption){
 }
 
 if(this.currentIndex < this.questions.length - 1){
+  // Record time spent on current question
+  this.recordQuestionTime();
   this.currentIndex++;
+  // Start timing for new question
+  this.currentQuestionStartTime = new Date();
 }
 
 this.updateCounts();
@@ -130,25 +205,74 @@ this.updateCounts();
 
 Questionnext(index:number){
 
-this.currentIndex = index;
+  // Record time spent on current question before moving
+  this.recordQuestionTime();
+  this.currentIndex = index;
+  // Start timing for new question
+  this.currentQuestionStartTime = new Date();
 
-this.clearTimer();
+  this.clearTimer();
 
 }
 
-submit()
-{
-      const payload = {
-        chapterid: this.chapterid,
-        answers: this.answers
-      };
-      console.log("payload result:", payload);
-      this.examservice.submitTest(payload).subscribe(res=>{
-        console.log("Result",res);
-        const result = res;
-        console.log("Response result:", result);
-      });
-      //console.log("All Answers:", this.answers);
+submit(): void {
+  this.openSubmitConfirm();
+}
+
+submitTest(): void {
+  this.stopSubscription();
+  
+  // Record time spent on the last question
+  this.recordQuestionTime();
+  
+  // Set end time
+  this.endDateTime = new Date();
+  
+  // Build comprehensive payload with timing data
+  const payload = this.buildTestSubmissionPayload();
+  
+  console.log("payload result:", payload);
+  this.examservice.submitTest(payload).subscribe(
+    res => {
+      console.log("Result", res);
+      const result = res;
+      console.log("Response result:", result);
+      this.router.navigate(['/User-performance-reports']);
+    },
+    err => {
+      console.error('Submit error', err);
+      // still navigate or show error if needed
+      this.router.navigate(['/User-performance-reports']);
+    }
+  );
+}
+
+openSubmitConfirm(): void {
+  this.confirmSubmitOpen = true;
+}
+
+closeSubmitConfirm(): void {
+  this.confirmSubmitOpen = false;
+}
+
+confirmSubmit(): void {
+  this.closeSubmitConfirm();
+  this.submitTest();
+}
+
+openReportModal(): void {
+  this.reportMessage = '';
+  this.reportModalOpen = true;
+}
+
+closeReportModal(): void {
+  this.reportModalOpen = false;
+}
+
+sendReport(): void {
+  console.log('Report sent:', this.reportMessage);
+  // TODO: connect to API or service to save the report
+  this.closeReportModal();
 }
 
 startTimer(){
@@ -159,25 +283,29 @@ this.countdownTime = this.MAIN_TIME;
 
 this.timerSubscription = timer(0,1000).subscribe(()=>{
 
-if(this.countdownTime > 0){
+if(this.countdownTime > 0)
+{
 
    this.countdownTime--;
 
    this.displayTime = this.formatTime(this.countdownTime);
 
-   if(this.countdownTime <= 5){
+   if(this.countdownTime <= 5)
+   {
       this.warningMessage = "⚠ Hurry up! Time almost over";
-      this.isWarning = true;
+      this.isWarning = true;      
+   }
+   else if(this.countdownTime == 1)
+   {
+    this.stopSubscription();
    }
 
-}else{
-
-   this.autoNextQuestion();
-
 }
-
+else
+{
+   this.autoNextQuestion();
+}
 });
-
 }
 
 // startTimer(){
@@ -206,14 +334,14 @@ if(selectedOption){
    this.questionStatus[this.currentIndex] = "attempted";
 }
 
-if(this.currentIndex < this.questions.length - 1){
+if(this.currentIndex < this.questions.length + 1){
 
    this.currentIndex++;
    this.clearTimer();
 
 }else{
 
-   console.log("Test completed");
+   console.log("Timer auto Next Question Submit Function");
    this.submit();
 
 }
@@ -245,6 +373,74 @@ const sec = seconds % 60;
 
 return `${minutes.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
 
+}
+
+// Record time spent on the current question
+private recordQuestionTime(): void {
+  if (this.currentIndex >= 0 && this.currentIndex < this.questions.length && this.currentQuestionStartTime) {
+    const currentQuestion = this.questions[this.currentIndex];
+    const endTime = new Date();
+    const timeSpentMs = endTime.getTime() - this.currentQuestionStartTime.getTime();
+    const timeSpentSeconds = Math.floor(timeSpentMs / 1000);
+    
+    if (this.questionTimings[currentQuestion.id]) {
+      this.questionTimings[currentQuestion.id].endTime = endTime;
+      this.questionTimings[currentQuestion.id].timeSpentSeconds = timeSpentSeconds;
+    }
+  }
+}
+
+// Build comprehensive payload with all timing and question data
+private buildTestSubmissionPayload(): any {
+  const questionMetadata: any[] = [];
+  
+  // Build detailed data for each question
+  this.questions.forEach((question, index) => {
+    const timing = this.questionTimings[question.id];
+    const isAnswered = this.answers[question.id] != null;
+    const isSkipped = this.questionStatus[index] === 'notvisited';
+    const isAttempted = this.questionStatus[index] === 'attempted';
+    
+    questionMetadata.push({
+      questionId: question.id,
+      questionText: question.questionText || '',
+      selectedAnswer: this.answers[question.id] || null,
+      isAnswered: isAnswered,
+      isSkipped: isSkipped,
+      isAttempted: isAttempted,
+      timeSpentSeconds: timing ? timing.timeSpentSeconds : 0,
+      startedAt: timing ? timing.startTime.toISOString() : null,
+      endedAt: timing ? (timing.endTime ? timing.endTime.toISOString() : null) : null, 
+    });
+  });
+  
+  // Calculate total time spent
+  const totalTimeSpentMs = this.endDateTime && this.startDateTime 
+    ? this.endDateTime.getTime() - this.startDateTime.getTime() 
+    : 0;
+  const totalTimeSpentSeconds = Math.floor(totalTimeSpentMs / 1000);
+  
+  return {
+    chapterid: this.chapterid,
+    syllabusID: this.syllabusID,
+    answers: this.answers,
+    startDateTime: this.startDateTime ? this.startDateTime.toISOString() : null,
+    endDateTime: this.endDateTime ? this.endDateTime.toISOString() : null,
+    totalTimeSpentSeconds: totalTimeSpentSeconds,
+    questionsAttempted: this.marked,
+    questionsSkipped: this.notvisited - this.marked,
+    questionsAnswered: this.marked,
+    questionsNotAnswered: this.not_answared,
+    questionMetadata: questionMetadata,
+    // Summary statistics
+    summary: {
+      totalQuestions: this.questions.length,
+      answered: this.marked,
+      attempted: this.attempted,
+      skipped: this.notvisited - this.marked,
+      notAnswered: this.not_answared
+    }
+  };
 }
 
 ngOnDestroy(){

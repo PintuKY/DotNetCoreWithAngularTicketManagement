@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TicketManagement.Server.DBContexts;
+using TicketManagement.Server.Objects;
 using TicketManagement.Server.Repositorys.OnlineEducation;
 using TicketManagement.Server.Services.OnlineEducation;
 
@@ -12,16 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDatabaseContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //End Add DbContext
 
-//Start Add CORS This allows: Angular (localhost:4200) Access .NET API Without this → CORS error
-builder.Services.AddCors(options =>{options.AddPolicy("AllowAngular", policy =>{policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();});});
-//End Add CORS
-
-//Start AddScoped registers a service in Dependency Injection container with Scoped lifetime [Scoped = one instance per HTTP request]
-builder.Services.AddScoped<IListQuestions, ListQuestionsService>();
-builder.Services.AddScoped<ISyllabus, ServicesSyllabus>();
-//End AddScoped
-
-//Start Add Controllers Without this → controllers won’t work
+//Start Add Controllers Without this → controllers won’t workUseSwagger
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler =
@@ -30,12 +22,40 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //End Add Controllers
 
 //Start Add OpenAPI (Swagger) for Enables Swagger documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddOpenApi();
 //End Add OpenAPI
+
+//Start Add CORS This allows: Angular (localhost:4200) Access .NET API Without this → CORS error
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", 
+        policy =>{
+            policy.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+             .AllowAnyHeader();
+        });
+});
+//End Add CORS
+
+//Start AddScoped registers a service in Dependency Injection container with Scoped lifetime [Scoped = one instance per HTTP request]
+builder.Services.AddScoped<IListQuestions, ListQuestionsService>();
+builder.Services.AddScoped<ISyllabus, ServicesSyllabus>();
+builder.Services.AddScoped<QuestionsDatas>();
+
+// Register Test service so ITestService can be resolved by DI
+builder.Services.AddScoped<ITestService, TestService>();
+//End AddScoped
 
 //Start Build App for App instance is creating
 var app = builder.Build();
 //End Build App
+
+//Start for UseSwagger
+app.UseSwagger();
+app.UseSwaggerUI();
+//End for UseSwagger
 
 //Static Files Support [Used when Angular is built and placed inside wwwroot]
 app.UseDefaultFiles();
@@ -46,6 +66,8 @@ app.MapStaticAssets();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 //End Development Mode Swagger
 
@@ -54,7 +76,8 @@ app.UseHttpsRedirection();
 //End Redirects http → https.
 
 // Enable CORS Activates the policy created earlier
-app.UseCors("AllowAngular");
+//app.UseCors("AllowAngular");
+app.UseCors("AllowAll");
 //End Enable cross
 
 //Start Authorization Middleware

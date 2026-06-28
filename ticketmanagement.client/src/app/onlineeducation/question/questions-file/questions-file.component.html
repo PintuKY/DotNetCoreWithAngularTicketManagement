@@ -1,213 +1,196 @@
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container1" style="margin: 0px 0px 0px 10px;">       
-        <div class="row">
-          <div class="col-xl-9 col-md">          
-            
-            <div class="icon-box">  
-<!--Start Timer Warning nessage-->
-              <div class="row" style="margin: 3px;">
-                <div class="col-xl">                  
-                  <div *ngIf="isWarning" class="warning-text">
-                      {{warningMessage}} <label [ngClass]="{'timer-warning': isWarning}"> Time: {{displayTime}}</label>
-                  </div>
-                </div>
-              </div>
-<!--End Timer Warning nessage-->
+    <!-- ======= Exam Questions Section ======= -->
+<section id="exam-section" class="exam-modern">
+  <div class="exam-container">
+    <!-- Loader -->
+    <div *ngIf="isLoading" id="preloader"></div>
 
-<!--Start Question and Timer, report-->
-              <div class="row" style="cursor: pointer; background-color: darkgray; padding: 1px;">
-                <div class="col-md-8">
-                    <label style="cursor: pointer;"> Question {{currentIndex + 1}}.</label>                    
-                </div>
-                  <div class="col-md-4">
-                    <div class="row">
-                      <div class="col-md-4" style="cursor: pointer; background-color: aqua; display: flex; justify-content: flex-end;">
-                        <label>Time: {{displayTime}} </label>
-                    </div>
-                    <div class="col-md-4" style="cursor: pointer; background-color: white; display: flex; justify-content: flex-end;">
-                        <label>Marks: <span style="color: green;">+1</span>&nbsp;<span style="color: red;">-1</span></label>
-                    </div>
-                    <div class="col-md-4" style="cursor: pointer; background-color: red; display: flex; justify-content: flex-end;">
-                        <div><i class="bi bi-book"></i>&nbsp;&nbsp;<span>Report</span></div>
-                    </div>                    
-                    </div>                  
-                  </div>
-              </div> 
-<!--End Question and Timer, report-->
+    <div class="exam-wrapper" *ngIf="!isLoading">
+      <!-- Main Content Area -->
+      <div class="exam-main">
+        <!-- Warning Message -->
+        <div *ngIf="isWarning" class="warning-banner">
+          <div class="warning-content">
+            <i class="bx bx-alarm"></i>
+            <span class="warning-text">{{ warningMessage }}</span>
+            <span class="timer-warning">Time: {{ displayTime }}</span>
+          </div>
+        </div>
 
-<!--Start Question and Answers-->
-              <div *ngIf="questions.length"> 
-                 <h5>
-                  <!-- Q{{currentIndex + 1}}. -->
-                  {{ questions[currentIndex].questionText }}
-                </h5>
-                 <div *ngFor="let opt of questions[currentIndex].options">
-                  <label>
-                    <!-- <input
-                      type="radio"  [name]="'q'+questions[currentIndex].id" [value]="opt.optionId"
-                      [(ngModel)]="answers[questions[currentIndex].id]"
-                    > -->
-                    <input
-                          type="radio"
-                          [name]="'q'+questions[currentIndex].id"
-                          [value]="opt.optionId"
-                          [(ngModel)]="answers[questions[currentIndex].id]"
-                          (change)="selectOption(questions[currentIndex].id,opt.optionId)"
-                          >
-                     {{ opt.optionText }}
-                  </label>
-                </div>
-<!--Start For Question and answer select or Submit & Next section-->
-                <div class="row mt-3">
-                  <div class="col" style="cursor: pointer; margin: 0px; padding: 0px;">                   
-                     
-                    <button (click)="previous()" [disabled]="currentIndex===0">Previous</button>
-                  </div>                  
-                  <div class="col" style="cursor: pointer; margin: 0px; padding: 0px;">                   
-                      
-                        <button (click)="clear()"> Clear Response</button>
-                  </div>
-                  <div class="col-lg" style="cursor: pointer; margin: 0px; padding: 0px;">                 
-                                    
-                      <button (click)="next()" [disabled]="currentIndex===questions.length-1">  Save & Next </button>
-                   </div>
-                </div>   
-<!--Start For Question and answer select and Submit section-->           
-              </div>   
-<!--Start Question and Answers-->       
+        <!-- Question Header -->
+        <div class="question-header">
+          <div class="header-left">
+            <h3 class="question-number">Question {{ currentIndex + 1 }}</h3>
+          </div>
+          <div class="header-right">
+            <div class="header-stat">
+              <span class="stat-label">Time</span>
+              <span class="stat-value">{{ displayTime }}</span>
+            </div>
+            <div class="header-stat">
+              <span class="stat-label">Marks</span>
+              <span class="stat-value mark-positive">+1</span>
+              <span class="stat-value mark-negative">-1</span>
+            </div>
+            <button class="btn-report" type="button" (click)="openReportModal()">
+              <i class="bx bx-book"></i>
+              <span>Report</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="debug-info">
+          <!-- <p *ngIf="chapterGuId">Chapter GUID: {{ chapterGuId }}</p> -->
+          <p *ngIf="!questions.length && !isLoading" class="no-data-message">No questions found for this chapter.</p>
+        </div>
+
+        <!-- Question Content -->
+        <div class="question-content" *ngIf="questions.length">
+          <h4 class="question-text">{{ questions[currentIndex].questionText }}</h4>
+
+          <!-- Answer Options -->
+          <div class="options-container">
+            <div *ngFor="let opt of questions[currentIndex].options" class="option-item">
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  [name]="'q' + questions[currentIndex].id"
+                  [value]="opt.optionId"
+                  [(ngModel)]="answers[questions[currentIndex].id]"
+                  (change)="selectOption(questions[currentIndex].id, opt.optionId)"
+                />
+                <span class="radio-checkmark"></span>
+                <span class="option-text">{{ opt.optionText }}</span>
+              </label>
             </div>
           </div>
-<!--Start Profile-->   
-           <div class="col-xl" style="margin: 0px; padding: 0px;">
-            <div class="icon-box">
-                <div class="row">
-              <div class="col text-center" >
-                <div class="card p-2" id="profile" style="text-align: center;">
-                  <img src="assets/onlinestudey/img/hero-img.png" class="profile-img"/>
-                  <label>Rakesh Yadav</label>
-                </div>               
-              </div>
-            </div>
-<!--End user Profile-->  
 
- <!--Start For Line-->   
-              <div class="row">
-                <div class="col-xl-12">
-                  <hr style="border: none; height: 1px; background-color: gray;">
-                </div>
-              </div> 
-<!--End For Line-->   
-
-<!--Start Question and answer marked Section-->            
-              <div class="row" style="background-color: white;">
-                <div class="col" style="margin: 1px;">
-                  <label style="display: inline-block; background-color: blue; 
-                    width: 25px; height: 20px; line-height: 20px; text-align: center; margin: 0px;
-                    cursor: pointer; border: 1px solid #000; font-weight: bold; color: white;"> {{attempted-marked}} </label>
-                    <label style="padding: 3px; display: inline-block; text-align: center; color: blue; font-size: 14px; font-style: normal;">Visited</label>
-                </div>
-                <div class="col" style="margin: 1px;">
-                   <label style="display: inline-block; background-color: green; 
-                    width: 25px; height: 20px; line-height: 20px; text-align: center; margin: 0px;
-                    cursor: pointer; border: 1px solid #000; font-weight: bold; color: white;"> {{marked}} </label>
-                    <label style="padding: 3px; display: inline-block; text-align: center; font-size: 14px; color: green; font-style: normal;">Total Answered</label>
-                </div>
-              </div>
-              <div class="row" style="background-color: white;">
-                <div class="col" style="margin: 1px;">
-                 <label style="display: inline-block; background-color: white; 
-                    width: 25px; height: 20px; line-height: 20px; text-align: center; margin: 0px;
-                    cursor: pointer; border: 1px solid #000; font-weight: bold;color: black;"> {{notvisited-attempted}} </label>
-                    <label style="padding: 3px; display: inline-block; text-align: center; font-size: 14px; font-style: normal;">Not Visited</label>
-                </div>
-                <div class="col" style="margin: 1px;">
-                 <label style="display: inline-block; background-color: red; 
-                    width: 25px; height: 20px; line-height: 20px; text-align: center; margin: 0px;
-                    cursor: pointer; border: 1px solid #000; font-weight: bold; color: white;"> {{not_answared-marked}} </label>
-                    <label style="padding: 3px; display: inline-block; text-align: center; color: red; font-size: 14px; font-style: normal;">Not Answered</label>
-                </div>
-              </div>
-              <div class="row" style="background-color: antiquewhite;">
-                 <div class="col" style="margin: 1px;">
-                  <label style="display: inline-block; background-color: white; 
-                    width: 25px; height: 20px; line-height: 20px; text-align: center; margin: 0px;
-                    cursor: pointer; border: 1px solid #000; color:green; font-weight: bold;">&#10004;</label>                   
-                      <label style="padding: 3px; display: inline-block; text-align: center; font-size: 14px; font-style: normal;">Marked & Answered</label>               
-                  
-                  </div>                  
-              </div>   
-<!--End Question and answer marked Section-->    
-
-<!--Start For Line-->           
-              <div class="row">
-                <div class="col-xl-12">
-                  <hr style="border: none; height: 1px; background-color: gray;">
-                </div>
-              </div>
-<!--End For Line-->
-
-<!--Start answer marked Section-->     
-             <div class="row" >              
-              <div class="col" *ngFor="let q of questions; let i = index">
-                <label (click)="Questionnext(i)" 
-                [ngStyle]="{
-                        'background-color':
-                        questionStatus[i] === 'answered' ? 'green' :
-                        questionStatus[i] === 'attempted' ? 'blue' :
-                        'white',
-                        'color': questionStatus[i] ? 'white' : 'black'
-                        }"
-                    style="display: inline-block; 
-                    background-color: white; 
-                    width: 45px; 
-                    height: 25px; 
-                    line-height: 25px; 
-                    text-align: center; 
-                    margin: 0px;
-                    cursor: pointer;
-                    border: 1px solid #000;
-                    font-weight: bold;">
-                    {{i+1}}
-                  </label>
-               </div>                
-             </div>
-<!--Start answer marked Section--> 
-
-<!--Start For Line-->  
-              <div class="row">
-                <div class="col-xl-12">
-                  <hr style="border: none; height: 1px; background-color: gray;">
-                </div>
-              </div> 
-<!--End For Line-->
-
-<!--Submit Button For Test-->
-               <div class="row mt-3" style="cursor: pointer; margin: 0px; padding: 0px;">
-                  <div class="col">  
-                      <button (click)="submit()">Submit Test</button>                  
-                  </div>
-                </div>
-<!--submit Button For Test-->
-
-<!--Start For Line-->
-                <div class="row">
-                  <div class="col-xl-12">
-                    <hr style="border: none; height: 1px; background-color: gray;">
-                  </div>
-                </div> 
-<!--End For Line-->
-
-<!--Start For Test Insturcations-->   
-                 <div class="row">
-                  <div class="col-xl-12">  
-                      <button id="Instraction">Test Insturcations</button>                  
-                  </div>
-                </div>
-<!--Start For Test Insturcations-->   
-            </div>           
-          </div>                
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button class="btn btn-primary" (click)="previous()" [disabled]="currentIndex === 0">
+              <i class="bx bx-chevron-left"></i> Previous
+            </button>
+            <button class="btn btn-secondary" (click)="clear()">
+              <i class="bx bx-x"></i> Clear Response
+            </button>
+            <button class="btn btn-primary" (click)="next()" [disabled]="currentIndex === questions.length + 1">
+              Save & Next <i class="bx bx-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- End Services Section -->
+
+      <!-- Sidebar -->
+      <div class="exam-sidebar">
+        <!-- User Profile -->
+        <div class="profile-card">
+          <img src="assets/onlinestudey/img/hero-img.png" class="profile-img" alt="User Profile" />
+          <label class="profile-name">Rakesh Yadav</label>
+        </div>
+
+        <!-- Status Legend -->
+        <div class="status-section">
+          <div class="status-legend">
+            <div class="legend-item">
+              <span class="legend-badge visited"></span>
+              <span class="legend-label">Visited</span>
+              <span class="legend-count">{{ attempted - marked }}</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-badge answered"></span>
+              <span class="legend-label">Answered</span>
+              <span class="legend-count">{{ marked }}</span>
+            </div>
+          </div>
+
+          <div class="status-legend">
+            <div class="legend-item">
+              <span class="legend-badge not-visited"></span>
+              <span class="legend-label">Not Visited</span>
+              <span class="legend-count">{{ notvisited - attempted }}</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-badge not-answered"></span>
+              <span class="legend-label">Not Answered</span>
+              <span class="legend-count">{{ not_answared - marked }}</span>
+            </div>
+          </div>
+
+          <div class="status-legend">
+            <div class="legend-item marked-answered">
+              <span class="legend-badge marked"></span>
+              <span class="legend-label">Marked & Answered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Numbers Grid -->
+        <div class="questions-grid">
+          <button
+            *ngFor="let q of questions; let i = index"
+            (click)="Questionnext(i)"
+            [ngClass]="'question-btn ' + (questionStatus[i] || 'not-visited')"
+            class="question-btn"
+            [title]="'Question ' + (i + 1)"
+          >
+            {{ i + 1 }}
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn btn-submit" (click)="submit()">
+          <i class="bx bx-check"></i> Submit Test
+        </button>
+
+        <!-- Instructions Button -->
+        <button class="btn btn-instructions" id="Instraction">
+          <i class="bx bx-book-open"></i> Test Instructions
+        </button>
+      </div>
+    </div>
+
+    <div class="report-modal-backdrop" *ngIf="reportModalOpen || confirmSubmitOpen" (click)="closeReportModal(); closeSubmitConfirm()"></div>
+
+    <div class="report-modal" *ngIf="reportModalOpen">
+      <div class="report-modal-card" (click)="$event.stopPropagation()">
+        <div class="report-modal-header">
+          <div>
+            <h3>Send Report</h3>
+            <p class="report-modal-subtitle">Share your issue or comment about this question.</p>
+          </div>
+          <button class="close-modal" type="button" (click)="closeReportModal()">×</button>
+        </div>
+        <textarea
+          class="report-textarea"
+          [(ngModel)]="reportMessage"
+          placeholder="Enter your report message or note here"
+          aria-label="Report message"
+        ></textarea>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" type="button" (click)="closeReportModal()">Cancel</button>
+          <button class="btn btn-primary" type="button" (click)="sendReport()">Send Report</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-modal" *ngIf="confirmSubmitOpen">
+      <div class="report-modal-card" (click)="$event.stopPropagation()">
+        <div class="report-modal-header">
+          <div>
+            <h3>Submit Test?</h3>
+            <p class="report-modal-subtitle">Are you sure you want to submit the test now?</p>
+          </div>
+          <button class="close-modal" type="button" (click)="closeSubmitConfirm()">×</button>
+        </div>
+        <div class="confirm-body">
+          <p class="confirm-text">Click <strong>Yes, submit</strong> to finish the test or <strong>Cancel</strong> to continue.</p>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" type="button" (click)="closeSubmitConfirm()">Cancel</button>
+          <button class="btn btn-primary" type="button" (click)="confirmSubmit()">Yes, submit</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+<!-- End Exam Section -->

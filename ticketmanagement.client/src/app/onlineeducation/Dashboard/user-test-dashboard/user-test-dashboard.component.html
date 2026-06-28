@@ -1,0 +1,151 @@
+<main class="report-page" *ngIf="report as data">
+  <header class="page-header">
+    <h3>Your performance report for <span>{{ data.examTitle }}</span></h3>
+    <div class="actions" aria-label="Report actions">
+      <button class="btn btn-light" type="button">
+        <span class="btn-icon">↗</span>
+        Reading Mode
+      </button>
+      <button class="btn btn-primary" type="button">
+        <span class="btn-icon">▤</span>
+        View Solution
+      </button>
+    </div>
+  </header>
+  <section class="stats-grid" aria-label="Performance summary" style="padding: 2px; overflow: hidden;">
+    <article class="stat-card" *ngFor="let stat of data.stats" [style.--accent]="stat.accent">
+      <div>
+        <p>{{ stat.label }}</p>
+        <strong>{{ stat.value }}</strong>
+      </div>
+      <span class="stat-icon" aria-hidden="true">{{ stat.icon }}</span>
+    </article>
+  </section>
+  <section class="content-grid" style="padding: 2px; overflow: hidden;">
+    <article class="panel leaderboard-panel">
+      <h2>Leaderboard</h2>
+      <div class="leaderboard-list">
+        <div class="leaderboard-row" *ngFor="let person of data.leaderboard">
+          <div>
+            <strong>{{ person.name }}</strong>
+            <span>Marks: {{ person.marks }}</span>
+          </div>
+          <span class="rank rank-{{ person.rank }}" [class.medal]="person.rank <= 3">{{ person.rank }}</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel overview-panel">
+      <h2>Overview</h2>
+      <div class="chart-wrap">
+        <div class="chart-container">
+          <canvas id="donutChart" aria-label="Question overview donut chart" role="img"></canvas>
+        </div>
+        <div class="legend">
+          <span><i class="dot correct"></i>Correct</span>
+          <span><i class="dot wrong"></i>Wrong</span>
+          <span><i class="dot unattempted"></i>Unattempted</span>
+          <span><i class="dot not-visited"></i>Not Visited</span>
+        </div>
+      </div>
+      <footer>Your overall performance for the test. Hover chart segments for details.</footer>
+    </article>
+
+    <article class="panel compare-panel">
+      <h2>You vs Topper</h2>
+      <div class="comparison-table">
+        <div class="table-head">
+          <span>Name</span>
+          <span>You</span>
+          <span>Topper</span>
+        </div>
+        <div class="table-row" *ngFor="let row of data.comparison">
+          <span class="metric"><i>{{ row.icon }}</i>{{ row.label }}</span>
+          <span>{{ row.you }}</span>
+          <span>{{ row.topper }}</span>
+        </div>
+      </div>
+      <footer>Your overall performance vs topper's performance.</footer>
+    </article>
+  </section>
+  <section class="wide-panel section-distribution">
+    <h2>Section wise distribution</h2>
+
+    <div class="highlight-grid">
+      <article class="highlight-card" *ngFor="let item of data.highlights">
+        <div>
+          <h3 class="{{ item.tone }}">{{ item.title }}</h3>
+          <p>{{ item.subject }}</p>
+        </div>
+        <span class="round-icon {{ item.tone }}">{{ item.icon }}</span>
+      </article>
+    </div>
+
+    <p class="insight-text">
+      You attempted <span class="green-text">3% questions correct in Language</span>
+      and <span class="red-text">0% questions wrong in Computer Science.</span>
+      Keep practicing to increase your score!
+    </p>
+
+    <p class="detail-caption">Your detailed section performance is shown below</p>
+
+    <div class="section-table">
+      <div class="section-head">
+        <span>Section</span>
+        <span>Attempted</span>
+        <span>Correct</span>
+        <span>Accuracy</span>
+        <span>Time</span>
+      </div>
+      <div class="section-row" *ngFor="let row of data.sections">
+        <strong>{{ row.section }}</strong>
+        <span>{{ row.attempted }}</span>
+        <span>{{ row.correct }}</span>
+        <span class="accuracy-cell" [class.has-progress]="row.accuracy === '50.00%'">{{ row.accuracy }}</span>
+        <span>{{ row.time }}</span>
+      </div>
+    </div>
+  </section>
+  <section class="wide-panel attempted-efficiency">
+    <h2>Attempted efficiency</h2>
+
+    <div class="efficiency-grid">
+      <article class="efficiency-card" *ngFor="let item of data.efficiency">
+        <div>
+          <h3 class="{{ item.tone }}">{{ item.title }}</h3>
+          <p>{{ item.value }}</p>
+        </div>
+        <span class="round-icon {{ item.tone }}">{{ item.icon }}</span>
+      </article>
+    </div>
+
+    <p class="insight-text">
+      You spent <span class="orange-text">0 Min 17 Sec</span> on deciding the questions you don't want to attempt.
+    </p>
+
+    <p class="detail-caption">Your detailed section performance is shown below</p>
+
+    <div class="efficiency-chart" role="img" aria-label="Attempted efficiency chart">
+      <div class="axis-labels">
+        <span>Language</span>
+        <span>General Studies</span>
+        <span>Computer Science</span>
+      </div>
+      <div class="bars">
+        <div class="bar-line">
+          <span class="wasted" style="width: 28%">00:16</span>
+          <span class="used" style="width: 12%">00:07</span>
+        </div>
+        <div class="bar-line"></div>
+        <div class="bar-line"></div>
+      </div>
+      <span class="axis-start">0</span>
+      <span class="axis-end">1</span>
+    </div>
+
+    <div class="efficiency-legend">
+      <span><i class="mini-dot wasted-dot"></i>Time spent on un-attempted</span>
+      <span><i class="mini-dot used-dot"></i>Time utilised</span>
+    </div>
+  </section>
+</main>

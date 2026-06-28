@@ -15,6 +15,7 @@ import { FooterFileComponent } from './onlineeducation/footer/footer-file/footer
 import { MainbodyFileComponent } from './onlineeducation/mainbody/mainbody-file/mainbody-file.component';
 import { BodybannersFileComponent } from './onlineeducation/banner/bodybanners-file/bodybanners-file.component';
 import { LayoutComponent } from './onlineeducation/layout/layout.component';
+import { LayoutNoBannerComponent } from './onlineeducation/layout/layout-no-banner.component';
 import { QuestionsFileComponent } from './onlineeducation/question/questions-file/questions-file.component';
 import { Layout1Component } from './onlineeducation/layout1/layout1.component';
 import { NavbarFileComponent } from './onlineeducation/layout1/navbar/navbar-file/navbar-file.component';
@@ -23,6 +24,11 @@ import { FootersFilesComponent } from './onlineeducation/layout1/footer/footers-
 import { StatesFilesComponent } from './onlineeducation/states/states-files/states-files.component';
 import { SylabusFileComponent } from './onlineeducation/syllabus/sylabus-file/sylabus-file.component';
 import { ChapterFilesComponent } from './onlineeducation/chapters/chapter-files/chapter-files.component';
+import { TestinstructionComponent } from './onlineeducation/testinstruction/testinstruction.component';
+import { UserTestDashboardComponent } from './onlineeducation/Dashboard/user-test-dashboard/user-test-dashboard.component';
+import { LoginFileComponent } from './Login/login-file/login-file.component';
+import { RegistrationFileComponent } from './Registration/registration-file/registration-file.component';
+import { UserProfileComponent } from './onlineeducation/user-profile/user-profile/user-profile.component';
 
 // const routes: Routes = [
   //{ path: 'tickets', component: TicketsComponent },
@@ -38,29 +44,36 @@ import { ChapterFilesComponent } from './onlineeducation/chapters/chapter-files/
 //  // { path: '', redirectTo: '/Question', pathMatch: 'full' },
 // ];
 const routes: Routes = [
-
-{
-  path: '',
-  component: LayoutComponent,
-  children:
-  [
-    { path: '', component: MainbodyFileComponent },
-    { path: 'states', component: StatesFilesComponent },
-    { path: 'syllabus', component: SylabusFileComponent },
-    { path: 'chapters', component: ChapterFilesComponent }
-
-
-  ]
-},
-
-{
-  path: 'question',component: Layout1Component,
-  children:
-  [
-    { path: '', component: QuestionsFileComponent }
-  ]
-}
-
+  { path: 'login', component: LoginFileComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children:
+    [
+      { path: '', component: MainbodyFileComponent },
+      { path: 'states', component: StatesFilesComponent },
+      { path: 'syllabus', component: SylabusFileComponent },
+      { path: 'chapters', component: ChapterFilesComponent },
+      { path: 'testinstruction', component: TestinstructionComponent },
+      { path: 'User-performance-reports', component: UserTestDashboardComponent }
+    ]
+  },
+  { path: 'registration', component: RegistrationFileComponent },
+  {
+    path: '',
+    component: LayoutNoBannerComponent,
+    children:
+    [
+      { path: 'userprofile', component: UserProfileComponent }
+    ]
+  },
+  {
+    path: 'question', component: Layout1Component,
+    children:
+    [
+      { path: '', component: QuestionsFileComponent }
+    ]
+  }
 ];
 
 
@@ -76,14 +89,20 @@ const routes: Routes = [
     MainbodyFileComponent,
     BodybannersFileComponent,
     LayoutComponent,
+    LayoutNoBannerComponent,
     QuestionsFileComponent,
     Layout1Component,
+    TestinstructionComponent,
     NavbarFileComponent,
     BannerFileComponent,
     FootersFilesComponent,
     StatesFilesComponent,
     SylabusFileComponent,
-    ChapterFilesComponent
+    ChapterFilesComponent,
+    UserTestDashboardComponent,
+    LoginFileComponent,
+    RegistrationFileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

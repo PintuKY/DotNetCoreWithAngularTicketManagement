@@ -1,11 +1,9 @@
-export interface Syllabus
-{
-    syllabusID:number;
-    syllabusGuid:string;
-    syllabusName:string;
-    isActive:boolean;
-    createdOn:Date;
-    chapters:Chapters[];
+export interface Syllabus {
+  syllabusID: number;
+  syllabusGuid: string;
+  syllabusName: string;
+  totalChapters: number,
+  totalQuestions: number
 }
 export interface Chapters
 {

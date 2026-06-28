@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ExamserviceService
 {
-  private apiUrl="/api/exam/submit";
+  private apiUrl="api/ExamSubmit/examsubmits";
   constructor(private http:HttpClient) { }
   
   submitTest(data:any)
   {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.apiUrl, data, { responseType: 'text' });
   }
 }
 

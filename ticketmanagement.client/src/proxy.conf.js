@@ -9,8 +9,15 @@ const PROXY_CONFIG = [
       "/api/listquestions/questions",
       "/api/syllabus/syllabusname",
       "/api/exam/submit",
+      "/api/ExamSubmit/examsubmits",
       "/api/ticket",
-      "/api/empuser"
+      "/api/empuser",
+      "/api/performance-report",
+      "/api/Tests",
+      "/api/Login/login",
+      "/api/Login/registration",
+      "/api/Login/emailvarifcation"
+
     ],
     target,
     secure: false

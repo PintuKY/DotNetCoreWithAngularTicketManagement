@@ -1,46 +1,84 @@
  <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <!-- <section id="services" class="services-modern">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
+        <div class="section-title-modern">
           <h2>All Tests Lists</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Explore comprehensive test series designed to help you master government exams across different states.</p>
         </div>
 
-        <div class="row">
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a routerLink="/syllabus">Bihar Gov. Test Series</a></h4>
-              <!-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> -->
-            </div>
-          </div>
+        <div class="row g-4">
+          <div *ngIf="loading" class="col-12">Loading tests...</div>
+          <div *ngIf="error" class="col-12 text-danger">{{ error }}</div>
+          <div *ngIf="!loading && !error && tests.length === 0" class="col-12">No tests available.</div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">UP Gov. Test Series</a></h4>
-              <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">MP Gov. Test Series</a></h4>
-              <!-- <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p> -->
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
-              <h4><a href="">JNK Gov. Test Series</a></h4>
-              <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> -->
+          <div *ngFor="let test of tests" class="col-lg-3 col-md-6" data-aos="zoom-in">
+            <div class="modern-card">
+              <div class="card-icon-wrapper">
+                <div class="card-icon"><i class="bx bxl-dribbble"></i></div>
+              </div>
+              <div class="card-content">
+                <h5>
+                  <a [routerLink]="['/syllabus']" [queryParams]="{testid: test.testGuid, id: test.id }" class="card-link">
+                    {{ test.testName }}
+                  </a>
+                </h5>
+                <p class="card-description">{{ test.description }}</p>
+                <p class="card-meta">Total Syllabus: {{ test.totalSyllabus }}</p>
+              </div>
+              <div class="card-footer">
+                <a [routerLink]="['/syllabus']" [queryParams]="{ testid: test.testGuid, id: test.id }" class="btn-explore">Explore <i class="bx bx-chevron-right"></i></a>
+                <span class="price" style="float:right">{{ test.isPaid ? ('₹' + test.price) : 'Free' }}</span>
+              </div>
             </div>
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section> -->
+    <!-- End Services Section -->
+
+
+    <!-- ======= Chapter List Section ======= -->
+<section id="chapter-section" class="chapter-section">
+  <div class="chapter-container" data-aos="fade-up">
+    <div class="chapter-title">
+     <h2>All Tests Lists</h2>
+     <p>Explore comprehensive test series designed to help you master government exams across different states.</p>
+    </div>
+
+    <div class="chapter-grid">
+
+      <div *ngIf="loading" class="col-12">Loading tests...</div>
+      <div *ngIf="error" class="col-12 text-danger">{{ error }}</div>
+      <div *ngIf="!loading && !error && tests.length === 0" class="col-12">No tests available.</div>
+
+      <div *ngFor="let test of tests; let i = index" class="chapter-card" [attr.data-aos]="'zoom-in'" [attr.data-aos-delay]="(i * 80) + 100">
+        <div class="chapter-card-top">
+          <span class="chapter-badge">Test {{ i + 1 }}</span>
+          <div class="chapter-icon">
+            <i class="bx bx-book-reader"></i>
+          </div>
+        </div>
+
+        <div class="chapter-card-body">
+          <h4>           
+            <a [routerLink]="['/syllabus']" [queryParams]="{testid: test.testGuid, id: test.id }" class="card-link">
+                {{ test.testName }}
+            </a>
+          </h4>
+                <p class="chapter-desc">{{ test.description }}</p>
+                <p class="card-meta">Total Syllabus: {{ test.totalSyllabus }}</p>        
+          
+        </div>
+
+        <div class="chapter-card-footer">
+          <a [routerLink]="['/syllabus']" [queryParams]="{ testid: test.testGuid, id: test.id }" class="chapter-action">Explore <i class="bx bx-chevron-right"></i></a>
+                <span class="price" style="float:right">{{ test.isPaid ? ('₹' + test.price) : 'Free' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Chapter List Section -->

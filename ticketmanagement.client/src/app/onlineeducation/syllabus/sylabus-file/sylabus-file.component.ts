@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Syllabus } from 'src/app/model/onlineeducation/syllabus.model';
 import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
 @Component({
@@ -7,21 +8,42 @@ import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/s
   styleUrls: ['./sylabus-file.component.css']
 })
 export class SylabusFileComponent implements OnInit {
-syllabusdata:Syllabus[]=[];
-  constructor(private syllabusDataService:SyllabusDataService)
-  {
-
+  isLoading: boolean = false;
+  syllabusdata: any[] = [];
+  syllabusid: number | null = null;
+  constructor(private syllabusDataService: SyllabusDataService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.loadSyllabus();
+    this.route.queryParamMap.subscribe(params => {
+      const testId = params.get('testid');
+      const id = params.get('id');
+      this.syllabusid = id ? parseInt(id, 10) : null;
+      this.loadSyllabus(testId);
+    });
+  }
+private loadSyllabus(testId: string | null) {
+
+  if (!testId) {
+    this.syllabusdata = [];
+    return;
   }
 
-loadSyllabus() 
-{
-    this.syllabusDataService.getSyllabusData().subscribe(res => {
-      this.syllabusdata = res;       
-      console.log("SyllabusData",this.syllabusdata);
+  this.isLoading = true;
+
+  this.syllabusDataService.getSyllabusForTest(testId)
+    .subscribe({
+      next: (res: Syllabus[]) => {
+        console.log(res);
+        this.syllabusdata = res;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.isLoading = false;
+      }
     });
 }
+
 }
+

@@ -1,0 +1,92 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Create Account</h2>
+    <p class="register-subtitle">Enter your details to start your learning journey.</p>
+    <form class="register-form" (ngSubmit)="submitRegistration()">
+      <p class="input-error" *ngIf="formError">{{ formError }}</p>
+      <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" placeholder="John" class="input-field" required
+            [(ngModel)]="firstName" name="firstName" />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" type="text" placeholder="Doe" class="input-field" required
+            [(ngModel)]="lastName" name="lastName" />
+        </div>
+      </div>
+      <div class="form-group email-group">
+        <label for="email">Email</label>
+        <div class="email-field-row">
+          <input id="email" type="email" placeholder="you@example.com" class="input-field" required
+            [(ngModel)]="email" name="email" (ngModelChange)="onEmailInput($event)" />
+
+          <!-- <button *ngIf="emailValid && !emailVerified" type="button" class="verify-email-btn" (click)="verifyEmail()"
+            [disabled]="isVerifyingEmail" aria-label="Send email OTP">
+            {{ isVerifyingEmail ? 'Please wait...' : 'Send OTP' }}
+          </button> -->
+          <button *ngIf="emailValid && !emailVerified" type="button" class="verify-email-btn" (click)="verifyEmail()" [disabled]="isVerifyingEmail">
+              {{ isVerifyingEmail ? 'Please wait...' : 'Send OTP' }}
+          </button>
+
+          <span *ngIf="emailVerified" class="verified-badge">Verified</span>
+        </div>
+        <p class="input-error" *ngIf="emailError">{{ emailError }}</p>
+        <p class="success-message" *ngIf="emailMessage">{{ emailMessage }}</p>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter password" class="input-field" required
+          [(ngModel)]="password" name="password" [disabled]="!emailVerified" />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" placeholder="Confirm password" class="input-field" required
+          [(ngModel)]="confirmPassword" name="confirmPassword" [disabled]="!emailVerified" />
+        <p class="input-error" *ngIf="passwordError">{{ passwordError }}</p>
+      </div>
+      <button type="submit" class="submit-btn" [disabled]="!emailVerified || isSubmitting">
+        {{ isSubmitting ? 'Creating...' : 'Sign Up' }}
+      </button>
+      <p class="login-link">
+        Already have an account?
+        <a [routerLink]="['/login']">Login here</a>
+      </p>
+    </form>
+  </div>
+
+  <div class="report-modal-backdrop" *ngIf="reportModalOpen || confirmSubmitOpen"
+    (click)="closeReportModal(); closeSubmitConfirm()"></div>
+  <div class="report-modal" *ngIf="confirmSubmitOpen">
+    <div class="report-modal-card" (click)="$event.stopPropagation()">
+      <div class="report-modal-header">
+        <div>
+          <h3>Email verification</h3>
+          <p class="report-modal-subtitle">Enter the 6-digit OTP sent to {{ email }}.</p>
+        </div>
+        <button class="close-modal" type="button" (click)="closeSubmitConfirm()">x</button>
+      </div>
+      <div class="confirm-body">
+        <p class="success-message modal-message" *ngIf="emailMessage">{{ emailMessage }}</p>
+        <div class="model-form-row">
+          <div class="model-form-group">
+            <input id="inputtxtOtp" type="text" inputmode="numeric" maxlength="6" placeholder="Enter OTP"
+              class="input-field otp-input" required [(ngModel)]="enterOTP" name="enterOTP" />
+            <p class="input-error" *ngIf="emailError">{{ emailError }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" type="button" (click)="closeSubmitConfirm()">Cancel</button>
+        <button class="btn btn-primary"  type="button" (click)="confirmSubmit()" [disabled]="isVerifyingEmail">
+              {{ isVerifyingEmail ? 'Verifying...' : 'Confirm OTP' }}
+        </button>
+        <!-- <button class="btn btn-primary" type="button" (click)="confirmSubmit()" [disabled]="isVerifyingEmail">
+          {{ isVerifyingEmail ? 'Verifying...' : 'Confirm OTP' }}
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>

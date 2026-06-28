@@ -1,25 +1,36 @@
- <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
+<!-- ======= Chapter List Section ======= -->
+<section id="chapter-section" class="chapter-section">
+  <div class="chapter-container" data-aos="fade-up">
+    <div class="chapter-title">
+      <h2>All Chapters</h2>
+      <p>Choose a chapter to continue your preparation with smart practice tests and guided study resources.</p>
+    </div>
 
-        <div class="section-title">
-          <h2>All Tests Lists</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+    <div class="chapter-grid">
+      <div *ngFor="let opt of chapters; let i = index" class="chapter-card" [attr.data-aos]="'zoom-in'" [attr.data-aos-delay]="(i * 80) + 100">
+        <div class="chapter-card-top">
+          <span class="chapter-badge">Chapter {{ i + 1 }}</span>
+          <div class="chapter-icon">
+            <i class="bx bx-book-reader"></i>
+          </div>
         </div>
 
-        
-        <div class="row" >             
-          <div *ngFor="let opt of chapters" class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>             
-                  <h4>
-                    <a [routerLink]="['/question']" [queryParams]="{ chapterId: opt.chapterGuid }">
-                        {{opt.chapterName}}
-                    </a>   
-                    </h4>     
-               </div>
-          </div>        
+        <div class="chapter-card-body">
+          <h4>
+            <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID }" class="chapter-link">
+              {{ opt.chapterName }}
+            </a>
+          </h4>
+          <p class="chapter-desc">Tap to view questions for this chapter and start your exam practice.</p>
+        </div>
+
+        <div class="chapter-card-footer">
+          <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID }" class="chapter-action">
+            Start Now <i class="bx bx-right-arrow-alt"></i>
+          </a>
         </div>
       </div>
-    </section>
-    <!-- End Services Section -->
+    </div>
+  </div>
+</section>
+<!-- End Chapter List Section -->

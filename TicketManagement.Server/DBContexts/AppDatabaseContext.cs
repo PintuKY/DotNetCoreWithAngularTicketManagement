@@ -13,12 +13,22 @@ namespace TicketManagement.Server.DBContexts
         public DbSet<Syllabus> syllabus { get; set; }
         public DbSet<Chapter> chapters { get; set; }
         public DbSet<QuestionOption> questionOptions { get; set; }
+        public DbSet<TestSyllabus> testSyllabus { get; set; }
+        public DbSet<Users> users { get; set; }
+        public DbSet<EmailOTPs> emailOtp { get; set; }
+
+        // Add DbSet for UserTestResults so EF knows about the entity
+        public DbSet<UserTestResults> userTestResults { get; set; }
+
+        // Add DbSet for Test entity (maps to DB table "tests")
+        public DbSet<Test> Tests { get; set; }
+
         /*
         * Solution 2 — Fluent API Mapping (Professional Way) using => ModelBuilder 
         * This is preferred in enterprise apps because:
-        *clean models
-        *central mapping
-        *easy maintenance 
+        * clean models
+        * central mapping
+        * easy maintenance 
         */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +37,21 @@ namespace TicketManagement.Server.DBContexts
             modelBuilder.Entity<QuestionOption>().ToTable("QuestionOptions");
             modelBuilder.Entity<Chapter>().ToTable("Chapters");
             modelBuilder.Entity<Syllabus>().ToTable("Syllabus");
-            // Primary Key
+            modelBuilder.Entity<Users>().ToTable("Users");
+            modelBuilder.Entity<Users>().HasKey(u => u.Id);
+            modelBuilder.Entity<Users>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            // Map UserTestResults explicitly and set key
+            modelBuilder.Entity<UserTestResults>().ToTable("UserTestResult");   
+            modelBuilder.Entity<UserTestResults>().HasKey(u => u.ResultId);
+
+            // Map Test entity to "tests" table
+            modelBuilder.Entity<Test>().ToTable("tests");
+            modelBuilder.Entity<Test>().HasKey(t => t.Id);
+
+            // Primary Key for question options
             modelBuilder.Entity<QuestionOption>().HasKey(q => q.OptionId);          
             modelBuilder.Entity<QuestionOption>()
                 .HasOne(o => o.Question)

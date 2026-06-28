@@ -1,37 +1,90 @@
- <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
+<!-- ======= Services Section ======= -->
+<section id="services" class="services-modern">
+  <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>All Tests Lists</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
+    <!-- Loader -->
+    <div *ngIf="isLoading" id="preloader"></div>
 
-        
-        <div class="row" >             
-          <div *ngFor="let opt of syllabusdata" class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>             
-                <h4>
-                    <a [routerLink]="['/chapters']" [queryParams]="{ id: opt.syllabusGuid }">
-                        {{opt.syllabusName}}
-                    </a>
-                </h4>
-               </div>
+    <!-- Title -->
+    <div class="section-title-modern">
+      <h2>All Syllabus</h2>
+      <p>
+        Explore comprehensive test series and syllabus materials
+        to master your exam preparation.
+      </p>
+    </div>
+
+    <!-- Syllabus Cards -->
+    <div class="row g-4" *ngIf="!isLoading && syllabusdata">
+
+      <div
+        class="col-lg-3 col-md-6"
+        *ngFor="let syllabus of syllabusdata; let i = index"
+        [attr.data-aos]="'zoom-in'"
+        [attr.data-aos-delay]="(i + 1) * 100">
+
+        <div class="modern-card">
+
+          <div class="card-icon-wrapper">
+            <div class="card-icon">
+              <i class="bx bx-book-open"></i>
+            </div>
           </div>
-        <!-- <div *ngFor="let opt of syllabusdata"
-            class="col-xl-3 col-md-6 col-sm-12 mb-4">
-            <div class="syllabus-card">
-            <div class="icon">
-                <i class="bx bxl-dribbble"></i>
-            </div>
-            <h4>{{opt.syllabusName}}</h4>
-            <button class="start-btn"  [routerLink]="['/question']"[queryParams]="{ id: opt.syllabusGuid }">
-                Start Test
-            </button>
-            </div>
-        </div>           -->
+
+          <div class="card-content">
+
+            <h4>
+              <a
+                [routerLink]="['/chapters']"
+                [queryParams]="{
+                  id: syllabus.syllabusGuid,
+                  SyID: syllabus.syllabusID
+                }"
+                class="card-link">
+
+                {{ syllabus.syllabusName }}
+
+              </a>
+            </h4>
+
+            <p class="card-description">
+              <strong>Total Chapter:</strong> {{ syllabus.totalChapters }}
+            </p>
+
+            <p class="card-description text-truncate">
+              <strong>Total Question:</strong> {{ syllabus.totalQuestions }}
+            </p>
+          </div>
+
+          <div class="card-footer">
+            <a
+              [routerLink]="['/chapters']"
+              [queryParams]="{
+                id: syllabus.syllabusGuid,
+                SyID: syllabus.syllabusID
+              }"
+              class="btn-explore">
+
+              Start Learning
+              <i class="bx bx-chevron-right"></i>
+
+            </a>
+          </div>
+
         </div>
       </div>
-    </section>
-    <!-- End Services Section -->
+
+    </div>
+
+    <!-- No Data -->
+    <div
+      *ngIf="!isLoading && syllabusdata?.length === 0"
+      class="alert alert-warning text-center">
+
+      No syllabus found for this test.
+
+    </div>
+
+  </div>
+</section>
+<!-- End Services Section -->

@@ -1,0 +1,91 @@
+<div class="profile-container">
+  <!-- Left Sidebar -->
+  <div class="profile-sidebar">
+    <div class="profile-card">
+      <!-- User Image -->
+      <div class="user-avatar">
+        <img [src]="user.profileImage" [alt]="user.firstName" class="avatar-img" />
+      </div>
+
+      <!-- User Name and Email -->
+      <div class="user-info">
+        <h3 class="user-name">{{ user.firstName }} {{ user.lastName }}</h3>
+        <p class="user-email">{{ user.email }}</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="changeProfile()">
+          <span class="btn-icon">✏</span> Change Profile
+        </button>
+        <button class="btn btn-secondary" (click)="viewTestAttempted()">
+          <span class="btn-icon">📝</span> Test Attempted
+        </button>
+        <button class="btn btn-secondary" (click)="viewTestScore()">
+          <span class="btn-icon">📊</span> View Test Score
+        </button>
+        <button class="btn btn-danger" (click)="logout()">
+          <span class="btn-icon">🚪</span> Logout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Content -->
+  <div class="profile-content">
+    <div class="profile-details-card">
+      <div class="card-header">
+        <h2>Profile Details</h2>
+        <button class="btn btn-edit" (click)="toggleEditMode()" *ngIf="!isEditMode">
+          <span class="edit-icon">✏</span> Edit Profile
+        </button>
+        <div class="edit-actions" *ngIf="isEditMode">
+          <button class="btn btn-save" (click)="saveProfile()">
+            <span class="save-icon">✓</span> Save
+          </button>
+          <button class="btn btn-cancel" (click)="cancelEdit()">
+            <span class="cancel-icon">✕</span> Cancel
+          </button>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <!-- First Name -->
+        <div class="detail-item">
+          <label>First Name</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.firstName }}</div>
+          <input type="text" [(ngModel)]="user.firstName" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- Last Name -->
+        <div class="detail-item">
+          <label>Last Name</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.lastName }}</div>
+          <input type="text" [(ngModel)]="user.lastName" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- Email -->
+        <div class="detail-item">
+          <label>Email</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.email }}</div>
+          <input type="email" [(ngModel)]="user.email" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="detail-item">
+          <label>Phone Number</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.phone || 'Not provided' }}</div>
+          <input type="tel" [(ngModel)]="user.phone" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- Address -->
+        <div class="detail-item full-width">
+          <label>Address</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.address || 'Not provided' }}</div>
+          <input type="text" [(ngModel)]="user.address" class="detail-input" *ngIf="isEditMode" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -16,6 +16,7 @@ namespace TicketManagement.Server.Models.OnlineEducation
         public int OptionId { get; set; }
         public string? OptionText { get; set; }
         public int QuestionId { get; set; }
+        public bool IsCorrect { get; set; }
         public Question? Question { get; set; }
     }   
 }
