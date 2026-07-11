@@ -31,6 +31,7 @@ export class StatesFilesComponent implements OnInit {
   }
 
   loadTests(): void {
+    console.log('Loading tests...');
     this.loading = true;
     this.error = null;
     this.http.get<TestItem[]>('/api/Tests').subscribe({

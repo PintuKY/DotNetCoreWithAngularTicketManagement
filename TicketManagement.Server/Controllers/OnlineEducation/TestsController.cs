@@ -27,18 +27,19 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
 
         // GET: api/tests all Tests Data
         //[Authorize] [Authorize(Roles = Roles.Admin)]
-        [Authorize(Roles = Roles.Student)]
+        //[Authorize(Roles = Roles.Student)]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var user = await _userService.GetCurrentUserAsync(User);
+               //var user = await _userService.GetCurrentUserAsync(User);
 
-                if (user == null)
-                    return Unauthorized();
+                //if (user == null)
+                //    return Unauthorized();
 
                 var tests = await _testService.GetAllAsync();
+                GeneralClass.GetTestID= tests.FirstOrDefault()?.Id ?? 0;
                 return Ok(tests);
             }
             catch (System.Exception ex)
@@ -49,11 +50,16 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         }
 
         // GET: api/tests/{testGuid}/syllabus  -> get Testsyllabus (with Syllabus) for a test
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("{testGuid:guid}/syllabus")]
         public async Task<IActionResult> GetSyllabusForTest(Guid testGuid)
         {
             try
             {
+                var user = await _userService.GetCurrentUserAsync(User);
+
+                if (user == null)
+                    return Unauthorized();
                 var syllabus = await _testService.GetSyllabusForTestAsync(testGuid);
                 if (syllabus == null)
                     return NotFound();
@@ -67,11 +73,16 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         }
 
         // GET: api/tests/{SyllabusGuid}/chapters get chapter (with Syllabus) for a Syllabus
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("{SyllabusGuid:guid}/chapters")]
         public async Task<IActionResult> GetChaptersForTestAndSyllabus(Guid SyllabusGuid)
         {
             try
             {
+                var user = await _userService.GetCurrentUserAsync(User);
+
+                if (user == null)
+                    return Unauthorized();
                 var chapters = await _testService.GetChaptersBySyllabusGuidAsync(SyllabusGuid);
                 if (chapters == null || !chapters.Any())
                     return NotFound();
@@ -83,10 +94,5 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
                 return Problem(detail: ex.Message, statusCode: 500);
             }
         }
-    }
-    public static class JwtClaimNames
-    {
-        public const string UserId = "UserId";
-        public const string UserGuid = "UserGuid";
-    }
+    }   
 }

@@ -7,8 +7,8 @@
         public int QuestionId { get; set; }
         public int SyllabusId { get; set; }
         public int ChaptersId { get; set; }
-        public int SelectedOption { get; set; }
-        public int CorrectOption { get; set; }
+        public char SelectedOption { get; set; }
+        public char CorrectOption { get; set; }
         public bool IsCorrect { get; set; } = false;
     }
 }

@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
   isEditMode = false;
+  isSidebarCollapsed = false;
+  currentView: 'profile' | 'course' | 'attempts' | 'scores' = 'profile';
+  activeSidebar: 'profile' | 'course' | 'attempts' | 'scores' | 'logout' = 'profile';
   user = {
     firstName: 'Rakesh',
     lastName: 'Yadav',
@@ -37,24 +40,51 @@ export class UserProfileComponent implements OnInit {
     // Reset user data if needed
   }
 
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+    console.log('Sidebar collapsed:', this.isSidebarCollapsed);
+  }
+
   changeProfile() {
     console.log('Change profile clicked');
-    this.toggleEditMode();
+    this.currentView = 'profile';
+    this.isEditMode = true;
+    this.activeSidebar = 'profile';
+  }
+
+  viewUserCourse() {
+    console.log('View user course clicked');
+    this.currentView = 'course';
+    this.activeSidebar = 'course';
   }
 
   viewTestAttempted() {
     console.log('View test attempted clicked');
-    // Navigate to test attempted page or show modal
+    this.currentView = 'attempts';
+    this.activeSidebar = 'attempts';
   }
 
   viewTestScore() {
     console.log('View test score clicked');
-    // Navigate to test score page
+    this.currentView = 'scores';
+    this.activeSidebar = 'scores';
   }
+
+  goBack() {
+    this.currentView = 'profile';
+    this.isEditMode = false;
+    this.activeSidebar = 'profile';
+  }
+isLoggedIn(): boolean {
+  return !!localStorage.getItem('token');
+}
 
   logout() {
     console.log('Logout clicked');
-    // Clear session/token and navigate to login
+    this.activeSidebar = 'logout';
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
   }
+
 }

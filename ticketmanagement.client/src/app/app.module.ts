@@ -29,7 +29,9 @@ import { UserTestDashboardComponent } from './onlineeducation/Dashboard/user-tes
 import { LoginFileComponent } from './Login/login-file/login-file.component';
 import { RegistrationFileComponent } from './Registration/registration-file/registration-file.component';
 import { UserProfileComponent } from './onlineeducation/user-profile/user-profile/user-profile.component';
-
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
 // const routes: Routes = [
   //{ path: 'tickets', component: TicketsComponent },
 //   { path: '', redirectTo: '/tickets', pathMatch: 'full' },
@@ -45,17 +47,32 @@ import { UserProfileComponent } from './onlineeducation/user-profile/user-profil
 // ];
 const routes: Routes = [
   { path: 'login', component: LoginFileComponent },
+  { path: 'user-profile', redirectTo: 'userprofile', pathMatch: 'full' },
+  { path: 'chapter', redirectTo: 'chapters', pathMatch: 'full' },
+  { path: 'chapters', component: ChapterFilesComponent, canActivate: [AuthGuard] },
+  { path: 'questions', redirectTo: 'question', pathMatch: 'full' },
+  { path: 'test', redirectTo: 'states', pathMatch: 'full' },
+  { path: 'tests', redirectTo: 'states', pathMatch: 'full' },
   {
     path: '',
     component: LayoutComponent,
     children:
     [
       { path: '', component: MainbodyFileComponent },
-      { path: 'states', component: StatesFilesComponent },
-      { path: 'syllabus', component: SylabusFileComponent },
-      { path: 'chapters', component: ChapterFilesComponent },
+      { path: 'states',
+         component: StatesFilesComponent, 
+        //canActivate: [AuthGuard]
+      },
+      { path: 'syllabus',
+         component: SylabusFileComponent,
+        canActivate: [AuthGuard]
+      },
+      
       { path: 'testinstruction', component: TestinstructionComponent },
-      { path: 'User-performance-reports', component: UserTestDashboardComponent }
+      { path: 'User-performance-reports', 
+        component: UserTestDashboardComponent,
+        canActivate: [AuthGuard]
+      }
     ]
   },
   { path: 'registration', component: RegistrationFileComponent },
@@ -64,14 +81,22 @@ const routes: Routes = [
     component: LayoutNoBannerComponent,
     children:
     [
-      { path: 'userprofile', component: UserProfileComponent }
+      { path: 'userprofile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
+       }
     ]
   },
   {
-    path: 'question', component: Layout1Component,
+    path: 'question', 
+    component: Layout1Component,
+    canActivate: [AuthGuard],
     children:
     [
-      { path: '', component: QuestionsFileComponent }
+      { path: '', 
+        component: QuestionsFileComponent,
+        canActivate: [AuthGuard]
+      }
     ]
   }
 ];
@@ -115,7 +140,14 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

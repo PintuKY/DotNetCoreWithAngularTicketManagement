@@ -1,0 +1,12 @@
+.copyright,.credits{
+    color: #000000;
+}
+
+.credits a{
+    color: #000000;
+    text-decoration: none;
+}
+.credits a:hover{
+    color: #0000ff;
+    text-decoration: underline;
+}

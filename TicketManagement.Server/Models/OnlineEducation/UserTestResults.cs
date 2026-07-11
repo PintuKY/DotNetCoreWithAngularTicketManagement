@@ -6,9 +6,7 @@ namespace TicketManagement.Server.Models.OnlineEducation
     public class UserTestResults
     {
         public int ResultId { get; set; }
-        public Guid ResultGuid { get; set; }
-        public int SyllabusId { get; set; }
-        public int ChapterId { get; set; }
+        public Guid ResultGuid { get; set; }       
         public int UserId { get; set; }
         public int TestId { get; set; }
         public int TotalQuestions { get; set; }
@@ -20,5 +18,19 @@ namespace TicketManagement.Server.Models.OnlineEducation
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public int SyllabusId { get; set; }
+        public int ChapterId { get; set; }
     }
+
+    //public class UserAnswers 
+    //{
+    //    public int Id { get; set; }
+    //    public int ResultId { get; set; }
+    //    public int QuestionId { get; set; }
+    //    public int SyllabusId { get; set; }
+    //    public int ChaptersId { get; set; }
+    //    public char SelectedOption { get; set; }
+    //    public char CorrectOption { get; set; }
+    //    public bool IsCorrect { get; set; }
+    //}
 }
