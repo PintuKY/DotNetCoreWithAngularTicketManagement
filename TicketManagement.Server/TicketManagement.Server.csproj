@@ -10,6 +10,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\productcontrollers\**" />
+    <Compile Remove="Models\Products\**" />
+    <Compile Remove="Repositorys\ProductRepository\**" />
+    <Compile Remove="Services\ProductService\**" />
+    <Content Remove="Controllers\productcontrollers\**" />
+    <Content Remove="Models\Products\**" />
+    <Content Remove="Repositorys\ProductRepository\**" />
+    <Content Remove="Services\ProductService\**" />
+    <EmbeddedResource Remove="Controllers\productcontrollers\**" />
+    <EmbeddedResource Remove="Models\Products\**" />
+    <EmbeddedResource Remove="Repositorys\ProductRepository\**" />
+    <EmbeddedResource Remove="Services\ProductService\**" />
+    <None Remove="Controllers\productcontrollers\**" />
+    <None Remove="Models\Products\**" />
+    <None Remove="Repositorys\ProductRepository\**" />
+    <None Remove="Services\ProductService\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
@@ -28,13 +47,6 @@
     <ProjectReference Include="..\ticketmanagement.client\ticketmanagement.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\productcontrollers\" />
-    <Folder Include="Models\Products\" />
-    <Folder Include="Repositorys\ProductRepository\" />
-    <Folder Include="Services\ProductService\" />
   </ItemGroup>
 
 </Project>
