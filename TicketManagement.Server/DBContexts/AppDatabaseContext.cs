@@ -23,6 +23,9 @@ namespace TicketManagement.Server.DBContexts
         // Add DbSet for Test entity (maps to DB table "tests")
         public DbSet<Test> Tests { get; set; }
 
+        // Add DbSet for UserAnswers so EF can track/persist answers
+        public DbSet<UserAnswers> userAnswers { get; set; }
+
         /*
         * Solution 2 — Fluent API Mapping (Professional Way) using => ModelBuilder 
         * This is preferred in enterprise apps because:
@@ -50,6 +53,23 @@ namespace TicketManagement.Server.DBContexts
             // Map Test entity to "tests" table
             modelBuilder.Entity<Test>().ToTable("tests");
             modelBuilder.Entity<Test>().HasKey(t => t.Id);
+
+            // Map UserAnswers so EF Core recognizes and maps columns correctly
+            modelBuilder.Entity<UserAnswers>().ToTable("UserAnswers");
+            modelBuilder.Entity<UserAnswers>().HasKey(u => u.Id);
+            // ensure char columns map to char(1) in DB to match existing schema
+            modelBuilder.Entity<UserAnswers>()
+                .Property(u => u.SelectedOption)
+                .HasColumnType("char(1)")
+                .IsFixedLength();
+            modelBuilder.Entity<UserAnswers>()
+                .Property(u => u.CorrectOption)
+                .HasColumnType("char(1)")
+                .IsFixedLength();
+            // optional: ensure IsCorrect has default
+            modelBuilder.Entity<UserAnswers>()
+                .Property(u => u.IsCorrect)
+                .HasDefaultValue(false);
 
             // Primary Key for question options
             modelBuilder.Entity<QuestionOption>().HasKey(q => q.OptionId);          

@@ -4,7 +4,9 @@
     {
         public int ChapterId { get; set; }
         public int SyllabusID { get; set; }
-        public Dictionary<int, int> Answers { get; set; }
+        public Dictionary<int, int> AnswersWithOptionIds { get; set; }
+        public Dictionary<int, string> Answers { get; set; }
+
         public DateTime StartDateTime { get; set; }
 
         public DateTime EndDateTime { get; set; }        
@@ -42,7 +44,8 @@
 
         public string QuestionText { get; set; }
 
-        public int? SelectedAnswer { get; set; }
+        // Accept string so values like "A", "B", "C" bind successfully.
+        public string SelectedAnswer { get; set; }
 
         public bool IsAnswered { get; set; }
 

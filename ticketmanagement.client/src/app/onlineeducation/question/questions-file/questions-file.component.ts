@@ -237,12 +237,12 @@ submitTest(): void {
       console.log("Result", res);
       const result = res;
       console.log("Response result:", result);
-      this.router.navigate(['/User-performance-reports']);
+      this.router.navigate(['/userprofile']);
     },
     err => {
       console.error('Submit error', err);
       // still navigate or show error if needed
-      this.router.navigate(['/User-performance-reports']);
+      //this.router.navigate(['/User-performance-reports']);
     }
   );
 }
@@ -390,21 +390,49 @@ private recordQuestionTime(): void {
   }
 }
 
+// Get option character (A, B, C, D) based on index
+getOptionChar(index: number): string {
+  return String.fromCharCode(65 + index); // 65 is ASCII for 'A'
+}
+
+// Get option character based on optionId
+getOptionCharByOptionId(optionId: number): string {
+  if (!this.questions[this.currentIndex] || !this.questions[this.currentIndex].options) {
+    return '';
+  }
+  const index = this.questions[this.currentIndex].options.findIndex(opt => opt.optionId === optionId);
+  return index >= 0 ? this.getOptionChar(index) : '';
+}
+
 // Build comprehensive payload with all timing and question data
 private buildTestSubmissionPayload(): any {
   const questionMetadata: any[] = [];
+  const answersWithCharacters: any = {};
   
   // Build detailed data for each question
   this.questions.forEach((question, index) => {
     const timing = this.questionTimings[question.id];
-    const isAnswered = this.answers[question.id] != null;
+    const selectedOptionId = this.answers[question.id];
+    const isAnswered = selectedOptionId != null;
     const isSkipped = this.questionStatus[index] === 'notvisited';
     const isAttempted = this.questionStatus[index] === 'attempted';
+    
+    // Convert optionId to option character (A, B, C, D)
+    let selectedOptionChar = null;
+    if (isAnswered && question.options) {
+      const selectedIndex = question.options.findIndex(opt => opt.optionId === selectedOptionId);
+      if (selectedIndex >= 0) {
+        selectedOptionChar = String.fromCharCode(65 + selectedIndex); // A, B, C, D
+      }
+    }
+    
+    answersWithCharacters[question.id] = selectedOptionChar;
     
     questionMetadata.push({
       questionId: question.id,
       questionText: question.questionText || '',
-      selectedAnswer: this.answers[question.id] || null,
+      selectedAnswer: selectedOptionChar || null,  // Now sends character like A, B, C, D
+      selectedOptionId: selectedOptionId || null,  // Keep original optionId for reference
       isAnswered: isAnswered,
       isSkipped: isSkipped,
       isAttempted: isAttempted,
@@ -423,7 +451,8 @@ private buildTestSubmissionPayload(): any {
   return {
     chapterid: this.chapterid,
     syllabusID: this.syllabusID,
-    answers: this.answers,
+    answers: answersWithCharacters,  // Send character answers (A, B, C, D)
+    answersWithOptionIds: this.answers,  // Keep original optionIds for reference
     startDateTime: this.startDateTime ? this.startDateTime.toISOString() : null,
     endDateTime: this.endDateTime ? this.endDateTime.toISOString() : null,
     totalTimeSpentSeconds: totalTimeSpentSeconds,
