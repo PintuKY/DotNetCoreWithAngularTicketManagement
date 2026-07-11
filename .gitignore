@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TicketManagement.Server/bin/Debug/net9.0
+/TicketManagement.Server/obj
+/ticketmanagement.client/obj/Debug
+/.vs/TicketManagement
