@@ -2,6 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/.vs/TicketManagement/FileContentIndex
+/.vs/TicketManagement/DesignTimeBuild
+/.vs/TicketManagement/CopilotIndices/17.14.1577.30250
 /TicketManagement.Server/bin/Debug/net9.0
 /TicketManagement.Server/obj
 /ticketmanagement.client/obj/Debug
