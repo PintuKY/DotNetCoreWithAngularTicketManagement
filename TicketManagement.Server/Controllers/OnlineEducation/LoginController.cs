@@ -5,12 +5,10 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using TicketManagement.Server.Constants;
 using TicketManagement.Server.DBContexts;
 using TicketManagement.Server.Helper;
 using TicketManagement.Server.Models.DTOs;
 using TicketManagement.Server.Models.OnlineEducation;
-using TicketManagement.Server.Services;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
 {
@@ -22,16 +20,14 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         private readonly AppDatabaseContext _db;
         private readonly IConfiguration _configuration;
         private readonly PasswordHasher<Users> _passwordHasher;
-        private readonly IJwtTokenService _jwtTokenService; 
-        public LoginController(AppDatabaseContext db, IConfiguration configuration, IJwtTokenService jwtTokenService)
+
+        public LoginController(AppDatabaseContext db, IConfiguration configuration)
         {
             _db = db;
             _configuration = configuration;
-            _passwordHasher = new PasswordHasher<Users>();            
-            _jwtTokenService = jwtTokenService;
+            _passwordHasher = new PasswordHasher<Users>();
         }
 
-        [Route(ApiRoutes.Login)]
         [HttpPost("login")]
         public async Task<IActionResult> UserLogin([FromBody] LoginDto data)
         {
@@ -49,32 +45,25 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             var passwordResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, data.Password);
             if (passwordResult == PasswordVerificationResult.Failed)
                 return Unauthorized(new { message = "Invalid email or password." });
-            var token = _jwtTokenService.GenerateToken(user);
-            if (token == null)
-            {
-                return StatusCode(500, new { message = "Failed to generate JWT token." });
-            }
+
             user.LastLoginDate = DateTime.UtcNow;
             user.UpdatedOn = DateTime.UtcNow;
             await _db.SaveChangesAsync();
-            string pageStates = "userprofile";
+
             return Ok(new
             {
                 message = "Login successful.",
-                
                 user = new
                 {
-                    user.Id,                    
+                    user.Id,
                     user.UserGuid,
                     user.FullName,
                     user.Email,
-                    user.Role,
-                    token = token,
-                    state = pageStates
+                    user.Role
                 }
             });
         }
-        [Route(ApiRoutes.Registration)]
+
         [HttpPost("registration")]
         public async Task<IActionResult> UserRegistration([FromBody] RegistrationDto data)
         {
@@ -220,7 +209,6 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         //    return Ok(new { message = "Email verified successfully." });
         //}
 
-        [Route(ApiRoutes.Emailvarifcation)]
         [HttpPost("emailvarifcation")]
         public async Task<IActionResult> EmailVarifaction([FromBody] EmailOTPDto data)
         {
@@ -384,10 +372,8 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         {
             var host = _configuration["EmailSettings:Host"];
             var portValue = _configuration["EmailSettings:Port"];
-            //var userName = _configuration["EmailSettings:UserName"];
-            var userName = Environment.GetEnvironmentVariable("UserName")!;
-            //var password = _configuration["EmailSettings:Password"];
-            var password = Environment.GetEnvironmentVariable("Password")!;
+            var userName = _configuration["EmailSettings:UserName"];
+            var password = _configuration["EmailSettings:Password"];
             var fromEmail = _configuration["EmailSettings:FromEmail"];
             var fromName = _configuration["EmailSettings:FromName"] ?? "Online Education";
             var enableSsl = bool.TryParse(_configuration["EmailSettings:EnableSsl"], out var ssl) && ssl;

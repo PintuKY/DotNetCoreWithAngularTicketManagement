@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TicketManagement.Server.Constants;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TicketManagement.Server.Services.OnlineEducation;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
@@ -15,29 +13,19 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
     {
         private readonly ITestService _testService;
         private readonly ILogger<TestsController> _logger;
-        private readonly IUserService _userService;
-        //public JwtClaimNames userClaims;
 
-        public TestsController(ITestService testService, ILogger<TestsController> logger, IUserService userService)
+        public TestsController(ITestService testService, ILogger<TestsController> logger)
         {
             _testService = testService;
             _logger = logger;
-            _userService = userService;
         }
 
         // GET: api/tests all Tests Data
-        //[Authorize] [Authorize(Roles = Roles.Admin)]
-        [Authorize(Roles = Roles.Student)]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var user = await _userService.GetCurrentUserAsync(User);
-
-                if (user == null)
-                    return Unauthorized();
-
                 var tests = await _testService.GetAllAsync();
                 return Ok(tests);
             }
@@ -83,10 +71,5 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
                 return Problem(detail: ex.Message, statusCode: 500);
             }
         }
-    }
-    public static class JwtClaimNames
-    {
-        public const string UserId = "UserId";
-        public const string UserGuid = "UserGuid";
     }
 }
