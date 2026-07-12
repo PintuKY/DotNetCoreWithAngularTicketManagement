@@ -25,6 +25,7 @@ namespace TicketManagement.Server.DBContexts
 
         // Add DbSet for UserAnswers so EF can track/persist answers
         public DbSet<UserAnswers> userAnswers { get; set; }
+        public DbSet<UserProfiles> userProfiles { get; set; }
 
         /*
         * Solution 2 — Fluent API Mapping (Professional Way) using => ModelBuilder 

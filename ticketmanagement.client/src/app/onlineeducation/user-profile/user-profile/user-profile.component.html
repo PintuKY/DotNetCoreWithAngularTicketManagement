@@ -70,6 +70,37 @@
 
       <!-- Profile view -->
       <div *ngIf="currentView === 'profile'" class="details-grid">
+        <!-- Profile Image (drag & drop in edit mode) -->
+        <div class="detail-item full-width">
+          <label>Profile Image</label>
+
+          <!-- Preview when not editing -->
+          <div class="detail-value" *ngIf="!isEditMode">
+            <img [src]="user.profileImage" alt="profile" style="width:120px;height:120px;border-radius:8px;object-fit:cover" />
+          </div>
+
+          <!-- Drag & Drop / File input when editing -->
+          <div *ngIf="isEditMode">
+            <div
+              class="image-drop-area"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+              [class.dragover]="isDragging"
+              style="padding:12px;border:2px dashed #cbd5e1;border-radius:8px;display:flex;align-items:center;gap:12px;"
+            >
+              <div style="flex:0 0 120px">
+                <img [src]="user.profileImage" alt="preview" style="width:120px;height:120px;border-radius:8px;object-fit:cover" />
+              </div>
+              <div style="flex:1">
+                <p style="margin:0;color:#374151">Drag & drop image here, or <button type="button" (click)="fileInput.click()" style="background:none;border:none;color:#667eea;cursor:pointer;text-decoration:underline;padding:0">browse</button></p>
+                <p style="margin:6px 0;color:#6b7280;font-size:13px">Supported: PNG, JPG. Max 5MB.</p>
+                <input #fileInput type="file" accept="image/*" (change)="onProfileImageSelected($event)" style="display:none" />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- First Name -->
         <div class="detail-item">
           <label>First Name</label>
@@ -91,6 +122,20 @@
           <input type="email" [(ngModel)]="user.email" class="detail-input" *ngIf="isEditMode" />
         </div>
 
+        <!-- City -->
+        <div class="detail-item">
+          <label>City</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.city || 'Not provided' }}</div>
+          <input type="text" [(ngModel)]="user.city" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- State -->
+        <div class="detail-item">
+          <label>State</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.state || 'Not provided' }}</div>
+          <input type="text" [(ngModel)]="user.state" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
         <!-- Phone Number -->
         <div class="detail-item">
           <label>Phone Number</label>
@@ -98,11 +143,34 @@
           <input type="tel" [(ngModel)]="user.phone" class="detail-input" *ngIf="isEditMode" />
         </div>
 
+        <!-- DOB -->
+        <div class="detail-item">
+          <label>Date of Birth</label>
+          <div class="detail-value" *ngIf="!isEditMode">{{ user.dob ? (user.dob | date:'mediumDate') : 'Not provided' }}</div>
+          <input type="date" [(ngModel)]="user.dob" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
         <!-- Address -->
         <div class="detail-item full-width">
           <label>Address</label>
           <div class="detail-value" *ngIf="!isEditMode">{{ user.address || 'Not provided' }}</div>
           <input type="text" [(ngModel)]="user.address" class="detail-input" *ngIf="isEditMode" />
+        </div>
+
+        <!-- Change Password Section (visible when editing) -->
+        <div class="detail-item full-width" *ngIf="isEditMode">
+          <label style="display:flex;align-items:center;justify-content:space-between">
+            <span>Change Password</span>
+            <button class="btn btn-secondary" type="button" (click)="toggleChangePassword()">
+              {{ showChangePassword ? 'Hide' : 'Change' }}
+            </button>
+          </label>
+
+          <div *ngIf="showChangePassword" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px">
+            <input type="password" placeholder="Current password" [(ngModel)]="passwordModel.current" class="detail-input" />
+            <input type="password" placeholder="New password" [(ngModel)]="passwordModel.new" class="detail-input" />
+            <input type="password" placeholder="Confirm new password" [(ngModel)]="passwordModel.confirm" class="detail-input" />
+          </div>
         </div>
       </div>
 

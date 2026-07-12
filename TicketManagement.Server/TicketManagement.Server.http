@@ -5,11 +5,14 @@
 //GET {{TicketManagement.Server_HostAddress}}/api/tests/{8ffbdf5c-17aa-44d9-b094-c3e047f00df2}/chapters
 //GET {{TicketManagement.Server_HostAddress}}/api/listquestions/questions/{7ced4586-ba11-4eed-b649-9c4e2c78bb85}
 
-POST {{TicketManagement.Server_HostAddress}}/api/Login/emailvarifcation
+//POST {{TicketManagement.Server_HostAddress}}/api/Login/emailvarifcation
+//POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/updateuserprofile
+//POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/changepassword
+GET {{TicketManagement.Server_HostAddress}}/api/UserProfile/getmeprofile
 Content-Type: application/json
-Accept: application/json
-{
-  "email": "krishna2222cabcs@gmail.com"
-}
+# Accept: application/json
+# {
+#   "email": "krishna2222cabcs@gmail.com"
+# }
 
 ### api/tests/{testGuid}/syllabus

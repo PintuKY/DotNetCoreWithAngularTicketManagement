@@ -7,7 +7,7 @@ using TicketManagement.Server.Objects;
 using TicketManagement.Server.Repositorys.OnlineEducation;
 using TicketManagement.Server.Services;
 using TicketManagement.Server.Services.OnlineEducation;
-
+using Microsoft.AspNetCore.Identity;
 
 //Start Create Builder Creates Web App Builder object "Initialize web server configuration" Web API startup configuration
 var builder = WebApplication.CreateBuilder(args);
@@ -104,7 +104,9 @@ builder.Services.AddScoped<QuestionsDatas>();
 builder.Services.AddScoped<ITestService, TestService>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserProfilesService, UserProfilesService>();
 //End AddScoped
+builder.Services.AddScoped<IPasswordHasher<TicketManagement.Server.Models.OnlineEducation.Users>, PasswordHasher<TicketManagement.Server.Models.OnlineEducation.Users>>();
 
 //Start Build App for App instance is creating
 var app = builder.Build();
@@ -164,3 +166,8 @@ app.Run();
  * AddSingleton  Whole app Once at app start caching, config
  */
 
+// --- partial file with added DI registration for password hasher ---
+// Add near other services registration
+
+// Ensure IUserProfilesService already registered (you had it): keep as-is
+//builder.Services.AddScoped<IUserProfilesService, UserProfilesService>();

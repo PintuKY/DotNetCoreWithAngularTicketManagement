@@ -11,13 +11,35 @@ export class SyllabusDataService
 {
 //  private syllabusUrl = '/api/Tests/syllabus';
    private questionsUrl = '/api/listquestions/questions';
-  private testGuidUrl = '/api/Tests';
-
+   private testGuidUrl = '/api/Tests';
+   private userprofileUrl = '/api/UserProfile/updateuserprofile';
+   private pws = '/api/UserProfile/changepassword';
+   private getprofile = '/api/UserProfile/getmeprofile';
   constructor(private http:HttpClient)
   {
 
   }
+UserProfileData(): Observable<any> {
+    const url = this.getprofile;
+    console.log('Fetching user profile data from API:', url);
+    return this.http.get<any>(url);
+  }
 
+  UpdatePassword(currentPassword: string, newPassword: string,confirmPassword:string): Observable<any> {
+    const url = this.pws;
+    const payload = {
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword
+    };
+    console.log('Submitting password change request to API:', url);
+    return this.http.post<any>(url, payload);
+  }
+  SubmitUserProfileData(userProfileData: any): Observable<any> {
+    const url = this.userprofileUrl;
+    console.log('Submitting user profile data to API:', url, userProfileData);
+    return this.http.post<any>(url, userProfileData);
+  }
   getQuestionDataByChapterGuid(chapterGuid: string | null): Observable<any>
   {
     let url = this.questionsUrl;
