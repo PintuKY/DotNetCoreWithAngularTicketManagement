@@ -1,0 +1,186 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
+@Component({
+  selector: 'app-user-profile-details',
+  templateUrl: './user-profile-details.component.html',
+  styleUrls: ['./user-profile-details.component.css']
+})
+export class UserProfileDetailsComponent implements OnInit {
+// added fields: city, state, dob
+  isEditMode = false;
+  isSidebarCollapsed = false;
+  currentView: 'profile' | 'course' | 'attempts' | 'scores' = 'profile';
+  activeSidebar: 'profile' | 'course' | 'attempts' | 'scores' | 'logout' = 'profile';
+  user: any = {
+    firstName: 'Rakesh',
+    lastName: 'Yadav',
+    email: 'rakesh@example.com',
+    phone: '+91-9876543210',
+    address: '123 Education Street, Tech City, TC 12345',
+    profileImage: '',    
+    city: 'Tech City',
+    state: 'TC',
+    dob: '' // ISO date string or empty
+  };  
+  // Drag state
+  isDragging = false;
+  // Change password UI model
+  showChangePassword = false;
+  passwordModel = {
+    current: '',
+    new: '',
+    confirm: ''
+  };
+  constructor(private router: Router, private syllabusService: SyllabusDataService) { }
+
+  ngOnInit(): void {
+    //this.LoadUserProfile();
+  }
+
+LoadUserProfile() {
+
+  // Fetch user profile data from API
+    this.syllabusService.UserProfileData().subscribe(
+      response => {
+        console.log('User profile data fetched successfully:', response);
+        this.user = response;
+       // console.log('API URL:', this.apiUrl);
+        console.log('Profile Image URL:', response.profileImageUrl);
+        console.log('Final URL:', this.user.profileImage);
+      }, 
+      error => {
+        console.error('Error fetching user profile data:', error);
+        alert('Failed to fetch user profile data. Please try again later.');
+      }
+    );
+}
+
+  toggleEditMode() {
+    this.isEditMode = true;
+  }
+
+  saveProfile() {
+    //Basic password validation if user requested a password change
+    if (this.showChangePassword) {
+      if (!this.passwordModel.current || !this.passwordModel.new || !this.passwordModel.confirm) {
+        alert('Please fill all password fields to change password.');
+        return;
+      }
+      if (this.passwordModel.new !== this.passwordModel.confirm) {
+        alert('New password and confirm password do not match.');
+        return;
+      }
+      // call change password API here (placeholder)
+      this.changePassword(this.passwordModel.current, this.passwordModel.new,this.passwordModel.confirm);
+    }
+    this.syllabusService.SubmitUserProfileData(this.user).subscribe(
+        response => {
+          console.log('Profile updated successfully:', response);
+          alert('Profile updated successfully.');
+        },
+        error => {
+          console.error('Error updating profile:', error);
+          alert('Failed to update profile. Please try again later.');
+        }
+      );
+    // Save profile (call API) - placeholder
+    console.log('Profile saved:', this.user);
+    this.isEditMode = false;
+    this.showChangePassword = false;
+    // reset password model
+    this.passwordModel = { current: '', new: '', confirm: '' };
+  }
+
+  cancelEdit() {
+    this.isEditMode = false;
+    this.showChangePassword = false;
+    // Optionally reload user data from server to discard local edits
+  }
+
+ goBack() {
+    this.currentView = 'profile';
+    this.isEditMode = false;
+    this.activeSidebar = 'profile';
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+  // Image handlers
+  onProfileImageSelected(evt: Event) {
+    const input = evt.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.readAndPreviewFile(input.files[0]);
+    }
+  }
+
+  onDragOver(evt: DragEvent) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this.isDragging = true;
+  }
+
+  onDragLeave(evt: DragEvent) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this.isDragging = false;
+  }
+
+  onDrop(evt: DragEvent) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this.isDragging = false;
+    const files = evt.dataTransfer?.files;
+    if (files && files.length) {
+      const file = files[0];
+      this.readAndPreviewFile(file);
+    }
+  }
+
+  private readAndPreviewFile(file: File) {
+    const maxSizeMB = 5;
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      alert('File is too large. Max 5MB allowed.');
+      return;
+    }
+
+    const allowed = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    if (!allowed.includes(file.type)) {
+      alert('Unsupported file type. Use PNG or JPG.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.user.profileImage = e.target?.result as string;
+      // You should upload the file to server here and replace preview with server URL.
+      console.log('Profile image preview set');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  toggleChangePassword() {
+    this.showChangePassword = !this.showChangePassword;
+    if (!this.showChangePassword) {
+      this.passwordModel = { current: '', new: '', confirm: '' };
+    }
+  }
+
+  private changePassword(current: string, newPassword: string, confirm: string) {
+    // Placeholder: call change password API here.
+    console.log('Change password requested', { current, newPassword, confirm });
+    this.syllabusService.UpdatePassword(current, newPassword, confirm).subscribe(
+      response => {
+        console.log('Password changed successfully:', response);
+        // Simulate success
+        alert('Password changed successfully.');
+      },
+      error => {
+        console.error('Error changing password:', error);
+        alert('Failed to change password.');
+      }
+    );
+  }
+
+}

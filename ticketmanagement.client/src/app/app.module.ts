@@ -32,22 +32,17 @@ import { UserProfileComponent } from './onlineeducation/user-profile/user-profil
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
-// const routes: Routes = [
-  //{ path: 'tickets', component: TicketsComponent },
-//   { path: '', redirectTo: '/tickets', pathMatch: 'full' },
-//   { path: 'reports', component: ReportsComponent },
-//   { path: 'addticket', component: CreateTicketComponent },
-//   { path: 'edit/:id', component: UpdateComponent }
-// ];
+import { UserCourseFileComponent } from './onlineeducation/user-profile/user-course/user-course-file/user-course-file.component';
+import { UserTestAttemptedFileComponent } from './onlineeducation/user-profile/user-test-attempted-file/user-test-attempted-file.component';
+import { UserViewTestScoreFileComponent } from './onlineeducation/user-profile/user-view-test-score/user-view-test-score-file/user-view-test-score-file.component';
+import { UserProfileDetailsComponent } from './onlineeducation/user-profile/user-profile-details/user-profile-details.component';
 
-// const routes: Routes = [
-//     { path: '', component: MainbodyFileComponent },
-//     { path: 'question', component: QuestionsFileComponent }, 
-//  // { path: '', redirectTo: '/Question', pathMatch: 'full' },
-// ];
 const routes: Routes = [
   { path: 'login', component: LoginFileComponent },
-  { path: 'user-profile', redirectTo: 'userprofile', pathMatch: 'full' },
+  { 
+    path: 'user-profile', redirectTo: 'userprofile', pathMatch: 'full' 
+  
+  },
   { path: 'chapter', redirectTo: 'chapters', pathMatch: 'full' },
   { path: 'chapters', component: ChapterFilesComponent, canActivate: [AuthGuard] },
   { path: 'questions', redirectTo: 'question', pathMatch: 'full' },
@@ -83,7 +78,31 @@ const routes: Routes = [
     [
       { path: 'userprofile',
         component: UserProfileComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+         children:
+         [
+          {
+          path:'',
+          redirectTo:'profile',
+          pathMatch:'full'
+        },
+        {
+          path:'profile',
+          component: UserProfileDetailsComponent   // we'll create this
+        },
+         {
+          path:'course',
+          component: UserCourseFileComponent
+        },
+         {
+          path:'attempted',
+          component: UserTestAttemptedFileComponent
+        },
+        {
+          path:'score',
+          component: UserViewTestScoreFileComponent
+        }
+         ]
        }
     ]
   },
@@ -127,7 +146,11 @@ const routes: Routes = [
     UserTestDashboardComponent,
     LoginFileComponent,
     RegistrationFileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserCourseFileComponent,
+    UserTestAttemptedFileComponent,
+    UserViewTestScoreFileComponent,
+    UserProfileDetailsComponent
   ],
   imports: [
     BrowserModule,
