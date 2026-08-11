@@ -1,7 +1,9 @@
-﻿    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
-    using TicketManagement.Server.Models.DTOs;
-    using TicketManagement.Server.Services.OnlineEducation;
+﻿using TicketManagement.Server.Constants;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using TicketManagement.Server.Models.DTOs;
+using TicketManagement.Server.Services.OnlineEducation;
 
     namespace TicketManagement.Server.Controllers.OnlineEducation
     {
@@ -17,8 +19,8 @@
                 _ilogger = ilogger;
                 _iuserprofile = iuserprofile;
             }
-
-            [HttpPost("updateuserprofile")]
+        [Authorize(Roles = Roles.Student)]
+        [HttpPost("updateuserprofile")]
             public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfilesDTO data)
             {
                 if (!ModelState.IsValid)
@@ -33,8 +35,8 @@
 
                 return Ok(new { message = "Profile updated successfully." });
             }
-
-            [HttpGet("getmeprofile")]
+        [Authorize(Roles = Roles.Student)]
+        [HttpGet("getmeprofile")]
             public async Task<IActionResult> GetMyProfile()
             {
                 var profile = await _iuserprofile.GetUserProfileAsync(User);

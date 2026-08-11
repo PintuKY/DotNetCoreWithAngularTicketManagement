@@ -1,1 +1,112 @@
-<p>user-course-file works!</p>
+<!-- ======= Course Accordion Section ======= -->
+<section id="course-section" class="course-section">
+  <div class="course-container" data-aos="fade-up">
+    <div class="course-title">
+      <h5>Your Tests and Study Resources.</h5>
+      <p>Your Tests and Study Resources.</p>
+    </div>
+
+    <div *ngIf="!userCourses.length" class="no-courses">
+      No courses available yet. <span>Select a course to get started.<a href="/states">Click here</a></span>
+    </div>
+
+    <div class="course-accordion" *ngIf="userCourses.length">
+      <div *ngFor="let course of userCourses; let i = index; trackBy: trackByCourse" class="course-item">
+        <button type="button" class="course-row" [class.expanded]="expandedCourseIndex === i" (click)="toggleCourse(i)">
+          <div class="course-row-left">
+            <span class="course-badge">Test</span>
+            <div>
+              <h4>{{ getCourseTitle(course) }}</h4>
+              <p>{{ course.userCoursGuid || 'Tap to view course details.' }}</p>
+            </div>
+          </div>
+          <div class="course-row-right">
+            <i class="bx" [ngClass]="{
+              'bx-chevron-down': expandedCourseIndex !== i,
+              'bx-chevron-up': expandedCourseIndex === i
+            }"></i>
+          </div>
+        </button>
+
+
+        <div class="course-details" *ngIf="expandedCourseIndex === i">
+
+  <div class="syllabus-grid">
+
+    <div
+      class="syllabus-card"
+      *ngFor="let syllabus of course.syllabusData">
+
+      <div class="card-header">
+        <i class="bx bx-book-open"></i>
+      </div>
+
+      <div class="card-body">
+
+        <h3>{{ syllabus.syllabusName }}</h3>
+
+        <p>
+          <strong>Total Chapters:</strong>
+          {{ syllabus.chapterData?.length || 0 }}
+        </p>
+
+        <ul class="chapter-list">
+
+          <li *ngFor="let chapter of syllabus.chapterData">
+
+            {{ chapter.chapterName }}
+
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="card-footer">
+
+        <button class="learn-btn">
+
+          Start Learning
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+        <!-- <div class="course-details" *ngIf="expandedCourseIndex === i">
+          <div class="course-details-grid" *ngIf="course.testData?.length; else noTestData">
+            <div *ngFor="let test of course.testData" class="test-block">              
+
+              <div *ngIf="test.syllabusData?.length" class="syllabus-list">
+                <div *ngFor="let syllabus of test.syllabusData" class="syllabus-block">
+                  <div><strong>Syllabus Name:</strong> {{ getSyllabusTitle(syllabus) }}</div>
+                  <div><strong>Syllabus ID:</strong> {{ getSyllabusId(syllabus) }}</div>
+                  <div><strong>Syllabus GUID:</strong> {{ getSyllabusGuid(syllabus) }}</div>
+
+                  <ul *ngIf="syllabus.chapterData?.length" class="chapter-list">
+                    <li *ngFor="let chapter of syllabus.chapterData">
+                      <div><strong>Chapter Name:</strong> {{ getChapterTitle(chapter) }}</div>
+                      <div><strong>Chapter ID:</strong> {{ getChapterId(chapter) }}</div>
+                      <div><strong>Chapter GUID:</strong> {{ getChapterGuid(chapter) }}</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noTestData>
+            <p>No test details available.</p>
+          </ng-template>
+        </div> -->
+
+
+      </div>
+    </div>
+ </div>
+</section>
+<!-- End Course Accordion Section -->

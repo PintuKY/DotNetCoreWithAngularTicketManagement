@@ -27,6 +27,10 @@ namespace TicketManagement.Server.DBContexts
         public DbSet<UserAnswers> userAnswers { get; set; }
         public DbSet<UserProfiles> userProfiles { get; set; }
 
+        // Add / update the DbSet properties
+        public DbSet<UserTestCourse> UserCourses { get; set; }
+        public DbSet<Payment> payments { get; set; }
+
         /*
         * Solution 2 — Fluent API Mapping (Professional Way) using => ModelBuilder 
         * This is preferred in enterprise apps because:
@@ -46,6 +50,14 @@ namespace TicketManagement.Server.DBContexts
             modelBuilder.Entity<Users>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            // Map UserTestCourse to actual DB table name "UserCourses"
+            modelBuilder.Entity<UserTestCourse>().ToTable("UserCourses");
+            modelBuilder.Entity<UserTestCourse>().HasKey(uc => uc.ID);
+
+            // Map Payment entity to actual DB table "Payment"
+            modelBuilder.Entity<Payment>().ToTable("Payment");
+            modelBuilder.Entity<Payment>().HasKey(p => p.Id);
 
             // Map UserTestResults explicitly and set key
             modelBuilder.Entity<UserTestResults>().ToTable("UserTestResult");   

@@ -57,18 +57,10 @@
           </div>
 
           <div class="card-footer">
-            <a
-              [routerLink]="['/chapters']"
-              [queryParams]="{
-                id: syllabus.syllabusGuid,
-                SyID: syllabus.syllabusID
-              }"
-              class="btn-explore">
-
+            <button type="button" class="btn-explore" (click)="openPaymentModal(syllabus)">
               Start Learning
               <i class="bx bx-chevron-right"></i>
-
-            </a>
+            </button>
           </div>
 
         </div>
@@ -76,9 +68,67 @@
 
     </div>
 
+    <div class="payment-modal-backdrop" *ngIf="paymentModalOpen" (click)="closePaymentModal()"></div>
+    <div class="payment-modal" *ngIf="paymentModalOpen">
+      <div class="payment-modal-card" (click)="$event.stopPropagation()">
+        <div class="payment-modal-header">
+          <div>
+            <h5>Unlock This {{testName}}</h5>
+            <p class="payment-modal-subtitle">Complete payment to start learning {{ selectedSyllabus?.syllabusName }}.</p>
+          </div>
+          <button class="close-modal" type="button" (click)="closePaymentModal()">×</button>
+        </div>
+
+        <div class="payment-panel">
+          <div class="payment-banner">
+            <p>Secure payment gateway</p>
+            <strong>{{ paymentPrice > 0 ? ('₹' + paymentPrice) : 'Free' }}</strong>
+          </div>
+
+          <div class="payment-methods">
+            <label class="payment-method">
+              <input type="radio" name="paymentMethod" value="card" [(ngModel)]="paymentMethod" />
+              Credit / Debit Card
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="paymentMethod" value="upi" [(ngModel)]="paymentMethod" />
+              UPI
+            </label>
+          </div>
+
+          <div class="payment-form">
+            <ng-container *ngIf="paymentMethod === 'card'">
+              <label>Card number</label>
+              <input type="text" maxlength="19" [(ngModel)]="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" class="input-field" />
+              <div class="payment-row">
+                <div class="payment-col">
+                  <label>Expiry</label>
+                  <input type="text" maxlength="5" [(ngModel)]="expiry" name="expiry" placeholder="MM/YY" class="input-field" />
+                </div>
+                <div class="payment-col">
+                  <label>CVV</label>
+                  <input type="password" maxlength="3" [(ngModel)]="cvv" name="cvv" placeholder="123" class="input-field" />
+                </div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="paymentMethod === 'upi'">
+              <label>UPI ID</label>
+              <input type="text" [(ngModel)]="upiId" name="upiId" placeholder="example@bank" class="input-field" />
+            </ng-container>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-secondary" type="button" (click)="closePaymentModal()">Cancel</button>
+            <button class="btn btn-primary" type="button" (click)="confirmPayment()">Pay Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- No Data -->
     <div
-      *ngIf="!isLoading && syllabusdata?.length === 0"
+      *ngIf="!isLoading && syllabusdata.length === 0"
       class="alert alert-warning text-center">
 
       No syllabus found for this test.

@@ -1,17 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface TestItem {
-  id: number;
-  testGuid: string;
-  testName: string;
-  description: string;
-  price: number;
-  isActive: boolean;
-  createdOn: string;
-  totalSyllabus: number;
-  isPaid: boolean;
-}
+import { TestItem } from 'src/app/model/onlineeducation/syllabus.model';
 
 @Component({
   selector: 'app-states-files',

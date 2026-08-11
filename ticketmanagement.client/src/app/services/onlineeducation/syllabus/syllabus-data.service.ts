@@ -15,10 +15,74 @@ export class SyllabusDataService
    private userprofileUrl = '/api/UserProfile/updateuserprofile';
    private pws = '/api/UserProfile/changepassword';
    private getprofile = '/api/UserProfile/getmeprofile';
+   private getusercoursedata = '/api/UserPurchageTestCourse/usercoursedata';
   constructor(private http:HttpClient)
   {
 
   }
+
+  SubmitTestPayment(payload: any): Observable<any> {
+    const url = '/api/UserPurchageTestCourse/TestPayment';
+    console.log('Submitting test payment to API:', url, payload);
+    return this.http.post<any>(url, payload);
+  }
+
+  private buildSyllabusArray(syllabus: any): any[] {
+    if (!syllabus) {
+      return [];
+    }
+
+    return [
+      {
+        syllGuid: syllabus.syllabusGuid,
+        syllabusID: syllabus.syllabusID?.toString() ?? '',
+        syllabusName: syllabus.syllabusName,
+        totalChapters: syllabus.totalChapters ?? 0,
+        totalQuestions: syllabus.totalQuestions ?? 0
+      }
+    ];
+  }
+
+  private parseInteger(value: any): number {
+    if (value === null || value === undefined || value === '') {
+      return 0;
+    }
+
+    const digits = value.toString().replace(/\D/g, '');
+    return digits ? Number(digits) : 0;
+  }
+
+  private parseExpiry(expiry: any): string | null {
+    if (!expiry) {
+      return null;
+    }
+
+    const expiryStr = expiry.toString().trim();
+    const parts = expiryStr.split('/');
+    if (parts.length !== 2) {
+      return null;
+    }
+
+    const month = parts[0].padStart(2, '0');
+    let year = parts[1].trim();
+
+    if (year.length === 2) {
+      year = `20${year}`;
+    }
+
+    if (!/^\d{2}$/.test(month) || !/^\d{4}$/.test(year)) {
+      return null;
+    }
+
+    return `${year}-${month}-01T00:00:00`;
+  }
+
+UserCourseData(): Observable<any> {
+    const url = this.getusercoursedata;
+    console.log('Fetching user course data from API:', url);
+    return this.http.get<any>(url);
+  }
+  
 UserProfileData(): Observable<any> {
     const url = this.getprofile;
     console.log('Fetching user profile data from API:', url);

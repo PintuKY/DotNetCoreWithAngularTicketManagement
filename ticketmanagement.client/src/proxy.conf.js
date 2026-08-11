@@ -19,7 +19,9 @@ const PROXY_CONFIG = [
       "/api/Login/emailvarifcation",
       "/api/UserProfile/updateuserprofile",
       "/api/UserProfile/changepassword",
-      "/api/UserProfile/getmeprofile"
+      "/api/UserProfile/getmeprofile",
+      "/api/UserPurchageTestCourse/usercoursedata",
+      "/api/UserPurchageTestCourse/TestPayment"
     ],
     target,
     secure: false

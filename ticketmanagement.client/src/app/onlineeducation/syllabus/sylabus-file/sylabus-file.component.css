@@ -281,3 +281,140 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
+.payment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 60, 0.55);
+  z-index: 1100;
+}
+
+.payment-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.payment-modal-card {
+  width: min(100%, 520px);
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(102, 126, 234, 0.18);
+  box-shadow: 0 30px 70px rgba(15, 40, 90, 0.18);
+  padding: 24px;
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.payment-modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1c2b4b;
+}
+
+.payment-modal-subtitle {
+  margin: 8px 0 0;
+  color: #5f728f;
+  font-size: 0.95rem;
+}
+
+.payment-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-banner p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.payment-methods {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f7ff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.payment-method input {
+  accent-color: #667eea;
+}
+
+.payment-form {
+  margin-bottom: 18px;
+}
+
+.payment-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #3b4a67;
+  font-weight: 600;
+}
+
+.payment-form .input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: #f8f9ff;
+  color: #2c3e50;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.payment-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-explore:hover {
+  color: #764ba2;
+  gap: 10px;
+}

@@ -8,7 +8,8 @@
 //POST {{TicketManagement.Server_HostAddress}}/api/Login/emailvarifcation
 //POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/updateuserprofile
 //POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/changepassword
-GET {{TicketManagement.Server_HostAddress}}/api/UserProfile/getmeprofile
+//GET {{TicketManagement.Server_HostAddress}}/api/UserProfile/getmeprofile
+GET {{TicketManagement.Server_HostAddress}}/api/UserPurchageTestCourse/usercoursedata
 Content-Type: application/json
 # Accept: application/json
 # {

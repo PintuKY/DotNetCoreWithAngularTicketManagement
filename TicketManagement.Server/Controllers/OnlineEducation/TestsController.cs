@@ -16,13 +16,14 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         private readonly ITestService _testService;
         private readonly ILogger<TestsController> _logger;
         private readonly IUserService _userService;
-        //public JwtClaimNames userClaims;
+        private readonly IUserTestCourse _userTestCourse;
 
-        public TestsController(ITestService testService, ILogger<TestsController> logger, IUserService userService)
+        public TestsController(ITestService testService, ILogger<TestsController> logger, IUserService userService, IUserTestCourse userTestCourse)
         {
             _testService = testService;
             _logger = logger;
             _userService = userService;
+            _userTestCourse = userTestCourse;
         }
 
         // GET: api/tests all Tests Data
@@ -33,13 +34,32 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         {
             try
             {
-               //var user = await _userService.GetCurrentUserAsync(User);
+                // If user is authenticated, return only tests the user purchased (payment success)
+                var user = await _userService.GetCurrentUserAsync(User);
+                if (user != null)
+                {
+                    var purchased = await _userTestCourse.GetUserTestCourseAsync(User);
+                    var purchasedTestIds = purchased
+                        .Where(p => p != null)
+                        .Select(p => p.TestId)
+                        .Distinct()
+                        .ToHashSet();
 
-                //if (user == null)
-                //    return Unauthorized();
+                    // If user purchased any tests, return them; otherwise fall back to all tests
+                    if (purchasedTestIds.Any())
+                    {
+                        var allTests = await _testService.GetAllAsync();
+                        var filtered = allTests.Where(t => purchasedTestIds.Contains(t.Id)).ToList();
+                        if (filtered.Any())
+                            return Ok(filtered);
+                    }
 
+                    // fall through to return all tests when user has no purchases
+                }
+
+                // Not authenticated or no purchases -> return all tests
                 var tests = await _testService.GetAllAsync();
-                GeneralClass.GetTestID= tests.FirstOrDefault()?.Id ?? 0;
+                GeneralClass.GetTestID = tests.FirstOrDefault()?.Id ?? 0;
                 return Ok(tests);
             }
             catch (System.Exception ex)

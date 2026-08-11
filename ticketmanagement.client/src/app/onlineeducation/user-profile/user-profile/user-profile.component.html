@@ -9,20 +9,7 @@
     <div class="profile-card">
       <!-- User Image -->
       <div class="user-avatar">
-        <img [src]="user.profileImage" [alt]="user.firstName" class="avatar-img" [class.small]="isSidebarCollapsed" />
-         <!-- <img
-        [src]="getProfileImage()"
-        [alt]="user.firstName"
-        class="avatar-img"
-        [class.small]="isSidebarCollapsed"
-      /> -->
-      <!-- <img
-    [src]="user.profileImage
-            ? user.profileImage
-            : (user.profileImageUrl
-                ? apiUrl + user.profileImageUrl
-                : 'assets/images/default-user.png')"
-    [alt]="user.firstName"> -->
+        <img [src]="user.profileImage" [alt]="user.firstName" class="avatar-img" [class.small]="isSidebarCollapsed" (error)="onImageError($event)" />
       </div>
 
       <!-- User Name and Email -->
