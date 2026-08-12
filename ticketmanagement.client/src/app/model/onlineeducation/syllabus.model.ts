@@ -2,8 +2,13 @@ export interface Syllabus {
   syllabusID: number;
   syllabusGuid: string;
   syllabusName: string;
-  totalChapters: number,
-  totalQuestions: number
+  totalChapters: number;
+  totalQuestions: number;
+}
+
+export interface SyllabusResponse {
+  hasAccess: boolean;
+  syllabus: Syllabus[];
 }
 
 export interface TestItem {

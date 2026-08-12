@@ -9,7 +9,11 @@ namespace TicketManagement.Server.Models.DTOs
         public string SyllabusName { get; set; }
         public int TotalChapters { get; set; }
         public int TotalQuestions { get; set; }
-         
-    }
+        public UserCoursesDTO userCourses { get; set;}
 
+    }
+    public class UserCoursesDTO
+    {
+
+    }
 }

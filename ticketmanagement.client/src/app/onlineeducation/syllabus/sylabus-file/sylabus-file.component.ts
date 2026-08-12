@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Syllabus, TestItem } from 'src/app/model/onlineeducation/syllabus.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Syllabus, SyllabusResponse, TestItem } from 'src/app/model/onlineeducation/syllabus.model';
 import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
 @Component({
   selector: 'app-sylabus-file',
@@ -10,10 +10,11 @@ import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/s
 })
 export class SylabusFileComponent implements OnInit {
   isLoading: boolean = false;
-  syllabusdata: any[] = [];
+  syllabusdata: Syllabus[] = [];
+  hasAccess: boolean = false;
   syllabusid: number | null = null;
   paymentModalOpen: boolean = false;
-  selectedSyllabus: any = null;
+  selectedSyllabus: Syllabus | null = null;
   currentTest: TestItem | null = null;
   paymentPrice = 0;
   testName = '';
@@ -27,6 +28,7 @@ export class SylabusFileComponent implements OnInit {
   constructor(
     private syllabusDataService: SyllabusDataService,
     private route: ActivatedRoute,
+    private router: Router,
     private http: HttpClient
   ) {
   }
@@ -44,6 +46,7 @@ private loadSyllabus(testId: string | null) {
 
   if (!testId) {
     this.syllabusdata = [];
+    this.hasAccess = false;
     return;
   }
 
@@ -51,13 +54,23 @@ private loadSyllabus(testId: string | null) {
 
   this.syllabusDataService.getSyllabusForTest(testId)
     .subscribe({
-      next: (res: Syllabus[]) => {
-        console.log(res);
-        this.syllabusdata = res;
+      next: (res: SyllabusResponse | Syllabus[]) => {
+        console.log('Syllabus response', res);
+
+        if (Array.isArray(res)) {
+          this.hasAccess = false;
+          this.syllabusdata = res;
+        } else {
+          this.hasAccess = !!res.hasAccess;
+          this.syllabusdata = res.syllabus ?? [];
+        }
+
         this.isLoading = false;
       },
       error: (err) => {
         console.error(err);
+        this.hasAccess = false;
+        this.syllabusdata = [];
         this.isLoading = false;
       }
     });
@@ -89,7 +102,12 @@ private loadSyllabus(testId: string | null) {
     });
   }
 
-  openPaymentModal(syllabus: any): void {
+  openPaymentModal(syllabus: Syllabus): void {
+    if (this.hasAccess) {
+      this.goToChaptersPage(syllabus);
+      return;
+    }
+
     this.selectedSyllabus = syllabus;
     this.paymentPrice = this.currentTest?.isPaid ? this.currentTest.price : 0;
     this.testName = this.currentTest?.testName || '';
@@ -157,6 +175,10 @@ private loadSyllabus(testId: string | null) {
       .subscribe({
         next: (response) => {
           console.log('Payment successful:', response);
+          this.hasAccess = true;
+          if (this.selectedSyllabus) {
+            this.goToChaptersPage(this.selectedSyllabus);
+          }
           this.paymentModalOpen = false;
         },
         error: (error) => {
@@ -166,5 +188,13 @@ private loadSyllabus(testId: string | null) {
       });
   }
 
+  private goToChaptersPage(syllabus: Syllabus): void {
+    this.router.navigate(['/chapters'], {
+      queryParams: {
+        id: syllabus.syllabusGuid,
+        SyID: syllabus.syllabusID
+      }
+    });
+  }
 }
 

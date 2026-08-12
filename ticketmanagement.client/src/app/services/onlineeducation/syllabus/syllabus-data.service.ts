@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Syllabus } from 'src/app/model/onlineeducation/syllabus.model';
+import { Syllabus, SyllabusResponse } from 'src/app/model/onlineeducation/syllabus.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -118,7 +118,7 @@ UserProfileData(): Observable<any> {
   // Use this when you only want the syllabus for a specific test GUID.
   private lastRequestUrl: string | null = null;
 
-getSyllabusForTest(testGuid: string): Observable<Syllabus[]>
+getSyllabusForTest(testGuid: string): Observable<SyllabusResponse | Syllabus[]>
 {
   const url = `${this.testGuidUrl}/${encodeURIComponent(testGuid)}/syllabus`;
 
@@ -126,7 +126,7 @@ getSyllabusForTest(testGuid: string): Observable<Syllabus[]>
 
   console.log('Calling syllabus API:', url);
 
-  return this.http.get<Syllabus[]>(url);
+  return this.http.get<SyllabusResponse | Syllabus[]>(url);
 }
   getChapterForSyllabusTest(testGuid: string): Observable<Syllabus>
   {

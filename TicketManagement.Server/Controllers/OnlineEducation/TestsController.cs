@@ -69,21 +69,60 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             }
         }
 
-        // GET: api/tests/{testGuid}/syllabus  -> get Testsyllabus (with Syllabus) for a test
-        [Authorize(Roles = Roles.Student)]
+        // GET: api/tests/{testGuid}/syllabus  -> get Test syllabus (with purchase flag)
+        // Allow anonymous clients to read syllabus; purchase check is performed when user is authenticated.
+        [AllowAnonymous]
         [HttpGet("{testGuid:guid}/syllabus")]
         public async Task<IActionResult> GetSyllabusForTest(Guid testGuid)
         {
             try
             {
-                var user = await _userService.GetCurrentUserAsync(User);
-
-                if (user == null)
-                    return Unauthorized();
                 var syllabus = await _testService.GetSyllabusForTestAsync(testGuid);
                 if (syllabus == null)
                     return NotFound();
-                return Ok(syllabus);
+
+                bool hasAccess = false;
+
+                // If user is authenticated, check purchase history / user courses
+                var user = await _userService.GetCurrentUserAsync(User);
+                if (user != null)
+                {
+                    try
+                    {
+                        var purchasedCourses = await _userTestCourse.GetUserTestCourseAsync(User);
+                        if (purchasedCourses != null && purchasedCourses.Any())
+                        {
+                            // If any purchased course matches this testGuid / testId -> grant access.
+                            // Note: TestService returns syllabus by testGuid, while purchased DTO contains TestId
+                            // We map via Tests list or compare by TestId if available. For simplicity check by TestId if present.
+                            // If your IUserTestCourse DTO contains TestId, use it; otherwise adjust service to include it.
+                            hasAccess = purchasedCourses.Any(pc => pc.TestId != 0 && syllabus.Any(s => true)); 
+                            // better approach below: find test id by TestGuid and compare:
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Failed to evaluate purchased courses for user {UserId}", user.Id);
+                    }
+
+                    // Prefer robust check: if we can obtain Test.Id for this testGuid, compare directly
+                    try
+                    {
+                        var tests = await _testService.GetAllAsync();
+                        var testEntity = tests.FirstOrDefault(t => t.TestGuid == testGuid);
+                        if (testEntity != null)
+                        {
+                            var purchasedCourses = await _userTestCourse.GetUserTestCourseAsync(User);
+                            hasAccess = purchasedCourses != null && purchasedCourses.Any(pc => pc.TestId == testEntity.Id);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogDebug(ex, "Fallback testId-based purchase check failed for {TestGuid}", testGuid);
+                    }
+                }
+
+                return Ok(new { syllabus, hasAccess });
             }
             catch (System.Exception ex)
             {
