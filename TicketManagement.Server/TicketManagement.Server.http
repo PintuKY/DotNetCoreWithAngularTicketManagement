@@ -9,7 +9,9 @@
 //POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/updateuserprofile
 //POST {{TicketManagement.Server_HostAddress}}/api/UserProfile/changepassword
 //GET {{TicketManagement.Server_HostAddress}}/api/UserProfile/getmeprofile
-GET {{TicketManagement.Server_HostAddress}}/api/UserPurchageTestCourse/usercoursedata
+# GET {{TicketManagement.Server_HostAddress}}/api/UserPurchageTestCourse/usercoursedata
+# GET {{TicketManagement.Server_HostAddress}}/api/UserTestAttempted/usertest-attempted
+GET {{TicketManagement.Server_HostAddress}}/api/UsersTestScoreDetails/usrs-testscore-details
 Content-Type: application/json
 # Accept: application/json
 # {

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
+
 @Component({
   selector: 'app-user-profile-details',
   templateUrl: './user-profile-details.component.html',
   styleUrls: ['./user-profile-details.component.css']
 })
 export class UserProfileDetailsComponent implements OnInit {
-// added fields: city, state, dob
+  // added fields: city, state, dob
   isEditMode = false;
   isSidebarCollapsed = false;
   currentView: 'profile' | 'course' | 'attempts' | 'scores' = 'profile';
@@ -18,11 +20,11 @@ export class UserProfileDetailsComponent implements OnInit {
     email: 'rakesh@example.com',
     phone: '+91-9876543210',
     address: '123 Education Street, Tech City, TC 12345',
-    profileImage: '',    
+    profileImage: '',
     city: 'Tech City',
     state: 'TC',
     dob: '' // ISO date string or empty
-  };  
+  };
   // Drag state
   isDragging = false;
   // Change password UI model
@@ -32,36 +34,41 @@ export class UserProfileDetailsComponent implements OnInit {
     new: '',
     confirm: ''
   };
+
   constructor(private router: Router, private syllabusService: SyllabusDataService) { }
 
   ngOnInit(): void {
-    //this.LoadUserProfile();
+    this.LoadUserProfile();
   }
 
-LoadUserProfile() {
-
-  // Fetch user profile data from API
+  LoadUserProfile() {
+    // Fetch user profile data from API
     this.syllabusService.UserProfileData().subscribe(
       response => {
         console.log('User profile data fetched successfully:', response);
-        this.user = response;
-       // console.log('API URL:', this.apiUrl);
-        console.log('Profile Image URL:', response.profileImageUrl);
-        console.log('Final URL:', this.user.profileImage);
-      }, 
+        // Normalize response naming differences:
+        // server returns ProfileImageUrl or profileImageUrl; use first available
+        const img = (response.profileImageUrl ?? response.ProfileImageUrl ?? response.profileImage ?? response.ProfileImage) || null;
+        this.user = {
+          ...response,
+          profileImage: img
+        };
+        console.log('Profile Image URL:', img);
+        console.log('Final URL (built):', this.getProfileImage(this.user.profileImage));
+      },
       error => {
         console.error('Error fetching user profile data:', error);
-        alert('Failed to fetch user profile data. Please try again later.');
+        // keep local fallback user
       }
     );
-}
+  }
 
   toggleEditMode() {
     this.isEditMode = true;
   }
 
   saveProfile() {
-    //Basic password validation if user requested a password change
+    // Basic password validation if user requested a password change
     if (this.showChangePassword) {
       if (!this.passwordModel.current || !this.passwordModel.new || !this.passwordModel.confirm) {
         alert('Please fill all password fields to change password.');
@@ -72,33 +79,32 @@ LoadUserProfile() {
         return;
       }
       // call change password API here (placeholder)
-      this.changePassword(this.passwordModel.current, this.passwordModel.new,this.passwordModel.confirm);
+      this.changePassword(this.passwordModel.current, this.passwordModel.new, this.passwordModel.confirm);
     }
+
     this.syllabusService.SubmitUserProfileData(this.user).subscribe(
-        response => {
-          console.log('Profile updated successfully:', response);
-          alert('Profile updated successfully.');
-        },
-        error => {
-          console.error('Error updating profile:', error);
-          alert('Failed to update profile. Please try again later.');
-        }
-      );
-    // Save profile (call API) - placeholder
+      response => {
+        console.log('Profile updated successfully:', response);
+        alert('Profile updated successfully.');
+      },
+      error => {
+        console.error('Error updating profile:', error);
+        alert('Failed to update profile. Please try again later.');
+      }
+    );
+
     console.log('Profile saved:', this.user);
     this.isEditMode = false;
     this.showChangePassword = false;
-    // reset password model
     this.passwordModel = { current: '', new: '', confirm: '' };
   }
 
   cancelEdit() {
     this.isEditMode = false;
     this.showChangePassword = false;
-    // Optionally reload user data from server to discard local edits
   }
 
- goBack() {
+  goBack() {
     this.currentView = 'profile';
     this.isEditMode = false;
     this.activeSidebar = 'profile';
@@ -107,6 +113,7 @@ LoadUserProfile() {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+
   // Image handlers
   onProfileImageSelected(evt: Event) {
     const input = evt.target as HTMLInputElement;
@@ -168,12 +175,10 @@ LoadUserProfile() {
   }
 
   private changePassword(current: string, newPassword: string, confirm: string) {
-    // Placeholder: call change password API here.
     console.log('Change password requested', { current, newPassword, confirm });
     this.syllabusService.UpdatePassword(current, newPassword, confirm).subscribe(
       response => {
         console.log('Password changed successfully:', response);
-        // Simulate success
         alert('Password changed successfully.');
       },
       error => {
@@ -183,4 +188,42 @@ LoadUserProfile() {
     );
   }
 
+  // Build profile image URL safely:
+  public getProfileImage(src: string | null | undefined): string {
+    // Use an existing asset in the project; the placeholder file was missing.
+    const clientPlaceholder = window.location.origin.replace(/\/$/, '') + '/assets/images/team-1.jpg';
+
+    if (!src) {
+      return clientPlaceholder;
+    }
+
+    // already absolute
+    if (/^https?:\/\//i.test(src)) {
+      return src;
+    }
+
+    // If src is a data URL (preview), return it as-is
+    if (src.startsWith('data:')) {
+      return src;
+    }
+
+    // src likely server relative path (e.g. "/uploads/profileimages/xxx.png")
+    const apiBase = (environment && environment.apiBaseUrl) ? environment.apiBaseUrl : null;
+
+    // If apiBase provided, use it; otherwise assume server files served from same origin as client
+    if (apiBase) {
+      return apiBase.replace(/\/$/, '') + (src.startsWith('/') ? src : '/' + src);
+    }
+
+    // Fallback: resolve relative to client origin (useful when dev server proxies)
+    return window.location.origin.replace(/\/$/, '') + (src.startsWith('/') ? src : '/' + src);
+  }
+
+  public onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.onerror = null;
+    target.src = window.location.origin.replace(/\/$/, '') + '/assets/images/team-1.jpg';
+  }
 }
+
+

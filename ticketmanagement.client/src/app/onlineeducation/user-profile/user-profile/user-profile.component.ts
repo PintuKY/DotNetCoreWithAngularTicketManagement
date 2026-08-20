@@ -27,10 +27,25 @@ user: any = {
   constructor(private router: Router, private route: ActivatedRoute, private syllabusService: SyllabusDataService) { }
 
   ngOnInit(): void {
-    // Fetch user profile data from API
-    //this.LoadUserProfile();
+    this.LoadUserProfile();
   }
 
+  LoadUserProfile() {
+    this.syllabusService.UserProfileData().subscribe({
+      next: (response) => {
+        console.log('User profile data fetched successfully:', response);
+
+        this.user = {
+          ...this.user,
+          ...response,
+          profileImage: response?.profileImage || response?.profileImageUrl || this.user.profileImage || '/assets/images/default-user.png'
+        };
+      },
+      error: (error) => {
+        console.error('Error fetching user profile data:', error);
+      }
+    });
+  }
 
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;

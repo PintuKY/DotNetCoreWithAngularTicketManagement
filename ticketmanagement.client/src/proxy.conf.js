@@ -21,7 +21,9 @@ const PROXY_CONFIG = [
       "/api/UserProfile/changepassword",
       "/api/UserProfile/getmeprofile",
       "/api/UserPurchageTestCourse/usercoursedata",
-      "/api/UserPurchageTestCourse/TestPayment"
+      "/api/UserPurchageTestCourse/TestPayment",
+      "/api/UserTestAttempted/usertest-attempted",
+      "/api/UsersTestScoreDetails/usrs-testscore-details",
     ],
     target,
     secure: false

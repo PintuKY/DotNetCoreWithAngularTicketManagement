@@ -1,1 +1,78 @@
-<p>user-test-attempted-file works!</p>
+<section class="course-section">
+  <div class="course-container" data-aos="fade-up">
+    <div class="course-title">
+      <h5>Your Attempted Tests</h5>
+      <p>Track every test, syllabus, and chapter attempt.</p>
+    </div>
+
+    <div *ngIf="!attemptedTests.length" class="no-courses">
+      No attempted tests available yet.
+    </div>
+
+    <div class="course-accordion" *ngIf="attemptedTests.length">
+      <div *ngFor="let test of attemptedTests; let i = index; trackBy: trackByCourse" class="course-item">
+        <button type="button" class="course-row" [class.expanded]="expandedCourseIndex === i" (click)="toggleCourse(i)">
+          <div class="course-row-left">
+            <span class="course-badge">Test</span>
+            <div>
+              <h4>{{ getCourseTitle(test) }}</h4>
+              <p>Total attempted: {{ test.attemptCount || 0 }}</p>
+            </div>
+          </div>
+
+          <div class="course-row-right">
+            <i class="bx" [ngClass]="{
+              'bx-chevron-down': expandedCourseIndex !== i,
+              'bx-chevron-up': expandedCourseIndex === i
+            }"></i>
+          </div>
+        </button>
+
+        <div class="course-details" *ngIf="expandedCourseIndex === i">
+          <div class="syllabus-grid">
+            <div class="syllabus-card" *ngFor="let syllabus of test.syllabusData">
+              <div class="card-header">
+                <i class="bx bx-book-open"></i>
+              </div>
+
+              <div class="card-body">
+                <h3>{{ getSyllabusTitle(syllabus) }}</h3>
+
+                <p>
+                  <strong>Syllabus Attempts:</strong>
+                  {{ syllabus.attemptCount || 0 }}
+                </p>
+
+                <p>
+                  <strong>Total Chapters:</strong>
+                  {{ syllabus.chapterData?.length || 0 }}
+                </p>
+
+                <ul class="chapter-list">
+                  <li *ngFor="let chapter of syllabus.chapterData">
+                    <div class="chapter-row">
+                      <span>{{ chapter.chapterName }}</span>
+                      <strong> {{ chapter.attemptCount || 0 }}x</strong>&nbsp;&nbsp;
+                      <a class="btn btn-sm btn-primary" [routerLink]="['/userprofile', 'score']"
+                        [queryParams]="{
+                          testGuid: test.testGuid,
+                          syllabusGuid: syllabus.syllabusGuid,
+                          chapterGuid: chapter.chapterGuid
+                        }">
+                        View Details
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card-footer">
+                <button class="learn-btn">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

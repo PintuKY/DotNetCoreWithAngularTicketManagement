@@ -101,6 +101,10 @@ const routes: Routes = [
         {
           path:'score',
           component: UserViewTestScoreFileComponent
+        },
+        {
+          path:'score/:chapterGuid',
+          component: UserViewTestScoreFileComponent
         }
          ]
        }

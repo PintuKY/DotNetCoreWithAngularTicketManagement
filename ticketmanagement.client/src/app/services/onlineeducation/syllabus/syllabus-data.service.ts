@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Syllabus, SyllabusResponse } from 'src/app/model/onlineeducation/syllabus.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,9 +16,29 @@ export class SyllabusDataService
    private pws = '/api/UserProfile/changepassword';
    private getprofile = '/api/UserProfile/getmeprofile';
    private getusercoursedata = '/api/UserPurchageTestCourse/usercoursedata';
+   private getuserattemptedtestResult = '/api/UserTestAttempted/usertest-attempted';
+   private getuserTestScoreDetails = '/api/UsersTestScoreDetails/usrs-testscore-details';
+   
   constructor(private http:HttpClient)
   {
 
+  }
+// GetUserTestScoreDetails(): Observable<any> {
+//     const url = this.getuserTestScoreDetails;
+//     console.log('Fetching user test score details from API:', url);
+//     return this.http.get<any>(url);
+//   }
+   GetUserTestScoreDetailsByGuids(testGuid: string, syllabusGuid: string, chapterGuid: string): Observable<any> {
+    const payload = { testGuid, syllabusGuid, chapterGuid };
+    const url = this.getuserTestScoreDetails;
+    console.log('Fetching user test score details from API:', url, payload);
+    return this.http.post<any>(url, payload);
+  }
+  
+  GetUserAttemptedTestResult(): Observable<any> {
+    const url = this.getuserattemptedtestResult;
+    console.log('Fetching user attempted test result from API:', url);
+    return this.http.get<any>(url);
   }
 
   SubmitTestPayment(payload: any): Observable<any> {

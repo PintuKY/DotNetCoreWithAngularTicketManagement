@@ -106,6 +106,10 @@ builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserProfilesService, UserProfilesService>();
 builder.Services.AddScoped<IUserTestCourse, UserTestCourseService>();
+builder.Services.AddScoped<IUserTestAttempted, UserTestAttemptedService>();
+builder.Services.AddScoped<IUsersTestScoreDetailsService, UsersTestScoreDetailsService>();
+//builder.Services.AddScoped<IUsersTestScoreDetailsService, UsersTestScoreDetailsService>();
+
 //End AddScoped
 builder.Services.AddScoped<IPasswordHasher<TicketManagement.Server.Models.OnlineEducation.Users>, PasswordHasher<TicketManagement.Server.Models.OnlineEducation.Users>>();
 

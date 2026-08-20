@@ -1,4 +1,4 @@
- <div class="profile-details-card">
+<div class="profile-details-card">
       <div class="card-header">
         <h2>
           {{ currentView === 'profile' ? 'Profile Details' : (currentView === 'course' ? 'User Course' : (currentView === 'attempts' ? 'Test Attempted' : 'Test Score')) }}
@@ -28,7 +28,12 @@
 
           <!-- Preview when not editing -->
           <div class="detail-value" *ngIf="!isEditMode">
-            <img [src]="user.profileImage" alt="profile" style="width:120px;height:120px;border-radius:8px;object-fit:cover" />
+            <img
+              [src]="getProfileImage(user.profileImage)"
+              alt="profile"
+              style="width:120px;height:120px;border-radius:8px;object-fit:cover"
+              (error)="onImageError($event)"
+            />
           </div>
 
           <!-- Drag & Drop / File input when editing -->
