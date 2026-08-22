@@ -35,6 +35,20 @@
               <i class="bx bx-book"></i>
               <span>Report</span>
             </button>
+            <label class="language-selector">
+              <span class="language-label">Language</span>
+              <select
+                  [(ngModel)]="selectedLanguage"
+                  (change)="changeLanguage()"
+                  aria-label="Select language">
+
+                  <option *ngFor="let language of languages"
+                          [value]="language.value">
+                    {{ language.label }}
+                  </option>
+
+                </select>
+            </label>
           </div>
         </div>
 

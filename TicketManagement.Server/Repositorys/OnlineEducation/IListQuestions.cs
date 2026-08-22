@@ -6,6 +6,6 @@ namespace TicketManagement.Server.Repositorys.OnlineEducation
     public interface IListQuestions
     {
         // Updated to accept ChapterGuid (from URL) and return questions for that chapter
-        Task<List<QuestionDto>> GetListQuestionsAsync(Guid chapterGuid);
+        Task<List<QuestionDto>> GetListQuestionsAsync(Guid chapterGuid, string language = "en");
     }
 }

@@ -15,8 +15,41 @@ namespace TicketManagement.Server.Services.OnlineEducation
             _context = context;
         }
 
-        public async Task<List<QuestionDto>> GetListQuestionsAsync(Guid chapterGuid)
+        public async Task<List<QuestionDto>> GetListQuestionsAsync(Guid chapterGuid, string language = "en")
         {
+            // Find ChapterId from ChapterGuid
+            language = language?.Trim().ToLower() ?? "en";
+            //var chapterId = await _context.chapters
+            //    .AsNoTracking()
+            //    .Where(c => c.ChapterGuid == chapterGuid)
+            //    .Select(c => (int?)c.ChapterId)
+            //    .FirstOrDefaultAsync();
+
+            //if (chapterId == null)
+            //{
+            //    return new List<QuestionDto>();
+            //}
+
+            //var result = await _context.question
+            //    .AsNoTracking()
+            //    .Where(q => q.ChapterID == chapterId.Value)
+            //    .Include(q => q.QuestionOptions)
+            //    .Select(q => new QuestionDto
+            //    {
+            //        Id = q.Id,
+            //        QuestionText = q.QuestionText,
+            //        ChapterID = q.ChapterID,
+            //        QuestionGuid = q.QuestionGuid,
+            //        Options = q.QuestionOptions
+            //            .Select(o => new OptionDto
+            //            {
+            //                OptionId = o.OptionId,
+            //                OptionText = o.OptionText
+            //            }).ToList()
+            //    })
+            //    .ToListAsync();
+
+            //return result;
             // Find ChapterId from ChapterGuid
             var chapterId = await _context.chapters
                 .AsNoTracking()
@@ -36,15 +69,30 @@ namespace TicketManagement.Server.Services.OnlineEducation
                 .Select(q => new QuestionDto
                 {
                     Id = q.Id,
-                    QuestionText = q.QuestionText,
-                    ChapterID = q.ChapterID,
                     QuestionGuid = q.QuestionGuid,
+
+                    // ==========================
+                    // QUESTION LANGUAGE
+                    // ==========================
+                    QuestionText = language == "hi"
+                        ? (q.QuestionTextHindi ?? q.QuestionText)
+                        : q.QuestionText,
+
+                    ChapterID = q.ChapterID,
+
                     Options = q.QuestionOptions
                         .Select(o => new OptionDto
                         {
                             OptionId = o.OptionId,
-                            OptionText = o.OptionText
-                        }).ToList()
+
+                            // ==========================
+                            // OPTION LANGUAGE
+                            // ==========================
+                            OptionText = language == "hi"
+                                ? (o.QuestionOptionsTextHindi ?? o.OptionText)
+                                : o.OptionText
+                        })
+                        .ToList()
                 })
                 .ToListAsync();
 

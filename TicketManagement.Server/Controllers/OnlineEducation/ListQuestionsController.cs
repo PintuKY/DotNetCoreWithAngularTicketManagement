@@ -19,12 +19,19 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         }
         
         [HttpGet("questions/{ChapterGuid:guid}")]
-        public async Task<IActionResult> GetQuestions(Guid ChapterGuid)
+        public async Task<IActionResult> GetQuestions(Guid ChapterGuid, [FromQuery] string language = "en")
         {
             try
             {
+                language = language?.Trim().ToLower() ?? "en";
+                // Allow only en or hi
+                if (language != "en" && language != "hi")
+                {
+                    language = "en";
+                }
                 // Pass ChapterGuid to service which resolves ChapterId and returns questions
-                var data = await _listquestionService.GetListQuestionsAsync(ChapterGuid);
+                //var data = await _listquestionService.GetListQuestionsAsync(ChapterGuid);
+                var data = await _listquestionService.GetListQuestionsAsync(ChapterGuid, language);
                 return Ok(data);
             }
             catch (System.Exception ex)

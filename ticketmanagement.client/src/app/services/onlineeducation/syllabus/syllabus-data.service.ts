@@ -124,17 +124,42 @@ UserProfileData(): Observable<any> {
     console.log('Submitting user profile data to API:', url, userProfileData);
     return this.http.post<any>(url, userProfileData);
   }
-  getQuestionDataByChapterGuid(chapterGuid: string | null): Observable<any>
-  {
-    let url = this.questionsUrl;
-    if (chapterGuid) {
-      url = `${this.questionsUrl}/${encodeURIComponent(chapterGuid)}`;
-    }
-    this.lastRequestUrl = url;
-    console.log('Calling question API:', url);
-    return this.http.get<any>(url);
+  // getQuestionDataByChapterGuid(chapterGuid: string | null,language: string = 'en'): Observable<any>
+  // {
+  //   let url = this.questionsUrl;
+  //   if (chapterGuid) {
+  //     url = `${this.questionsUrl}/${encodeURIComponent(chapterGuid)}`;
+  //   }
+  //   this.lastRequestUrl = url;
+  //   console.log('Calling question API:', url);
+  //   return this.http.get<any>(url);
+  // }
+getQuestionDataByChapterGuid(
+  chapterGuid: string | null,
+  language: string = 'en'
+): Observable<any> {
+
+  if (!chapterGuid) {
+    console.error('chapterGuid is required');
+    return new Observable<any>(observer => {
+      observer.error('chapterGuid is required');
+    });
   }
 
+  const cleanChapterGuid = chapterGuid.split('?')[0];
+
+  const url =
+    `${this.questionsUrl}/${cleanChapterGuid}`;
+
+  const params = new HttpParams()
+    .set('language', language);
+
+  console.log('Calling Question API');
+  console.log('URL:', url);
+  console.log('Language:', language);
+
+  return this.http.get<any>(url, { params });
+}
   // Use this when you only want the syllabus for a specific test GUID.
   private lastRequestUrl: string | null = null;
 

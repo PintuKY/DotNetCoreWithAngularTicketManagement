@@ -1,5 +1,7 @@
 import { HttpClientModule } from '@angular/common/http'; //this for service call api backend
 import { NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; //this for form submit ngForm, ngModel, (ngSubmit) all belong to FormsModule

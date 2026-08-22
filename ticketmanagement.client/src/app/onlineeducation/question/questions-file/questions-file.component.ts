@@ -30,6 +30,11 @@ confirmSubmitOpen = false;
 reportModalOpen = false;
 reportMessage = '';
 readonly reportPlaceholder = 'Please describe the issue or comment you want to send to the exam team.';
+selectedLanguage = 'en';
+readonly languages = [
+  { value: 'en', label: 'English' },
+  { value: 'hi', label: 'Hindi' }
+];
 private readonly MAIN_TIME = 60;
 private countdownTime = this.MAIN_TIME;
 displayTime = '01:00';
@@ -93,12 +98,12 @@ ngOnInit(): void {
     this.isLoading = true;
     this.startDateTime = new Date();
 
-    this.syllabusService.getQuestionDataByChapterGuid(chapterGuid).subscribe(
+    this.syllabusService.getQuestionDataByChapterGuid(chapterGuid, this.selectedLanguage).subscribe(
       res => {
         this.isLoading = false;
 
         const questions = this.normalizeQuestionResponse(res);
-
+        console.log('Language:', this.selectedLanguage);
         console.log('Question API URL:', this.syllabusService.getLastRequestUrl ? this.syllabusService.getLastRequestUrl() : 'unknown');
         console.log('Question response payload', res);
         console.log('Normalized questions array', questions);
@@ -137,7 +142,14 @@ ngOnInit(): void {
       }
     );
   }
+changeLanguage(): void {
 
+  console.log('Selected Language:', this.selectedLanguage);
+
+  if (this.chapterGuId) {
+    this.loadQuestions(this.chapterGuId);
+  }
+}
   selectOption(questionId:number, optionId:number){
     this.answers[questionId] = optionId;
     this.updateCounts();

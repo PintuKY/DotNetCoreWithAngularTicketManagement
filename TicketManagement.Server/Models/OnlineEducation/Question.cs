@@ -6,6 +6,7 @@ namespace TicketManagement.Server.Models.OnlineEducation
     {
         public int Id { get; set; }
         public Guid QuestionGuid { get; set; }
+        public string? QuestionTextHindi { get; set; }
         public string? QuestionText { get; set; }
         public int ChapterID { get; set; }
         public List<QuestionOption> QuestionOptions { get; set; } = new List<QuestionOption>();
@@ -15,6 +16,7 @@ namespace TicketManagement.Server.Models.OnlineEducation
         [Key]
         public int OptionId { get; set; }
         public string? OptionText { get; set; }
+        public string? QuestionOptionsTextHindi { get; set; }
         public int QuestionId { get; set; }
         public bool IsCorrect { get; set; }
         public Question? Question { get; set; }
