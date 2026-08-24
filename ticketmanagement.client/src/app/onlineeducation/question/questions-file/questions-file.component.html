@@ -119,7 +119,7 @@
 
           <div class="status-legend">
             <div class="legend-item">
-              <span class="legend-badge not-visited"></span>
+              <span class="legend-badge notvisited"></span>
               <span class="legend-label">Not Visited</span>
               <span class="legend-count">{{ notvisited - attempted }}</span>
             </div>
@@ -143,7 +143,7 @@
           <button
             *ngFor="let q of questions; let i = index"
             (click)="Questionnext(i)"
-            [ngClass]="'question-btn ' + (questionStatus[i] || 'not-visited')"
+            [ngClass]="'question-btn ' + (questionStatus[i] || 'notvisited')"
             class="question-btn"
             [title]="'Question ' + (i + 1)"
           >

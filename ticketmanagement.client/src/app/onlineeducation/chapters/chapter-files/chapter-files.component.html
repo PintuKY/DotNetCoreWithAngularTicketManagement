@@ -2,7 +2,7 @@
 <section id="chapter-section" class="chapter-section">
   <div class="chapter-container" data-aos="fade-up">
     <div class="chapter-title">
-      <h2>All Chapters</h2>
+      <a routerLink="/syllabus">back</a><h5>All Chapters</h5>
       <p>Choose a chapter to continue your preparation with smart practice tests and guided study resources.</p>
     </div>
 
@@ -17,7 +17,7 @@
 
         <div class="chapter-card-body">
           <h4>
-            <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID }" class="chapter-link">
+            <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID,tgd1:testGuid2 }" class="chapter-link">
               {{ opt.chapterName }}
             </a>
           </h4>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="chapter-card-footer">
-          <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID }" class="chapter-action">
+          <a [routerLink]="['/question']" [queryParams]="{ id: opt.chapterGuid, SyID: syllabusID,tgd1:testGuid2 }" class="chapter-action">
             Start Now <i class="bx bx-right-arrow-alt"></i>
           </a>
         </div>

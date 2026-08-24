@@ -24,7 +24,7 @@ export class SylabusFileComponent implements OnInit {
   expiry = '';
   cvv = '';
   upiId = '';
-
+  testGuid1: string | null = null;
   constructor(
     private syllabusDataService: SyllabusDataService,
     private route: ActivatedRoute,
@@ -36,11 +36,14 @@ export class SylabusFileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const testId = params.get('testid');
+      this.testGuid1 = testId;
+      console.log("TestGuid1:",this.testGuid1);
       const id = params.get('id');
       this.syllabusid = id ? parseInt(id, 10) : null;
       this.loadSyllabus(testId);
       this.loadTestPaymentDetails(this.syllabusid);
     });
+   
   }
 private loadSyllabus(testId: string | null) {
 
@@ -190,9 +193,10 @@ private loadSyllabus(testId: string | null) {
 
   private goToChaptersPage(syllabus: Syllabus): void {
     this.router.navigate(['/chapters'], {
-      queryParams: {
+      queryParams: {        
         id: syllabus.syllabusGuid,
-        SyID: syllabus.syllabusID
+        SyID: syllabus.syllabusID,
+        tgd: this.testGuid1
       }
     });
   }

@@ -29,6 +29,7 @@ chapterid:any;
 confirmSubmitOpen = false;
 reportModalOpen = false;
 reportMessage = '';
+testGuids3: string | null = null;
 readonly reportPlaceholder = 'Please describe the issue or comment you want to send to the exam team.';
 selectedLanguage = 'en';
 readonly languages = [
@@ -59,9 +60,11 @@ ngOnInit(): void {
       this.chapterGuId = params['id'] || params['chapterId'] || null;
       const syParam = params['syllabusID'] || params['SyID'] || params['SyId'] || null;
       this.syllabusID = syParam != null ? Number(syParam) : null;
+      this.testGuids3=params['tgd1'];
       console.log('Query params', params);
       console.log('Resolved chapter GUID', this.chapterGuId);
       console.log('Resolved syllabusID', this.syllabusID);
+      console.log('Resolved testGuids3', this.testGuids3);
       this.loadQuestions(this.chapterGuId);
     });
 
@@ -150,20 +153,62 @@ changeLanguage(): void {
     this.loadQuestions(this.chapterGuId);
   }
 }
-  selectOption(questionId:number, optionId:number){
-    this.answers[questionId] = optionId;
-    this.updateCounts();
+  // selectOption(questionId:number, optionId:number){
+  //   this.answers[questionId] = optionId;
+  //   this.updateCounts();
+  // }
+selectOption(questionId: number, optionId: number): void {
+  this.answers[questionId] = optionId;
+
+  const index = this.questions.findIndex(q => q.id === questionId);
+
+  if (index >= 0) {
+    this.questionStatus[index] = 'answered';
   }
 
-  updateCounts(){
-
-this.marked = Object.keys(this.answers)
-  .filter(k => this.answers[k] != null).length;
-
-this.not_answared = this.questions.length - this.marked;
-
+  this.updateCounts();
 }
+//   updateCounts(){
 
+// this.marked = Object.keys(this.answers)
+//   .filter(k => this.answers[k] != null).length;
+
+// this.not_answared = this.questions.length - this.marked;
+
+// }
+updateCounts(): void {
+
+  // Answered questions
+  this.marked = this.questions.filter((q, index) =>
+    this.questionStatus[index] === 'answered'
+  ).length;
+
+  // Visited / attempted questions
+  this.attempted = this.questions.filter((q, index) =>
+    this.questionStatus[index] === 'attempted' ||
+    this.questionStatus[index] === 'answered' ||
+    this.questionStatus[index] === 'skipped'
+  ).length;
+
+  // Not visited
+  this.notvisited = this.questions.filter((q, index) =>
+    this.questionStatus[index] === 'notvisited'
+  ).length;
+
+  // Not answered
+  this.not_answared = this.questions.filter((q, index) =>
+    this.questionStatus[index] === 'attempted' ||
+    this.questionStatus[index] === 'skipped'
+  ).length;
+
+  console.log('Counts:', {
+    total: this.questions.length,
+    answered: this.marked,
+    attempted: this.attempted,
+    notVisited: this.notvisited,
+    notAnswered: this.not_answared
+  });
+}
 previous(){
 
 if(this.currentIndex > 0){
@@ -178,41 +223,91 @@ this.clearTimer();
 
 }
 
-next(){
+// next(){
 
-const currentQuestion = this.questions[this.currentIndex];
-const selectedOption = this.answers[currentQuestion.id];
+// const currentQuestion = this.questions[this.currentIndex];
+// const selectedOption = this.answers[currentQuestion.id];
 
-if(selectedOption){
-  this.questionStatus[this.currentIndex] = 'answered';
-}else{
-  this.questionStatus[this.currentIndex] = 'attempted';
-}
+// if(selectedOption){
+//   this.questionStatus[this.currentIndex] = 'answered';
+// }else{
+//   this.questionStatus[this.currentIndex] = 'attempted';
+// }
 
-if(this.currentIndex < this.questions.length - 1){
-  // Record time spent on current question
+// if(this.currentIndex < this.questions.length - 1){
+//   // Record time spent on current question
+//   this.recordQuestionTime();
+//   this.currentIndex++;
+//   // Start timing for new question
+//   this.currentQuestionStartTime = new Date();
+// }
+
+// this.updateCounts();
+
+// this.clearTimer();
+
+// }
+next(): void {
+
+  const currentQuestion = this.questions[this.currentIndex];
+
+  if (!currentQuestion) {
+    return;
+  }
+
+  const selectedOption = this.answers[currentQuestion.id];
+
+  // Answer selected
+  if (selectedOption != null) {
+
+    this.questionStatus[this.currentIndex] = 'answered';
+
+  }
+  // No answer selected -> skipped
+  else {
+
+    this.questionStatus[this.currentIndex] = 'skipped';
+
+  }
+
+  // Record current question time
   this.recordQuestionTime();
-  this.currentIndex++;
-  // Start timing for new question
-  this.currentQuestionStartTime = new Date();
+
+  // Move to next question
+  if (this.currentIndex < this.questions.length - 1) {
+
+    this.currentIndex++;
+
+    this.currentQuestionStartTime = new Date();
+
+    this.clearTimer();
+
+  }
+
+  this.updateCounts();
 }
+// clear(){
 
-this.updateCounts();
+// const qId = this.questions[this.currentIndex].id;
 
-this.clearTimer();
+// this.answers[qId] = null;
 
-}
+// this.questionStatus[this.currentIndex] = 'attempted';
 
-clear(){
+// this.updateCounts();
 
-const qId = this.questions[this.currentIndex].id;
+// }
+clear(): void {
 
-this.answers[qId] = null;
+  const qId = this.questions[this.currentIndex].id;
 
-this.questionStatus[this.currentIndex] = 'attempted';
+  // Remove the answer completely
+  delete this.answers[qId];
 
-this.updateCounts();
+  // Question has been visited but not answered
+  this.questionStatus[this.currentIndex] = 'skipped';
 
+  this.updateCounts();
 }
 
 Questionnext(index:number){
@@ -287,38 +382,38 @@ sendReport(): void {
   this.closeReportModal();
 }
 
-startTimer(){
+// startTimer(){
 
-this.stopSubscription();
+// this.stopSubscription();
 
-this.countdownTime = this.MAIN_TIME;
+// this.countdownTime = this.MAIN_TIME;
 
-this.timerSubscription = timer(0,1000).subscribe(()=>{
+// this.timerSubscription = timer(0,1000).subscribe(()=>{
 
-if(this.countdownTime > 0)
-{
+// if(this.countdownTime > 0)
+// {
 
-   this.countdownTime--;
+//    this.countdownTime--;
 
-   this.displayTime = this.formatTime(this.countdownTime);
+//    this.displayTime = this.formatTime(this.countdownTime);
 
-   if(this.countdownTime <= 5)
-   {
-      this.warningMessage = "⚠ Hurry up! Time almost over";
-      this.isWarning = true;      
-   }
-   else if(this.countdownTime == 1)
-   {
-    this.stopSubscription();
-   }
+//    if(this.countdownTime <= 5)
+//    {
+//       this.warningMessage = "⚠ Hurry up! Time almost over";
+//       this.isWarning = true;      
+//    }
+//    else if(this.countdownTime == 1)
+//    {
+//     this.stopSubscription();
+//    }
 
-}
-else
-{
-   this.autoNextQuestion();
-}
-});
-}
+// }
+// else
+// {
+//    this.autoNextQuestion();
+// }
+// });
+// }
 
 // startTimer(){
 
@@ -335,31 +430,113 @@ else
 // });
 // }
 
-autoNextQuestion(){
+// autoNextQuestion(){
 
-const currentQuestion = this.questions[this.currentIndex];
-const selectedOption = this.answers[currentQuestion.id];
+// const currentQuestion = this.questions[this.currentIndex];
+// const selectedOption = this.answers[currentQuestion.id];
 
-if(selectedOption){
-   this.questionStatus[this.currentIndex] = "answered";
-}else{
-   this.questionStatus[this.currentIndex] = "attempted";
+// if(selectedOption){
+//    this.questionStatus[this.currentIndex] = "answered";
+// }else{
+//    this.questionStatus[this.currentIndex] = "attempted";
+// }
+
+// if(this.currentIndex < this.questions.length - 1){
+
+//    this.currentIndex++;
+//    this.clearTimer();
+
+// }else{
+
+//    console.log("Timer auto Next Question Submit Function");
+//    this.submit();
+
+// }
+
+// }
+startTimer(): void {
+
+  this.stopSubscription();
+
+  this.countdownTime = this.MAIN_TIME;
+
+  this.displayTime =
+    this.formatTime(this.countdownTime);
+
+  this.timerSubscription =
+    timer(0, 1000).subscribe(() => {
+
+      if (this.countdownTime > 0) {
+
+        this.countdownTime--;
+
+        this.displayTime =
+          this.formatTime(this.countdownTime);
+
+        if (this.countdownTime <= 5) {
+
+          this.warningMessage =
+            '⚠ Hurry up! Time almost over';
+
+          this.isWarning = true;
+        }
+
+      } else {
+
+        this.stopSubscription();
+
+        this.autoNextQuestion();
+      }
+
+    });
 }
+autoNextQuestion(): void {
 
-if(this.currentIndex < this.questions.length + 1){
+  const currentQuestion =
+    this.questions[this.currentIndex];
 
-   this.currentIndex++;
-   this.clearTimer();
+  if (!currentQuestion) {
+    return;
+  }
 
-}else{
+  const selectedOption =
+    this.answers[currentQuestion.id];
 
-   console.log("Timer auto Next Question Submit Function");
-   this.submit();
+  if (selectedOption != null) {
 
+    this.questionStatus[this.currentIndex] =
+      'answered';
+
+  } else {
+
+    this.questionStatus[this.currentIndex] =
+      'skipped';
+  }
+
+  this.recordQuestionTime();
+
+  if (this.currentIndex < this.questions.length - 1) {
+
+    this.currentIndex++;
+
+    this.currentQuestionStartTime =
+      new Date();
+
+    this.clearTimer();
+
+  } else {
+
+    console.log(
+      'Last question reached. Submitting test.'
+    );
+
+    this.endDateTime = new Date();
+
+    this.submit();
+  }
+
+  this.updateCounts();
 }
-
-}
-
 clearTimer(){
 
 this.warningMessage = '';
@@ -417,73 +594,260 @@ getOptionCharByOptionId(optionId: number): string {
 }
 
 // Build comprehensive payload with all timing and question data
-private buildTestSubmissionPayload(): any {
-  const questionMetadata: any[] = [];
-  const answersWithCharacters: any = {};
+// private buildTestSubmissionPayload(): any {
+//   const questionMetadata: any[] = [];
+//   const answersWithCharacters: any = {};
   
-  // Build detailed data for each question
-  this.questions.forEach((question, index) => {
-    const timing = this.questionTimings[question.id];
-    const selectedOptionId = this.answers[question.id];
-    const isAnswered = selectedOptionId != null;
-    const isSkipped = this.questionStatus[index] === 'notvisited';
-    const isAttempted = this.questionStatus[index] === 'attempted';
+//   // Build detailed data for each question
+//   this.questions.forEach((question, index) => {
+//     const timing = this.questionTimings[question.id];
+//     const selectedOptionId = this.answers[question.id];
+//     const isAnswered = selectedOptionId != null;
+//     const isSkipped = this.questionStatus[index] === 'notvisited';
+//     const isAttempted = this.questionStatus[index] === 'attempted';
     
-    // Convert optionId to option character (A, B, C, D)
-    let selectedOptionChar = null;
+//     // Convert optionId to option character (A, B, C, D)
+//     let selectedOptionChar = null;
+//     if (isAnswered && question.options) {
+//       const selectedIndex = question.options.findIndex(opt => opt.optionId === selectedOptionId);
+//       if (selectedIndex >= 0) {
+//         selectedOptionChar = String.fromCharCode(65 + selectedIndex); // A, B, C, D
+//       }
+//     }
+    
+//     answersWithCharacters[question.id] = selectedOptionChar;
+    
+//     questionMetadata.push({
+//       questionId: question.id,
+//       questionText: question.questionText || '',
+//       selectedAnswer: selectedOptionChar || null,  // Now sends character like A, B, C, D
+//       selectedOptionId: selectedOptionId || null,  // Keep original optionId for reference
+//       isAnswered: isAnswered,
+//       isSkipped: isSkipped,
+//       isAttempted: isAttempted,
+//       timeSpentSeconds: timing ? timing.timeSpentSeconds : 0,
+//       startedAt: timing ? timing.startTime.toISOString() : null,
+//       endedAt: timing ? (timing.endTime ? timing.endTime.toISOString() : null) : null, 
+//     });
+//   });
+  
+//   // Calculate total time spent
+//   const totalTimeSpentMs = this.endDateTime && this.startDateTime 
+//     ? this.endDateTime.getTime() - this.startDateTime.getTime() 
+//     : 0;
+//   const totalTimeSpentSeconds = Math.floor(totalTimeSpentMs / 1000);
+  
+//   return {
+//     chapterid: this.chapterid,
+//     syllabusID: this.syllabusID,
+//     answers: answersWithCharacters,  // Send character answers (A, B, C, D)
+//     answersWithOptionIds: this.answers,  // Keep original optionIds for reference
+//     startDateTime: this.startDateTime ? this.startDateTime.toISOString() : null,
+//     endDateTime: this.endDateTime ? this.endDateTime.toISOString() : null,
+//     totalTimeSpentSeconds: totalTimeSpentSeconds,
+//     questionsAttempted: this.marked,
+//     questionsSkipped: this.notvisited - this.marked,
+//     questionsAnswered: this.marked,
+//     questionsNotAnswered: this.not_answared,
+//     questionMetadata: questionMetadata,
+//     // Summary statistics
+//     summary: {
+//       totalQuestions: this.questions.length,
+//       answered: this.marked,
+//       attempted: this.attempted,
+//       skipped: this.notvisited - this.marked,
+//       notAnswered: this.not_answared
+//     }
+//   };
+// }
+private buildTestSubmissionPayload(): any {
+
+  const questionMetadata: any[] = [];
+
+  const answersWithCharacters: { [questionId: number]: string } = {};
+
+  const answersWithOptionIds: { [questionId: number]: number } = {};
+
+
+  this.questions.forEach((question, index) => {
+
+    const timing = this.questionTimings[question.id];
+
+    const selectedOptionId = this.answers[question.id];
+
+    const isAnswered = selectedOptionId != null;
+
+    const isSkipped =
+      this.questionStatus[index] === 'skipped';
+
+    const isAttempted =
+      this.questionStatus[index] === 'attempted';
+
+    // -----------------------------------------
+    // Convert option ID -> A/B/C/D
+    // -----------------------------------------
+
+    let selectedOptionChar: string | null = null;
+
     if (isAnswered && question.options) {
-      const selectedIndex = question.options.findIndex(opt => opt.optionId === selectedOptionId);
+
+      const selectedIndex = question.options.findIndex(
+        opt => opt.optionId === selectedOptionId
+      );
+
       if (selectedIndex >= 0) {
-        selectedOptionChar = String.fromCharCode(65 + selectedIndex); // A, B, C, D
+        selectedOptionChar =
+          String.fromCharCode(65 + selectedIndex);
       }
     }
-    
-    answersWithCharacters[question.id] = selectedOptionChar;
-    
+
+    // -----------------------------------------
+    // ONLY save actual answers
+    // -----------------------------------------
+
+    if (isAnswered && selectedOptionChar) {
+
+      answersWithCharacters[question.id] =
+        selectedOptionChar;
+
+      answersWithOptionIds[question.id] =
+        selectedOptionId;
+    }
+
+    // -----------------------------------------
+    // Metadata
+    // -----------------------------------------
+
     questionMetadata.push({
+
       questionId: question.id,
+
       questionText: question.questionText || '',
-      selectedAnswer: selectedOptionChar || null,  // Now sends character like A, B, C, D
-      selectedOptionId: selectedOptionId || null,  // Keep original optionId for reference
+
+      selectedAnswer: selectedOptionChar,
+
+      selectedOptionId: isAnswered
+        ? selectedOptionId
+        : null,
+
       isAnswered: isAnswered,
+
       isSkipped: isSkipped,
+
       isAttempted: isAttempted,
-      timeSpentSeconds: timing ? timing.timeSpentSeconds : 0,
-      startedAt: timing ? timing.startTime.toISOString() : null,
-      endedAt: timing ? (timing.endTime ? timing.endTime.toISOString() : null) : null, 
+
+      timeSpentSeconds:
+        timing?.timeSpentSeconds ?? 0,
+
+      startedAt:
+        timing?.startTime?.toISOString() ?? null,
+
+      endedAt:
+        timing?.endTime?.toISOString() ?? null
     });
+
   });
-  
-  // Calculate total time spent
-  const totalTimeSpentMs = this.endDateTime && this.startDateTime 
-    ? this.endDateTime.getTime() - this.startDateTime.getTime() 
-    : 0;
-  const totalTimeSpentSeconds = Math.floor(totalTimeSpentMs / 1000);
-  
+
+  // -----------------------------------------
+  // Total exam time
+  // -----------------------------------------
+
+  const totalTimeSpentMs =
+    this.endDateTime && this.startDateTime
+      ? this.endDateTime.getTime() -
+        this.startDateTime.getTime()
+      : 0;
+
+  const totalTimeSpentSeconds =
+    Math.floor(totalTimeSpentMs / 1000);
+
+  // -----------------------------------------
+  // Calculate counts
+  // -----------------------------------------
+
+  const totalQuestions = this.questions.length;
+
+  const answered = this.questions.filter(
+    (q, index) =>
+      this.questionStatus[index] === 'answered'
+  ).length;
+
+  const skipped = this.questions.filter(
+    (q, index) =>
+      this.questionStatus[index] === 'skipped'
+  ).length;
+
+  const attempted = this.questions.filter(
+    (q, index) =>
+      this.questionStatus[index] === 'attempted'
+  ).length;
+
+  const notVisited = this.questions.filter(
+    (q, index) =>
+      this.questionStatus[index] === 'not-visited'
+  ).length;
+
   return {
-    chapterid: this.chapterid,
+
+    // IMPORTANT: match C# property
+    chapterId: this.chapterid,
+
     syllabusID: this.syllabusID,
-    answers: answersWithCharacters,  // Send character answers (A, B, C, D)
-    answersWithOptionIds: this.answers,  // Keep original optionIds for reference
-    startDateTime: this.startDateTime ? this.startDateTime.toISOString() : null,
-    endDateTime: this.endDateTime ? this.endDateTime.toISOString() : null,
-    totalTimeSpentSeconds: totalTimeSpentSeconds,
-    questionsAttempted: this.marked,
-    questionsSkipped: this.notvisited - this.marked,
-    questionsAnswered: this.marked,
-    questionsNotAnswered: this.not_answared,
-    questionMetadata: questionMetadata,
-    // Summary statistics
+    testGuid: this.testGuids3,
+    // A/B/C/D
+    answers: answersWithCharacters,
+
+    // Option IDs
+    answersWithOptionIds: answersWithOptionIds,
+
+    startDateTime:
+      this.startDateTime
+        ? this.startDateTime.toISOString()
+        : null,
+
+    endDateTime:
+      this.endDateTime
+        ? this.endDateTime.toISOString()
+        : null,
+
+    totalTimeSpentSeconds:
+
+      totalTimeSpentSeconds,
+
+    questionsAnswered:
+      answered,
+
+    questionsAttempted:
+      attempted,
+
+    questionsSkipped:
+      skipped,
+
+    questionsNotAnswered:
+      skipped,
+
+    questionMetadata:
+      questionMetadata,
+
     summary: {
-      totalQuestions: this.questions.length,
-      answered: this.marked,
-      attempted: this.attempted,
-      skipped: this.notvisited - this.marked,
-      notAnswered: this.not_answared
+
+      totalQuestions:
+        totalQuestions,
+
+      answered:
+        answered,
+
+      attempted:
+        attempted,
+
+      skipped:
+        skipped,
+
+      notAnswered:
+        skipped
     }
   };
 }
-
 ngOnDestroy(){
 
 this.stopSubscription();

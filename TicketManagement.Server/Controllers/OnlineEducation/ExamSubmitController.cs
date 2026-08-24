@@ -40,7 +40,9 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             }
 
             // Normalize incoming collections / values to avoid NullReferenceException
-            var answers = data.AnswersWithOptionIds ?? new Dictionary<int, int>();
+            //var answers = data.AnswersWithOptionIds ?? new Dictionary<int, int>();
+            var answers = data.AnswersWithOptionIds ?? new Dictionary<int, int?>();
+            var answers1 = (data.AnswersWithOptionIds ?? new Dictionary<int, int?>()).Where(x => x.Value.HasValue).ToDictionary(x => x.Key, x => x.Value!.Value);
             var chapterId = data.ChapterId;
             var syllabuid = data.SyllabusID;
             int totaltimeinsecond = data.TotalTimeSpentSeconds;
@@ -80,14 +82,25 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             int score = correctAnswers;
 
             // Resolve Test.Id for the chapter (preferred) or fail early.
-            var testEntity = await _dbContext.Tests
-                .AsNoTracking()
-                .FirstOrDefaultAsync(t => t.Id == GeneralClass.GetTestID);
+            //var testEntity = await _dbContext.Tests
+            //    .AsNoTracking()
+            //    .FirstOrDefaultAsync(t => t.Id == GeneralClass.GetTestID);
+
+            //if (testEntity == null)
+            //{
+            //    _logger.LogWarning("No test found for ChapterId {ChapterId} while attempting to submit exam", chapterId);
+            //    return BadRequest($"No test found for ChapterId {chapterId}.");
+            //}
+            var testEntity = await _dbContext.Tests.AsNoTracking().FirstOrDefaultAsync(t => t.TestGuid == data.TestGuid);
 
             if (testEntity == null)
             {
-                _logger.LogWarning("No test found for ChapterId {ChapterId} while attempting to submit exam", chapterId);
-                return BadRequest($"No test found for ChapterId {chapterId}.");
+                _logger.LogWarning(
+                    "No test found for TestGuid {TestGuid}",
+                    data.TestGuid);
+
+                return BadRequest(
+                    $"No test found for TestGuid {data.TestGuid}.");
             }
 
             var userTestResults = new UserTestResults

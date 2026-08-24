@@ -14,13 +14,15 @@ constructor(private route: ActivatedRoute,private syllabusService: SyllabusDataS
 chapters: any[] = [];
 syllabusGuid: string | null = null;
 syllabusID: number | null = null;
-
+testGuid2: string | null = null;
   ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
       this.syllabusGuid = params['id'];
       this.syllabusID = params['SyID'];
+      this.testGuid2= params['tgd'];
       console.log("SyllabusGuid",this.syllabusGuid);
       console.log("SyllabusID",this.syllabusID);
+      console.log("TestGuid2",this.testGuid2);
       if (this.syllabusGuid) {
         this.loadChapters(this.syllabusGuid);
       } else {
