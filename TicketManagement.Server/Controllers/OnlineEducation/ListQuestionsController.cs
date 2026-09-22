@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TicketManagement.Server.Constants;
 using TicketManagement.Server.Models.DTOs;
 using TicketManagement.Server.Repositorys.OnlineEducation;
 
@@ -17,7 +19,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             _listquestionService = listquestionservice;
             _logger = logger;
         }
-        
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("questions/{ChapterGuid:guid}")]
         public async Task<IActionResult> GetQuestions(Guid ChapterGuid, [FromQuery] string language = "en")
         {

@@ -9,25 +9,33 @@ import { UserCourseFileComponent } from '../user-course/user-course-file/user-co
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  user1: any = null;
   isEditMode = false;
   isSidebarCollapsed = false;
   currentView: 'profile' | 'course' | 'attempts' | 'scores' = 'profile';
   activeSidebar: 'profile' | 'course' | 'attempts' | 'scores' | 'logout' = 'profile';
 user: any = {
-    firstName: 'Rakesh',
-    lastName: 'Yadav',
-    email: 'rakesh@example.com',
-    phone: '+91-9876543210',
-    address: '123 Education Street, Tech City, TC 12345',
-    profileImage: '/assets/images/default-user.png',    
-    city: 'Tech City',
-    state: 'TC',
-    dob: '' // ISO date string or empty
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    profileImage: '',    
+    city: '',
+    state: '',
+    dob: ''
   };  
   constructor(private router: Router, private route: ActivatedRoute, private syllabusService: SyllabusDataService) { }
 
   ngOnInit(): void {
     this.LoadUserProfile();
+    this.syllabusService.userProfile$.subscribe(profile => {
+
+      if (profile) {
+        this.user1 = profile;
+      }
+
+    });
   }
 
   LoadUserProfile() {
@@ -91,7 +99,7 @@ user: any = {
     this.activeSidebar = 'logout';
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   // Handle image load error and set default image

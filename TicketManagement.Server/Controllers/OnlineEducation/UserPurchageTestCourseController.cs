@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using TicketManagement.Server.Constants;
 using TicketManagement.Server.DBContexts;
 using TicketManagement.Server.Models.DTOs;
 using TicketManagement.Server.Models.OnlineEducation;
@@ -38,7 +40,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         {
             return View();
         }
-
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("usercoursedata")]
         public async Task<IActionResult> MyCourses()
         {
@@ -51,6 +53,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         }
 
         // POST: api/UserPurchageTestCourse/TestPayment
+        [Authorize(Roles = Roles.Student)]
         [HttpPost("TestPayment")]
         public async Task<IActionResult> TestPayment([FromBody] UPaymentDTO payload)
         {

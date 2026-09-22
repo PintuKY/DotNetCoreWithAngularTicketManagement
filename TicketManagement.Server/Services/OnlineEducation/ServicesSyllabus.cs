@@ -19,12 +19,12 @@ namespace TicketManagement.Server.Services.OnlineEducation
             //var result = await _context.syllabus.Include(s => s.Chapters).ToListAsync();
             //return await _context.syllabus.ToListAsync();
             var result = await _context.syllabus
-                                       .AsNoTracking()
+                                       .AsNoTracking()                                       
                                        .Select(s => new SyllabusDto
                                        {
                                            SyllabusID = s.SyllabusID,
                                            SyllabusGuid=s.syllabusGuid,
-                                           SyllabusName = s.syllabusName,
+                                           SyllabusName = s.syllabusName,                                         
                                            Chapters = s.Chapters.Select(c => new ChapterDto
                                            {
                                                ChapterId = c.ChapterId,
@@ -43,7 +43,7 @@ namespace TicketManagement.Server.Services.OnlineEducation
                                                    }).ToList()
                                                }).ToList()
                                            }).ToList()
-                                       })
+                                       }).Where(s => s.IsActive == true)
                                        .ToListAsync();
             return result;
         }

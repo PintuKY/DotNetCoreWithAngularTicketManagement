@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TicketManagement.Server.Constants;
 using TicketManagement.Server.Services.OnlineEducation;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
@@ -22,7 +23,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             _logger = logger;
             _usersTSDService = usersTSDService;
         }
-
+        [Authorize(Roles = Roles.Student)]
         [HttpPost("usrs-testscore-details")]
         public async Task<IActionResult> PostUserScoreDetails([FromBody] ScoreRequest request)
         {

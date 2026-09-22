@@ -130,10 +130,23 @@ namespace TicketManagement.Server.Services.OnlineEducation
 
                 var user = await _db.users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == userId);
                 var profile = await _db.userProfiles.AsNoTracking().FirstOrDefaultAsync(p => p.UserId == userId);
+                var fullName = user?.FullName?.Trim() ?? string.Empty;
+
+                var nameParts = fullName
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                var firstName = nameParts.Length > 0
+                    ? nameParts[0]
+                    : string.Empty;
+
+                var lastName = nameParts.Length > 1
+                    ? string.Join(" ", nameParts.Skip(1))
+                    : string.Empty;
 
                 var result = new UserProfilesDTO
                 {
-                    FirstName = user?.FullName, // if you prefer splitting, implement logic
+                    FirstName = firstName,
+                    LastName = lastName,
                     Email = user?.Email,
                     Phone = user?.Mobile,
                     Address = profile?.Address,

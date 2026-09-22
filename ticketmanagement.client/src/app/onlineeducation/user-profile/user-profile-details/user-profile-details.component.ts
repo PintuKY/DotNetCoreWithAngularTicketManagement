@@ -15,14 +15,14 @@ export class UserProfileDetailsComponent implements OnInit {
   currentView: 'profile' | 'course' | 'attempts' | 'scores' = 'profile';
   activeSidebar: 'profile' | 'course' | 'attempts' | 'scores' | 'logout' = 'profile';
   user: any = {
-    firstName: 'Rakesh',
-    lastName: 'Yadav',
-    email: 'rakesh@example.com',
-    phone: '+91-9876543210',
-    address: '123 Education Street, Tech City, TC 12345',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
     profileImage: '',
-    city: 'Tech City',
-    state: 'TC',
+    city: ' ',
+    state: '',
     dob: '' // ISO date string or empty
   };
   // Drag state
@@ -53,6 +53,10 @@ export class UserProfileDetailsComponent implements OnInit {
           ...response,
           profileImage: img
         };
+          // Save profile for page refresh
+        localStorage.setItem('userProfile', JSON.stringify(this.user));
+        this.syllabusService.setUserProfile(this.user);
+
         console.log('Profile Image URL:', img);
         console.log('Final URL (built):', this.getProfileImage(this.user.profileImage));
       },
@@ -70,10 +74,10 @@ export class UserProfileDetailsComponent implements OnInit {
   saveProfile() {
     // Basic password validation if user requested a password change
     if (this.showChangePassword) {
-      if (!this.passwordModel.current || !this.passwordModel.new || !this.passwordModel.confirm) {
-        alert('Please fill all password fields to change password.');
-        return;
-      }
+      // if (!this.passwordModel.current || !this.passwordModel.new || !this.passwordModel.confirm) {
+      //   alert('Please fill all password fields to change password.');
+      //   return;
+      // }
       if (this.passwordModel.new !== this.passwordModel.confirm) {
         alert('New password and confirm password do not match.');
         return;

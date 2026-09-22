@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SyllabusDataService } from 'src/app/services/onlineeducation/syllabus/syllabus-data.service';
 @Component({
   selector: 'app-header-file',
   templateUrl: './header-file.component.html',
@@ -7,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderFileComponent implements OnInit {
   isLoggedIn: boolean = false;
-
-  constructor() { }
+  user: any = null;
+  constructor(private syllabusService: SyllabusDataService) { }
 
   ngOnInit(): void {
+
+    this.syllabusService.userProfile$.subscribe(profile => {
+
+      if (profile) {
+        this.user = profile;
+      }
+
+    });
     // Check if user is logged in (from localStorage or auth service)
     const token = localStorage.getItem('token');
     this.isLoggedIn = !!token;

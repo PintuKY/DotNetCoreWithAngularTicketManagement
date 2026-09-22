@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TicketManagement.Server.Constants;
 using TicketManagement.Server.Repositorys.OnlineEducation;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
@@ -12,7 +14,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
         {
             _isyllabus = isyllabus;
         }
-
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("syllabusname")]       
         public async Task<IActionResult>GetSyllabus()
         {

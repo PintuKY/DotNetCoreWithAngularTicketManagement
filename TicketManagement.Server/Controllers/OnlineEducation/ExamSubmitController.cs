@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using TicketManagement.Server.Constants;
+using TicketManagement.Server.DBContexts;
 using TicketManagement.Server.Models.DTOs;
 using TicketManagement.Server.Models.OnlineEducation;
 using TicketManagement.Server.Objects;
 using TicketManagement.Server.Repositorys.OnlineEducation;
-using TicketManagement.Server.DBContexts;
 using TicketManagement.Server.Services.OnlineEducation;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
@@ -26,6 +28,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             _userService = userService;
         }
 
+        [Authorize(Roles = Roles.Student)]
         [HttpPost("examsubmits")]
         public async Task<IActionResult> ExamSubmite([FromBody] TestSubmissionDto data)
         {

@@ -83,7 +83,8 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
 
         // GET: api/tests/{testGuid}/syllabus  -> get Test syllabus (with purchase flag)
         // Allow anonymous clients to read syllabus; purchase check is performed when user is authenticated.
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("{testGuid:guid}/syllabus")]
         public async Task<IActionResult> GetSyllabusForTest(Guid testGuid)
         {

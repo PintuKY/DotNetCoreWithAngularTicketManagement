@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using TicketManagement.Server.Constants;
 using TicketManagement.Server.Services.OnlineEducation;
 
 namespace TicketManagement.Server.Controllers.OnlineEducation
@@ -16,7 +18,7 @@ namespace TicketManagement.Server.Controllers.OnlineEducation
             _iusertestattempted = userTestAttempted;
             _userservice = iuserservice;
         }
-
+        [Authorize(Roles = Roles.Student)]
         [HttpGet("usertest-attempted")]
         public async Task<IActionResult> Index()
         {

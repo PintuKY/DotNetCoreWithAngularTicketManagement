@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Syllabus, SyllabusResponse } from 'src/app/model/onlineeducation/syllabus.model';
 import { HttpClient ,HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,BehaviorSubject  } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,27 @@ import { Observable } from 'rxjs';
 
 export class SyllabusDataService 
 {
+
+  private userProfileSubject = new BehaviorSubject<any>(null);
+
+  userProfile$ = this.userProfileSubject.asObservable();
+
+  setUserProfile(user: any) {
+    this.userProfileSubject.next(user);
+    localStorage.setItem(
+    'userProfile',
+    JSON.stringify(user)
+  );
+  }
+private getStoredProfile() {
+
+  const profile = localStorage.getItem('userProfile');
+
+  return profile ? JSON.parse(profile) : null;
+}
+   getUserProfile() {
+    return this.userProfileSubject.value;
+  }
 //  private syllabusUrl = '/api/Tests/syllabus';
    private questionsUrl = '/api/listquestions/questions';
    private testGuidUrl = '/api/Tests';
