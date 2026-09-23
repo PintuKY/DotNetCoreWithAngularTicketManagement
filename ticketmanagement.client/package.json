@@ -1,6 +1,12 @@
 {
   "name": "ticketmanagement.client",
   "version": "0.0.0",
+  "private": true,
+  
+   "engines": {
+    "node": ">=16.10.0 <17.0.0",
+    "npm": ">=8.0.0 <9.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "run-script-os",
@@ -10,8 +16,7 @@
     "prestart": "node aspnetcore-https",
     "start:windows": "ng serve --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\" --host=127.0.0.1",
     "start:default": "ng serve --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\" --host=127.0.0.1"
-  },
-  "private": true,
+  },  
   "dependencies": {
     "@angular/animations": "^14.3.0",
     "@angular/cdk": "^13.3.9",
