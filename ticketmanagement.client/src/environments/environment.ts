@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiBaseUrl: 'https://onlineeducationapp-api-pk-gxdahjc0h8g2gwhc.westus3-01.azurewebsites.net',
-  apiBaseUrl1: 'https://localhost:59396' // adjust to your server URL
+  production: true,
+  apiBaseUrl: 'https://onlineeducationapp-api-pk-gxdahjc0h8g2gwhc.westus3-01.azurewebsites.net'
+  //apiBaseUrl1: 'https://localhost:59396' // adjust to your server URL
 };
 
 /*
